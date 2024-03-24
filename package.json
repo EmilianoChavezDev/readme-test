@@ -1,0 +1,17 @@
+{
+  "name": "readme-frontend-tests",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "npm run cy:open"
+  },
+  "dependencies": {
+    "cypress-file-upload": "^5.0.8",
+    "file-saver": "^2.0.5"
+  },
+  "devDependencies": {
+    "cypress": "^13.7.1"
+  }
+}
