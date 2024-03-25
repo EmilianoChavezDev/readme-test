@@ -3,10 +3,11 @@ const { BooksElements } = require("./pages/books/books.elements");
 const { BookMethods } = require("./pages/books/books.methods");
 const { LoginData } = require("./pages/login/login.data");
 const { LoginMethods } = require("./pages/login/login.methods");
+const { NavBarElements } = require("./pages/navbar/navbar.elements");
 
 // Test create Book
 describe("Test createBook", () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit("https://test--readme-test.netlify.app/auth/login");
 
     LoginMethods.login(
@@ -26,7 +27,9 @@ describe("Test createBook", () => {
 
   it("Fill and submit the book form", () => {
     // Vamos al endpoint de crear libros
-    cy.visit(createBookEndpoint);
+    NavBarElements.buttons.writeButton.click();
+
+    NavBarElements.buttons.createBookButton.click();
 
     // Interceptamos la peticion para simular que se creo el libro
     cy.intercept("POST", getPetition, {}).as("createBook");
@@ -55,7 +58,9 @@ describe("Test createBook", () => {
 
   it("Show validation errors for empty fields", () => {
     // Vamos al endpoint de crear libros
-    cy.visit(createBookEndpoint);
+    NavBarElements.buttons.writeButton.click();
+
+    NavBarElements.buttons.createBookButton.click();
 
     // Hacemos click en el boton de crear
     BooksElements.bookButtons.createButton.click();
@@ -79,7 +84,9 @@ describe("Test createBook", () => {
 
   it("Display uploaded image in preview", () => {
     // Vamos al endpoint de crear libros
-    cy.visit(createBookEndpoint);
+    NavBarElements.buttons.writeButton.click();
+
+    NavBarElements.buttons.createBookButton.click();
 
     // Usamos el metodo coverPreview de la clase BookMethods para cargar una imagen
     BookMethods.coverPreview(BooksData.bookData.cover);
@@ -93,7 +100,10 @@ describe("Test createBook", () => {
   });
 
   it("Redirect to home page when 'Cancelar' button is clicked", () => {
-    cy.visit(createBookEndpoint);
+    // Vamos al endpoint de crear libros
+    NavBarElements.buttons.writeButton.click();
+
+    NavBarElements.buttons.createBookButton.click();
 
     BooksElements.bookButtons.cancelButton.click();
     cy.url().should("eq", homeUrl);
@@ -101,7 +111,9 @@ describe("Test createBook", () => {
 
   it("Disable submit button while form is submitting", () => {
     // Vamos al endpoint de crear libros
-    cy.visit(createBookEndpoint);
+    NavBarElements.buttons.writeButton.click();
+
+    NavBarElements.buttons.createBookButton.click();
 
     // Interceptamos la peticion para simular que se creo el libro
     cy.intercept("POST", getPetition, {}).as("createBook");
