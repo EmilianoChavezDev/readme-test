@@ -1,7 +1,10 @@
 {
-  "correctUsername": "angel",
-  "correctPassword": "12345678",
-
-  "incorrectUsername": "test",
-  "incorrectPassword": "test"
+  "correctUser": {
+    "correctUsername": "angel",
+    "correctPassword": "12345678"
+  },
+  "incorrectUser": {
+    "incorrectUsername": "test",
+    "incorrectPassword": "test"
+  }
 }

@@ -1,11 +1,16 @@
 {
-  "newUsername": "angel",
-  "newPassword": "12345678",
+  "newUser": {
+    "newUsername": "angel",
+    "newPassword": "12345678"
+  },
 
-  "existUsername": "gonza",
-  "existPassword": "12345678",
-
-  "confirmPassword": "12345678",
-  "birth_date": "1995-12-12",
-  "passwordNotMatch": "asdasdasdad"
+  "existingUser": {
+    "existUsername": "gonza",
+    "existPassword": "12345678"
+  },
+  "additionalInfo": {
+    "confirmPassword": "12345678",
+    "birth_date": "1995-12-12",
+    "passwordNotMatch": "asdasdasdad"
+  }
 }

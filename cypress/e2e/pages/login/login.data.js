@@ -1,22 +1,17 @@
-import {
-  correctUsername,
-  correctPassword,
-  incorrectUsername,
-  incorrectPassword,
-} from "../../../fixtures/Login.json";
+import { correctUser, incorrectUser } from "../../../fixtures/Login.json";
 
 export class LoginData {
   static get validCredentials() {
     return {
-      username: correctUsername,
-      password: correctPassword,
+      username: correctUser.correctUsername,
+      password: correctUser.correctPassword,
     };
   }
 
   static get invalidCredentials() {
     return {
-      username: incorrectUsername,
-      password: incorrectPassword,
+      username: incorrectUser.incorrectUsername,
+      password: incorrectUser.incorrectPassword,
     };
   }
 }
