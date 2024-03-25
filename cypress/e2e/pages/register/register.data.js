@@ -31,4 +31,13 @@ export class RegisterData {
       birthDate: additionalInfo.birth_date,
     };
   }
+
+  static get invalidPasswordLength() {
+    return {
+      username: existingUser.existUsername,
+      password: additionalInfo.invalidPasswordLength,
+      confirmPassword: additionalInfo.invalidPasswordLength,
+      birthDate: additionalInfo.birth_date,
+    };
+  }
 }

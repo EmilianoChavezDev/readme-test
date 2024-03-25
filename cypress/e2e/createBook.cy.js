@@ -15,7 +15,20 @@ describe("Test createBook", () => {
       LoginData.validCredentials.password
     );
 
-    cy.get("nav.relative div").eq(0).should("be.visible");
+    cy.request({
+      method: "POST",
+      url: "https://readme-backend.fly.dev/login",
+      body: {
+        username: LoginData.validCredentials.username,
+        password: LoginData.validCredentials.password,
+      },
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body.username).to.eq(LoginData.validCredentials.username);
+      expect(response.body.token).to.exist;
+    });
+
+    NavBarElements.buttons.writeButton.should("be.visible");
   });
 
   const createBookEndpoint =
@@ -26,7 +39,9 @@ describe("Test createBook", () => {
   const homeUrl = "https://test--readme-test.netlify.app/";
 
   it("Fill and submit the book form", () => {
-    // Vamos al endpoint de crear libros
+    cy.wait(2000);
+
+    // Vamos al boton crear libro
     NavBarElements.buttons.writeButton.click();
 
     NavBarElements.buttons.createBookButton.click();
@@ -57,7 +72,9 @@ describe("Test createBook", () => {
   });
 
   it("Show validation errors for empty fields", () => {
-    // Vamos al endpoint de crear libros
+    cy.wait(2000);
+
+    // Vamos al boton crear libro
     NavBarElements.buttons.writeButton.click();
 
     NavBarElements.buttons.createBookButton.click();
@@ -83,7 +100,9 @@ describe("Test createBook", () => {
   });
 
   it("Display uploaded image in preview", () => {
-    // Vamos al endpoint de crear libros
+    cy.wait(2000);
+
+    // Vamos al boton crear libro
     NavBarElements.buttons.writeButton.click();
 
     NavBarElements.buttons.createBookButton.click();
@@ -100,7 +119,9 @@ describe("Test createBook", () => {
   });
 
   it("Redirect to home page when 'Cancelar' button is clicked", () => {
-    // Vamos al endpoint de crear libros
+    cy.wait(2000);
+
+    // Vamos al boton crear libro
     NavBarElements.buttons.writeButton.click();
 
     NavBarElements.buttons.createBookButton.click();
@@ -110,7 +131,9 @@ describe("Test createBook", () => {
   });
 
   it("Disable submit button while form is submitting", () => {
-    // Vamos al endpoint de crear libros
+    cy.wait(2000);
+
+    // Vamos al boton crear libro
     NavBarElements.buttons.writeButton.click();
 
     NavBarElements.buttons.createBookButton.click();
