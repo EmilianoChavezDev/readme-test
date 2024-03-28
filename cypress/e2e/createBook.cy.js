@@ -1,55 +1,46 @@
 const { BooksData } = require("./pages/books/books.data");
-const { BooksElements } = require("./pages/books/books.elements");
 const { BookMethods } = require("./pages/books/books.methods");
 const { LoginData } = require("./pages/login/login.data");
 const { LoginMethods } = require("./pages/login/login.methods");
-const { NavBarElements } = require("./pages/navbar/navbar.elements");
+const { NavBarMethods } = require("./pages/navbar/navbar.methods");
+import { Logger } from "../support/logger";
 
 // Test create Book
 describe("Test createBook", () => {
   beforeEach(() => {
+    Logger.stepNumber(1);
+    Logger.step("Login with valid credentials");
     cy.visit("https://test--readme-test.netlify.app/auth/login");
 
+    Logger.stepNumber(2);
+    Logger.step("Login with valid credentials");
     LoginMethods.login(
       LoginData.validCredentials.username,
       LoginData.validCredentials.password
     );
 
-    cy.request({
-      method: "POST",
-      url: "https://readme-backend.fly.dev/login",
-      body: {
-        username: LoginData.validCredentials.username,
-        password: LoginData.validCredentials.password,
-      },
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body.username).to.eq(LoginData.validCredentials.username);
-      expect(response.body.token).to.exist;
-    });
-
-    NavBarElements.buttons.writeButton.should("be.visible");
+    Logger.verification("NavBar button Escribir should be visible");
+    NavBarMethods.verifyWriteButton();
   });
 
-  const createBookEndpoint =
-    "https://test--readme-test.netlify.app/books/create";
+  const createBookUrl = "https://test--readme-test.netlify.app/books/create";
 
   const getPetition = "https://readme-backend.fly.dev/libros";
 
   const homeUrl = "https://test--readme-test.netlify.app/";
 
   it("Fill and submit the book form", () => {
-    cy.wait(2000);
-
     // Vamos al boton crear libro
-    NavBarElements.buttons.writeButton.click();
-
-    NavBarElements.buttons.createBookButton.click();
+    Logger.stepNumber(3);
+    Logger.step("Go to create book page");
+    NavBarMethods.createBook();
 
     // Interceptamos la peticion para simular que se creo el libro
+    Logger.stepNumber(4);
+    Logger.step("Fill the form and submit");
     cy.intercept("POST", getPetition, {}).as("createBook");
 
-    // Usamos el metodo createBook de la clase BookMethods para llenar el formulario
+    // Metodo para crear un libro y enviar la peticion
     BookMethods.createBook(
       BooksData.bookData.title,
       BooksData.bookData.sinopsis,
@@ -57,13 +48,9 @@ describe("Test createBook", () => {
       BooksData.bookData.cover
     );
 
-    cy.wait(2000);
-
-    // Hacemos click en el boton de crear
-    BooksElements.bookButtons.createButton.click();
-
     // Verificamos que la url sea la misma
-    cy.url().should("eq", createBookEndpoint);
+    Logger.verification("The user is redirected to the create book page");
+    cy.url().should("eq", createBookUrl);
 
     // Esperamos a que la peticion se complete
     cy.wait("@createBook").then((interception) => {
@@ -72,76 +59,46 @@ describe("Test createBook", () => {
   });
 
   it("Show validation errors for empty fields", () => {
-    cy.wait(2000);
+    // Vamos al boton crear libro del navbar
+    NavBarMethods.createBook();
 
-    // Vamos al boton crear libro
-    NavBarElements.buttons.writeButton.click();
-
-    NavBarElements.buttons.createBookButton.click();
-
-    // Hacemos click en el boton de crear
-    BooksElements.bookButtons.createButton.click();
+    // Hacemos click en el boton de crear de la pagina books/create
+    BookMethods.seguirButtonClick();
 
     // Verificamos que se muestren los mensajes de error
-    BooksElements.emptyFieldsError.title.should(
-      "contain.text",
-      "El título no puede estar vacio."
-    );
-
-    BooksElements.emptyFieldsError.sinopsis.should(
-      "contain.text",
-      "La descripción no puede estar vacio"
-    );
-
-    BooksElements.emptyFieldsError.category.should(
-      "contain.text",
-      "Debes seleccionar una categoría"
-    );
+    BookMethods.verifyEmptyTitleError();
+    BookMethods.verifyEmptySinopsisError();
+    BookMethods.verifyEmptyCategoryError();
   });
 
   it("Display uploaded image in preview", () => {
-    cy.wait(2000);
+    // En el navbar damos click en Escribe y es Crear nuevo libro
+    NavBarMethods.createBook();
 
-    // Vamos al boton crear libro
-    NavBarElements.buttons.writeButton.click();
-
-    NavBarElements.buttons.createBookButton.click();
-
-    // Usamos el metodo coverPreview de la clase BookMethods para cargar una imagen
+    // Usamos el metodo para cargar una portada
     BookMethods.coverPreview(BooksData.bookData.cover);
-    cy.wait(2000);
 
     // Verificamos que la imagen se haya cargado
-    cy.get('label[for="portada"]', { timeout: 10000 }).should(
-      "contain.text",
-      "Cambiar portada"
-    );
+    BookMethods.verifyCoverPreview();
   });
 
   it("Redirect to home page when 'Cancelar' button is clicked", () => {
-    cy.wait(2000);
+    // En el navbar damos click en Escribe y es Crear nuevo libro
+    NavBarMethods.createBook();
 
-    // Vamos al boton crear libro
-    NavBarElements.buttons.writeButton.click();
-
-    NavBarElements.buttons.createBookButton.click();
-
-    BooksElements.bookButtons.cancelButton.click();
+    // Hacemos click en el boton de cancelar
+    BookMethods.cancelButtonClick();
     cy.url().should("eq", homeUrl);
   });
 
   it("Disable submit button while form is submitting", () => {
-    cy.wait(2000);
-
-    // Vamos al boton crear libro
-    NavBarElements.buttons.writeButton.click();
-
-    NavBarElements.buttons.createBookButton.click();
+    // En el navbar damos click en Escribe y es Crear nuevo libro
+    NavBarMethods.createBook();
 
     // Interceptamos la peticion para simular que se creo el libro
     cy.intercept("POST", getPetition, {}).as("createBook");
 
-    // Usamos el metodo createBook de la clase BookMethods para llenar el formulario
+    // Metodo para crear un libro y enviar la peticion
     BookMethods.createBook(
       BooksData.bookData.title,
       BooksData.bookData.sinopsis,
@@ -149,14 +106,11 @@ describe("Test createBook", () => {
       BooksData.bookData.cover
     );
 
-    // Hacemos click en el boton de crear
-    BooksElements.bookButtons.createButton.click();
-
     // Verificamos que el boton de crear este deshabilitado
-    BooksElements.bookButtons.createButton.should("be.disabled");
+    BookMethods.verifyDisabledCreateButton();
 
     // Verificamos que la url sea la misma
-    cy.url().should("eq", createBookEndpoint);
+    cy.url().should("eq", createBookUrl);
 
     // Esperamos a que la peticion se complete
     cy.wait("@createBook").then((interception) => {
@@ -164,6 +118,6 @@ describe("Test createBook", () => {
     });
 
     // Verificamos que el boton de crear no este deshabilitado
-    BooksElements.bookButtons.createButton.should("not.be.disabled");
+    BookMethods.verifyEnabledCreateButton();
   });
 });

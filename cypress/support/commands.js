@@ -24,25 +24,3 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... });
 import "cypress-file-upload";
-import { Logger } from "./logger";
-
-Cypress.Commands.add("login", (username, password) => {
-  Logger.stepNumber(1);
-  Logger.step("Go to login page");
-  Logger.verification("The user is on the login page");
-  cy.visit("https://test--readme-test.netlify.app/auth/login");
-
-  Logger.stepNumber(2);
-  Logger.step("Login with correct credentials");
-  Logger.verification("The user is entering the correct credentials");
-  cy.get('input[name="username"]').type(username);
-  cy.get('input[name="password"]').type(password);
-
-  Logger.stepNumber(3);
-  Logger.step("Click login button");
-  Logger.verification("The user is clicking the login button");
-  cy.get("#login-btn", { timeout: 10000 }).click();
-
-  Logger.verification("The Logout button is visible");
-  cy.get('img[alt="logo"]', { timeout: 10000 }).should("exist");
-});

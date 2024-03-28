@@ -1,113 +1,124 @@
-import { FavoritesElements } from "./pages/favorties/favorites.elements";
+import { Logger } from "../support/logger";
+import { BookDetailsMethods } from "./pages/book-details/book-details.methods";
+import { FavoritesMethods } from "./pages/favorites/favorites.methods";
 import { LoginData } from "./pages/login/login.data";
 import { LoginMethods } from "./pages/login/login.methods";
-import { NavBarElements } from "./pages/navbar/navbar.elements";
+import { NavBarMethods } from "./pages/navbar/navbar.methods";
 
-
-// TODO: Check tests
 describe("Add Book to favorite", () => {
   beforeEach(() => {
+    Logger.stepNumber(1);
+    Logger.step("Visit login page");
     cy.visit("https://test--readme-test.netlify.app/auth/login");
 
+    Logger.stepNumber(2);
+    Logger.step("Login with valid credentials");
     LoginMethods.login(
       LoginData.validCredentials.username,
       LoginData.validCredentials.password
     );
 
-    cy.wait(2000);
-
-    cy.get("nav.relative div").eq(0).should("be.visible");
+    Logger.verification("NavBar button Escribe should be visible");
+    NavBarMethods.verifyWriteButton();
   });
 
-  const addFavortie = "https://readme-backend.fly.dev/favoritos";
-
   it("Add a book to favorite", () => {
-    // Seleccionamos el primer libro
+    // Seleccionamos el primer libro de novedades
+    Logger.stepNumber(3);
+    Logger.step("Select the first book of the new releases");
     cy.get("div.bg-gradient-to-t").eq(0).click();
-    cy.wait(2000);
 
-    // Añadimos el libro a favoritos
-    FavoritesElements.buttons.addFavoriteButton.click();
+    // Añadimos el libro a favoritos desde los detalles del libro
+    Logger.stepNumber(4);
+    Logger.step("Add the book to favorites from the book details");
+    BookDetailsMethods.addFavoriteClick();
 
-    // Navegamos a la pagina de favoritos
-    NavBarElements.buttons.myFavoritesButton.click();
+    // Navegamos a la pagina de Mis Favoritos
+    Logger.stepNumber(5);
+    Logger.step("Go to My Favorites page");
+    NavBarMethods.goToFavoritesClick();
 
-    //Verificamos que el libro se haya añadido a favoritos
-    cy.get("div.favorites_contenedor_datos_cuadro__MqGnE img", {
-      timeout: 10000,
-    })
-      .eq(1)
-      .should("be.visible");
-
-    cy.wait(2000);
+    // Verificamos que el libro se haya añadido a favoritos
+    Logger.verification("The book should be visible in favorites");
+    FavoritesMethods.verifyBookInFavorites();
   });
 
   it("Remove a book from favorite", () => {
-    cy.get("div.bg-gradient-to-t").eq(0).click();
-
-    // Añadimos el libro a favoritos desde la pagina del libro
-    FavoritesElements.buttons.addFavoriteButton.click();
-
-    // Navergamos a la pagina de favoritos
-    NavBarElements.buttons.myFavoritesButton.click();
-
-    cy.wait(2000);
+    // Navergamos a la pagina de Mis Favoritos
+    Logger.stepNumber(3);
+    Logger.step("Go to My Favorites page");
+    NavBarMethods.goToFavoritesClick();
 
     // Verificamos que el libro este en favoritos
-    cy.get("div.favorites_contenedor_datos_cuadro__MqGnE img")
-      .eq(1)
-      .should("be.visible");
+    Logger.verification("The book should be visible in favorites");
+    FavoritesMethods.verifyBookInFavorites();
 
     // Quitamos el libro de favoritos
-    FavoritesElements.buttons.fullHeartButton.click();
+    Logger.stepNumber(4);
+    Logger.step("Remove the book from favorites");
+    FavoritesMethods.removeFavoriteFullHeartClick();
 
     // Verificamos que el boton del corazon vacio este visible (Significa que lo sacamos de favoritos)
-    FavoritesElements.buttons.emptyHeartButton.should("be.visible");
-
-    cy.wait(2000);
-
-    // Volvemos a ver todos los libros
-    NavBarElements.buttons.myFavoritesButton.click();
-
-    cy.wait(2000);
-  });
-
-  it("Add a book to favorite and remove from the books datails", () => {
-    // Seleccionamos el primer libro
-    cy.get("div.bg-gradient-to-t").eq(0).click();
-    cy.wait(2000);
-
-    // Añadimos el libro a favoritos
-    FavoritesElements.buttons.addFavoriteButton.click();
-
-    // Navegamos a la pagina de favoritos
-    NavBarElements.buttons.myFavoritesButton.click();
-
-    //Verificamos que el libro se haya añadido a favoritos
-    cy.get("div.favorites_contenedor_datos_cuadro__MqGnE img", {
-      timeout: 10000,
-    })
-      .eq(1)
-      .should("be.visible");
-
-    cy.wait(2000);
+    Logger.verification("The empty heart button should be visible");
+    FavoritesMethods.verifyEmptyHeartButton();
 
     // Volvemos la inicio
-    NavBarElements.buttons.homeButton.click();
+    Logger.stepNumber(5);
+    Logger.step("Go to Home page");
+    NavBarMethods.goToHomeClick();
 
-    // Volvemos a ingresar a la pagina del libro
+    // Volvemos a ver todos los libros
+    Logger.stepNumber(6);
+    Logger.step("Go to My Favorites page");
+    NavBarMethods.goToFavoritesClick();
+
+    // Verificamos que no haya libros en favoritos
+    Logger.verification("The favorites page should be empty");
+    FavoritesMethods.verifyEmptyFavoritesMessage();
+  });
+
+  it("Add book to favorite and remove from the books details", () => {
+    // Seleccionamos el primer libro
+    Logger.stepNumber(3);
+    Logger.step("Select the first book of new releases");
     cy.get("div.bg-gradient-to-t").eq(0).click();
 
-    // Sacamos de favoritos en la pagina del libro
-    FavoritesElements.buttons.removeFavoriteButton.click();
+    // Añadimos el libro a favoritos desde los detalles del libro
+    Logger.stepNumber(4);
+    Logger.step("Add the book to favorites from the book details");
+    BookDetailsMethods.addFavoriteClick();
+
+    // Navegamos a la pagina de Mis Favoritos
+    Logger.stepNumber(5);
+    Logger.step("Go to My Favorites page");
+    NavBarMethods.goToFavoritesClick();
+
+    //Verificamos que el libro se haya añadido a favoritos
+    Logger.verification("The book should be visible in favorites");
+    FavoritesMethods.verifyBookInFavorites();
+
+    // Volvemos la inicio
+    Logger.stepNumber(6);
+    Logger.step("Go to Home page");
+    NavBarMethods.goToHomeClick();
+
+    // Volvemos a seleccionar el primer libro
+    Logger.stepNumber(7);
+    Logger.step("Select the first book of new releases");
+    cy.get("div.bg-gradient-to-t").eq(0).click();
+
+    // Sacamos de favoritos en la pagina de detalles del libro
+    Logger.stepNumber(8);
+    Logger.step("Remove the book from favorites from the book details");
+    BookDetailsMethods.removeFavoriteClick();
 
     // Ingresamos a favoritos para verificar que se haya sacado
-    NavBarElements.buttons.myFavoritesButton.click();
+    Logger.stepNumber(9);
+    Logger.step("Go to My Favorites page");
+    NavBarMethods.goToFavoritesClick();
 
     // Verificamos que el libro no este en favoritos
-    cy.contains(
-      "p",
-      "Parece que tu lista de favoritos está vacía por ahora. "
-    ).should("be.visible");
+    Logger.verification("The favorites page should be empty");
+    FavoritesMethods.verifyEmptyFavoritesMessage();
   });
 });

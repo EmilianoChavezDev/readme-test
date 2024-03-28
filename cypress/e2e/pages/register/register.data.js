@@ -5,6 +5,7 @@ import {
 } from "../../../fixtures/Register.json";
 
 export class RegisterData {
+  // Registro con datos validos
   static get validRegisterData() {
     return {
       username: newUser.newUsername,
@@ -14,6 +15,7 @@ export class RegisterData {
     };
   }
 
+  // Registro con datos invalidos
   static get invalidRegisterData() {
     return {
       username: existingUser.existUsername,
@@ -23,6 +25,7 @@ export class RegisterData {
     };
   }
 
+  // Registro con contraseña que no coincide
   static get passwordNotMatch() {
     return {
       username: existingUser.existUsername,
@@ -32,6 +35,7 @@ export class RegisterData {
     };
   }
 
+  // Registro con contraseña de longitud invalida
   static get invalidPasswordLength() {
     return {
       username: existingUser.existUsername,
