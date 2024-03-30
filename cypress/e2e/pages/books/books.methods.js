@@ -39,28 +39,28 @@ export class BookMethods {
 
   // Metodo para crear un libro
   static createBook(title, sinopsis, category, cover) {
-    Logger.subStep("Insert title");
+    Logger.subStep("Insertar titulo");
     this.insertTitle(title);
 
-    Logger.subStep("Insert sinopsis");
+    Logger.subStep("Insertar sinopsis");
     this.insertSinopsis(sinopsis);
 
-    Logger.subStep("Insert category");
+    Logger.subStep("Insertar categoria");
     this.insertCategory(category);
 
-    Logger.subStep("Check adult");
+    Logger.subStep("Check adultos");
     this.adult();
 
-    Logger.subStep("Insert cover");
+    Logger.subStep("Insertar portada");
     this.insertCover(cover);
 
-    Logger.subStep("Click create button");
-    BooksElements.bookButtons.seguirButton.click();
+    Logger.subStep("Click en el boton seguir");
+    this.seguirButtonClick();
   }
 
   // Metodo para insertar una portada
   static coverPreview(cover) {
-    Logger.subStep("Insert cover");
+    Logger.subStep("Insertar portada");
     this.insertCover(cover);
   }
 
@@ -90,13 +90,14 @@ export class BookMethods {
   }
 
   // Verificar boton de crear deshabilitado
-  static verifyDisabledCreateButton() {
-    BooksElements.bookButtons.createButton.should("be.disabled");
+  static verifyDisabledSeguirButton() {
+    this.seguirButtonClick();
+    BooksElements.bookButtons.seguirButton.should("be.disabled");
   }
 
   // Verificar boton de crear habilitado
-  static verifyEnabledCreateButton() {
-    BooksElements.bookButtons.createButton.should("not.be.disabled");
+  static verifyEnabledSeguireButton() {
+    BooksElements.bookButtons.seguirButton.should("be.disabled");
   }
 
   // Verificar que la imagen se haya cargado

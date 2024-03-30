@@ -1,46 +1,50 @@
 import { Logger } from "../support/logger";
+import { CommonPageData } from "./pages/common-page/common-page.data";
+import { CommonPageMethods } from "./pages/common-page/common-page.methods";
 import { LoginData } from "./pages/login/login.data";
 import { LoginMethods } from "./pages/login/login.methods";
 import { NavBarMethods } from "./pages/navbar/navbar.methods";
+
+const randomUsername = CommonPageMethods.generateRandomString();
+const randomPassword = CommonPageMethods.generateRandomString(8);
 
 // Login test
 describe("Login Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
-    Logger.step("Visit the login page");
-    cy.visit("https://test--readme-test.netlify.app/auth/login");
+    Logger.step("Navegamos a la pagina de login");
+    cy.visit(CommonPageData.appPages.login);
   });
 
   it("Correct Login", () => {
     Logger.stepNumber(2);
-    Logger.step("Login with valid credentials");
+    Logger.step("Login con datos validos");
     LoginMethods.login(
       LoginData.validCredentials.username,
       LoginData.validCredentials.password
     );
 
-    Logger.verification("The Escribe button is displayed after login");
+    Logger.verification("El boton de Escribe del NavBar deberia ser visible");
     NavBarMethods.verifyWriteButton();
   });
 
   it("Incorrect Login", () => {
     Logger.stepNumber(2);
-    Logger.step("Login with invalid credentials");
-    LoginMethods.login(
-      LoginData.invalidCredentials.username,
-      LoginData.invalidCredentials.password
-    );
+    Logger.step("Login con datos no validos");
+    LoginMethods.login(randomUsername, randomPassword);
 
-    Logger.verification("The user is entering the incorrect credentials");
+    Logger.verification(
+      "El usuario esta ingresando un usuario o contraseña no validos"
+    );
     LoginMethods.verifyUserOrPasswordNotValid();
   });
 
   it("Empty Fields", () => {
     Logger.stepNumber(2);
-    Logger.step("Login with empty fields");
+    Logger.step("Login con campos vacios");
     LoginMethods.clickLoginButton();
 
-    Logger.verification("The user is entering empty fields");
+    Logger.verification("El usuario esta ingresando campos vacios");
     LoginMethods.verifyUsernameEmptyField();
     LoginMethods.verifyPasswordEmptyField();
   });

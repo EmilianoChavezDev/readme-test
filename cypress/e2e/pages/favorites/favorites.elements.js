@@ -12,7 +12,7 @@ export class FavoritesElements {
     };
   }
 
-  // Contenedor de libros en favoritos
+  // Contenedor de libros en favoritos (cuadros de libros)
   static get container() {
     return {
       get bookContainer() {

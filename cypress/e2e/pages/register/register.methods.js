@@ -28,20 +28,35 @@ export class RegisterMethods {
   }
 
   // Metodo para registrar un usuario
-  static singUp(username, password, confirmPassword, birthDate) {
-    Logger.subStep("Insert username");
+  static signUp(username, password, confirmPassword, birthDate) {
+    Logger.subStep("Insertar username");
     this.insertUsername(username);
 
-    Logger.subStep("Insert password");
+    Logger.subStep("Insertar password");
     this.insertPassword(password);
 
-    Logger.subStep("Insert confirm password");
+    Logger.subStep("Insertar confirmar password");
     this.insertConfirmPassword(confirmPassword);
 
-    Logger.subStep("Insert birth date");
+    Logger.subStep("Insertar fecha de nacimiento");
     this.insertBirthDate(birthDate);
 
-    Logger.subStep("Click on register button");
+    Logger.subStep("Click en el boton de registrarse");
+    this.clickRegisterButton();
+  }
+
+  // Metodo para registrar un usuario con campos vacios
+  static signUpEmptyFields(username, password, birthDate) {
+    Logger.subStep("Insertar username");
+    this.insertUsername(username);
+
+    Logger.subStep("Insertar password");
+    this.insertPassword(password);
+
+    Logger.subStep("Insertar fecha de nacimiento");
+    this.insertBirthDate(birthDate);
+
+    Logger.subStep("Click en el boton de registrarse");
     this.clickRegisterButton();
   }
 
@@ -75,5 +90,10 @@ export class RegisterMethods {
       cy.contains("p", "8 caracteres minimo").should("be.visible");
       cy.contains("p", "debe contener al menos 1 numero").should("be.visible");
     });
+  }
+
+  // Verifica que la fecha de nacimiento sea valida
+  static verifyBirthDateInvalid() {
+    RegisterElements.errorMessages.birthDateInvalid.should("be.visible");
   }
 }

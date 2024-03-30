@@ -50,6 +50,10 @@ export class RegisterElements {
       get passwordLengthInvalid() {
         return cy.get("div.text-white", { timeout: 10000 });
       },
+
+      get birthDateInvalid() {
+        return cy.contains("p", "Debes tener 15 o mas para");
+      },
     };
   }
 

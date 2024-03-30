@@ -17,13 +17,13 @@ export class LoginMethods {
     LoginElements.loginButton.loginButton.click();
   }
 
-  // This method is used to login
+  // Metodo para hacer login
   static login(username, password) {
-    Logger.subStep("Insert username");
+    Logger.subStep("Insertar username");
     this.insertUsername(username);
-    Logger.subStep("Insert password");
+    Logger.subStep("Insertar password");
     this.insertPassword(password);
-    Logger.subStep("Click login button");
+    Logger.subStep("Click en el boton de login");
     this.clickLoginButton();
   }
 
