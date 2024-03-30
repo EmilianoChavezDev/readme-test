@@ -20,7 +20,10 @@ Automatics tests with cypress integrated with allure for reports
 
 ```bash
   npm run test:  Opens the Cypress Test Runner.
-  npm run cy:run:  Runs all tests on electron
+  npm run generate-reports:  Clear all the allure reports
+  npm run open-reports:  Open the allure reports
+  npm run clear-reports:  Clear all the allure reports
+  npm run open: Open the Cypress Test Runner
 ```
 
 ## Dependencies
@@ -28,4 +31,12 @@ Automatics tests with cypress integrated with allure for reports
 ```bash
   cypress-file-uploadtests.
   file-saver
+```
+
+## devDependencies
+
+```bash
+  allure-commandline
+  allure-cypress
+  cypress"
 ```
