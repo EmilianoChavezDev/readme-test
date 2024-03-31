@@ -1,6 +1,6 @@
 import {
   title,
-  sinopsis,
+  synopsis,
   category,
   cover,
 } from "../../../fixtures/CreateBook.json";
@@ -9,7 +9,7 @@ export class CreateBookData {
   static get bookData() {
     return {
       title: title,
-      sinopsis: sinopsis,
+      synopsis: synopsis,
       category: category,
       cover: cover,
     };

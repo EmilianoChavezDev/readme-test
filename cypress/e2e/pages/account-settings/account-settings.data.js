@@ -3,7 +3,7 @@ import {
   newUserPassword,
 } from "../../../fixtures/Account.json";
 
-export class AccountData {
+export class AccountSettingsData {
   static get accountData() {
     return {
       profile: newProfilePicture.picture,

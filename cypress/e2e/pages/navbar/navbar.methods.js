@@ -18,7 +18,7 @@ export class NavBarMethods {
   }
 
   // Desplegar el menu de explorar
-  static goToExplore() {
+  static goToExploreClick() {
     NavBarElements.buttons.exploreButton.click();
   }
 
@@ -36,6 +36,24 @@ export class NavBarMethods {
     NavBarElements.accountMenuButtons.myAccountButton.click();
   }
 
+  // Ir a la pagina de crear un nuevo libro
+  static goToWriteBook() {
+    Logger.step("Click en Escribe");
+    NavBarElements.buttons.writeButton.click();
+
+    Logger.step("Click en Crear nuevo libro");
+    NavBarElements.escribeButtons.createBookButton.click();
+  }
+
+  // Ir a la pagina de mis libros
+  static goToMyBooks() {
+    Logger.step("Click en Escribe");
+    NavBarElements.buttons.writeButton.click();
+
+    Logger.step("Click en Mis libros");
+    NavBarElements.escribeButtons.myBooksButton.click();
+  }
+
   // Hacer logout
   static goToLogout() {
     Logger.step("Click en el menu de cuenta");
@@ -43,15 +61,6 @@ export class NavBarMethods {
 
     Logger.step("Click en Cerrar sesion");
     NavBarElements.accountMenuButtons.logoutButton.click();
-  }
-
-  // Ir a la pagina de crear un nuevo libro
-  static goToCreateBook() {
-    Logger.step("Click en Escribe");
-    NavBarElements.buttons.writeButton.click();
-
-    Logger.step("Click en Crear nuevo libro");
-    NavBarElements.escribeButtons.createBookButton.click();
   }
 
   // Buscar un libro

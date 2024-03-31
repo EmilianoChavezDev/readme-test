@@ -55,7 +55,7 @@ export class NavBarElements {
       },
 
       get myBooksButton() {
-        return cy.get("li.border-b", { timeout: 10000 }).eq(1);
+        return cy.get("li.transition-all", { timeout: 10000 }).eq(1);
       },
     };
   }

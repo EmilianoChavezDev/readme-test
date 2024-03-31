@@ -17,10 +17,10 @@ describe("Search navbar test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegar a la pagina de login");
-    cy.visit(CommonPageData.appPages.login);
+    cy.visit(CommonPageData.appPages.loginUrl);
 
     Logger.verification("Verificar que se encuentre en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.login);
+    cy.url().should("eq", CommonPageData.appPages.loginUrl);
 
     Logger.stepNumber(2);
     Logger.step("Login con usuario valido");

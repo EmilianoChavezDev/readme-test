@@ -1,6 +1,10 @@
 const { Logger } = require("../../support/logger");
-const { AccountData } = require("../pages/account/account.data");
-const { AccountMethods } = require("../pages/account/account.methods");
+const {
+  AccountSettingsData,
+} = require("../pages/account-settings/account-settings.data");
+const {
+  AccountSettingsMethods,
+} = require("../pages/account-settings/account-settings.methods");
 const { CommonPageData } = require("../pages/common-page/common-page.data");
 const { LoginData } = require("../pages/login/login.data");
 const { LoginMethods } = require("../pages/login/login.methods");
@@ -10,7 +14,7 @@ describe("My Account Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegar a la pagina de login");
-    cy.visit(CommonPageData.appPages.login);
+    cy.visit(CommonPageData.appPages.loginUrl);
 
     Logger.verification("Estamos en la pagina de login");
     cy.url().should("eq", CommonPageData.appPages.login);
@@ -33,25 +37,27 @@ describe("My Account Test", () => {
 
     Logger.stepNumber(4);
     Logger.step("Vamos a Informacion Personal");
-    AccountMethods.myAccountClick();
+    AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos una contraseña correcta");
-    AccountMethods.inputPassword(LoginData.validCredentials.password);
+    AccountSettingsMethods.inputPassword(LoginData.validCredentials.password);
 
     Logger.stepNumber(6);
     Logger.step("Cambiamos la foto de perfil");
-    AccountMethods.changeUserProfile(AccountData.accountData.profile);
+    AccountSettingsMethods.changeUserProfile(
+      AccountSettingsData.accountData.profile
+    );
 
     Logger.stepNumber(7);
     Logger.step("Guardar cambios");
     cy.intercept("PUT", CommonPageData.endPoints.putProfile).as("profile");
-    AccountMethods.saveChangesClick();
+    AccountSettingsMethods.saveChangesClick();
 
     Logger.verification(
       "El popup de cambio de foto de perfil deberia ser visible"
     );
-    AccountMethods.verifyProfileChanged();
+    AccountSettingsMethods.verifyProfileChanged();
 
     cy.wait("@profile").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -65,23 +71,25 @@ describe("My Account Test", () => {
 
     Logger.stepNumber(4);
     Logger.step("Vamos a Informacion Personal");
-    AccountMethods.myAccountClick();
+    AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos la contrase incorrecta");
-    AccountMethods.inputPassword("incorrectPassword");
+    AccountSettingsMethods.inputPassword("incorrectPassword");
 
     Logger.stepNumber(6);
     Logger.step("Cambiamos la foto de perfil");
     cy.intercept("PUT", CommonPageData.endPoints.putProfile).as("profile");
-    AccountMethods.changeUserProfile(AccountData.accountData.profile);
+    AccountSettingsMethods.changeUserProfile(
+      AccountSettingsData.accountData.profile
+    );
 
     Logger.stepNumber(7);
     Logger.step("Guardar cambios");
-    AccountMethods.saveChangesClick();
+    AccountSettingsMethods.saveChangesClick();
 
     // Logger.verification("Error message should be visible");
-    AccountMethods.verifyIncorrectPassword();
+    AccountSettingsMethods.verifyIncorrectPassword();
 
     cy.wait("@profile").then((interception) => {
       console.log(interception);
@@ -96,22 +104,22 @@ describe("My Account Test", () => {
 
     Logger.stepNumber(4);
     Logger.step("Go to user profile");
-    AccountMethods.myAccountClick();
+    AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
     Logger.step("Input password");
-    AccountMethods.inputPassword(LoginData.validCredentials.password);
+    AccountSettingsMethods.inputPassword(LoginData.validCredentials.password);
 
     Logger.stepNumber(6);
     Logger.step("Remove user profile picture");
     cy.intercept("POST", CommonPageData.endPoints.postDeleteProfile).as(
       "profile"
     );
-    AccountMethods.removeProfilePictureClick();
+    AccountSettingsMethods.removeProfilePictureClick();
 
     Logger.stepNumber(7);
     Logger.step("Save changes");
-    AccountMethods.saveChangesClick();
+    AccountSettingsMethods.saveChangesClick();
 
     cy.wait("@profile").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -125,25 +133,25 @@ describe("My Account Test", () => {
 
     Logger.stepNumber(4);
     Logger.step("Go to user profile");
-    AccountMethods.myAccountClick();
+    AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
     Logger.step("Input password");
-    AccountMethods.inputPassword(LoginData.validCredentials.password);
+    AccountSettingsMethods.inputPassword(LoginData.validCredentials.password);
 
     Logger.stepNumber(6);
     Logger.step("Input open dropdown");
-    AccountMethods.openDropDownClick();
+    AccountSettingsMethods.openDropDownClick();
 
     Logger.stepNumber(7);
     Logger.step("Input new password");
-    AccountMethods.updateUserPassword(
+    AccountSettingsMethods.updateUserPassword(
       "asdasdsdasdsadasda",
-      AccountData.accountData.newPassword
+      AccountSettingsData.accountData.newPassword
     );
 
     Logger.stepNumber(8);
     Logger.step("Save changes");
-    AccountMethods.saveChangesClick();
+    AccountSettingsMethods.saveChangesClick();
   });
 });

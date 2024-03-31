@@ -28,17 +28,24 @@ export class CommonPageData {
 
   static get appPages() {
     return {
-      get login() {
+      get loginUrl() {
         return "https://test--readme-test.netlify.app/auth/login";
       },
-      get register() {
+
+      get registerUrl() {
         return "https://test--readme-test.netlify.app/auth/registrarse";
       },
+
       get homeUrl() {
         return "https://test--readme-test.netlify.app/";
       },
+
       get createBookUrl() {
         return "https://test--readme-test.netlify.app/books/create";
+      },
+
+      get myBooksUrl() {
+        return "https://test--readme-test.netlify.app/books/mybooks";
       },
     };
   }

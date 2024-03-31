@@ -13,7 +13,7 @@ describe("Test createBook", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
-    cy.visit(CommonPageData.appPages.login);
+    cy.visit(CommonPageData.appPages.loginUrl);
 
     Logger.verification("Estamos en la pagina de login");
     cy.url().should("eq", CommonPageData.appPages.login);
@@ -33,7 +33,7 @@ describe("Test createBook", () => {
     // Vamos al boton crear libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToCreateBook();
+    NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
     Logger.verification(
@@ -51,7 +51,7 @@ describe("Test createBook", () => {
     // Metodo para crear un libro y enviar la peticion
     CreateBookMethods.createBook(
       CreateBookData.bookData.title,
-      CreateBookData.bookData.sinopsis,
+      CreateBookData.bookData.synopsis,
       CreateBookData.bookData.category,
       CreateBookData.bookData.cover
     );
@@ -66,7 +66,7 @@ describe("Test createBook", () => {
     // Vamos al boton crear libro del navbar
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToCreateBook();
+    NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
     Logger.verification(
@@ -82,7 +82,7 @@ describe("Test createBook", () => {
     // Verificamos que se muestren los mensajes de error
     Logger.verification("Deberia mostrar los mensajes de error");
     CreateBookMethods.verifyEmptyTitleError();
-    CreateBookMethods.verifyEmptySinopsisError();
+    CreateBookMethods.verifyEmptySynopsisError();
     CreateBookMethods.verifyEmptyCategoryError();
   });
 
@@ -90,7 +90,7 @@ describe("Test createBook", () => {
     // En el navbar damos click en Escribe y es Crear nuevo libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToCreateBook();
+    NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
     Logger.verification(
@@ -112,7 +112,7 @@ describe("Test createBook", () => {
     // En el navbar damos click en Escribe y es Crear nuevo libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToCreateBook();
+    NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
     Logger.verification(

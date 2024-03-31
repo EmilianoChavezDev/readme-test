@@ -22,10 +22,10 @@ describe("Register Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de registrarse");
-    cy.visit(CommonPageData.appPages.register);
+    cy.visit(CommonPageData.appPages.registerUrl);
 
     Logger.verification("Estamos en la pagina de registrarse");
-    cy.url().should("eq", CommonPageData.appPages.register);
+    cy.url().should("eq", CommonPageData.appPages.registerUrl);
   });
 
   it("Correct Register", () => {

@@ -1,55 +1,58 @@
 import { Logger } from "../../../support/logger";
-import { AccountElements } from "./account.elements";
+import {
+  AccountElements,
+  AccountSettingsElements,
+} from "./account-settings.elements";
 
-export class AccountMethods {
+export class AccountSettingsMethods {
   // Ir a la pagina de mi cuenta
   static myAccountClick() {
-    AccountElements.buttons.myInformation.click();
+    AccountSettingsElements.buttons.myInformation.click();
   }
 
   // Ir a la pagina de mis estadisticas
   static myStatisticsClick() {
-    AccountElements.buttons.myStatistics.click();
+    AccountSettingsElements.buttons.myStatistics.click();
   }
 
   // Abrir dropdown de cambiar contraseña
   static openDropDownClick() {
-    AccountElements.buttons.openDropDown.click();
+    AccountSettingsElements.buttons.openDropDown.click();
   }
 
   // Boton de guardar cambios
   static saveChangesClick() {
-    AccountElements.buttons.saveChanges.click();
+    AccountSettingsElements.buttons.saveChanges.click();
   }
 
   // Boton de cancelar cambios
   static cancelChangesClick() {
-    AccountElements.buttons.cancelChanges.click();
+    AccountSettingsElements.buttons.cancelChanges.click();
   }
 
   // Boton de eliminar foto de perfil
   static removeProfilePictureClick() {
-    AccountElements.profileButtons.removeProfile.click();
+    AccountSettingsElements.profileButtons.removeProfile.click();
   }
 
   // Insertar la contraseña actual
   static inputPassword(password) {
-    AccountElements.textBoxes.oldPassword.type(password);
+    AccountSettingsElements.textBoxes.oldPassword.type(password);
   }
 
   // Insertar la contraseña nueva
   static inputNewPassword(password) {
-    AccountElements.textBoxes.newPassword.type(password);
+    AccountSettingsElements.textBoxes.newPassword.type(password);
   }
 
   // Insertar la confirmacion de la contraseña nueva
   static inputNewPasswordConfirm(password) {
-    AccountElements.textBoxes.newPasswordConfirm.type(password);
+    AccountSettingsElements.textBoxes.newPasswordConfirm.type(password);
   }
 
   // Abrir el input y cargar una foto de perfil
   static changeUserProfile(picture) {
-    AccountElements.profileButtons.changeProfile
+    AccountSettingsElements.profileButtons.changeProfile
       .click({ force: true })
       .attachFile(picture);
   }
@@ -72,14 +75,14 @@ export class AccountMethods {
   // Verificaciones
   // Verificar que se muestre el mensaje de error de contraseña incorrecta
   static verifyIncorrectPassword() {
-    AccountElements.errorMessages.incorrectPassword
+    AccountSettingsElements.errorMessages.incorrectPassword
       .invoke("text")
       .should("eq", "Contraseña incorrecta");
   }
 
   // Verificar que se muestre el mensaje de error de contraseña nueva
   static verifyProfileChanged() {
-    AccountElements.successMessages.profileUpdate
+    AccountSettingsElements.successMessages.profileUpdate
       .invoke("text")
       .should("eq", "Foto de perfil actualizado");
   }

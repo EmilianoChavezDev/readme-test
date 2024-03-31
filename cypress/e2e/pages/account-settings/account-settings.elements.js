@@ -1,4 +1,4 @@
-export class AccountElements {
+export class AccountSettingsElements {
   // Botones de la pagina de mi cuenta
   static get buttons() {
     return {

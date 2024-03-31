@@ -13,10 +13,10 @@ describe("Login Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
-    cy.visit(CommonPageData.appPages.login);
+    cy.visit(CommonPageData.appPages.loginUrl);
 
     Logger.verification("Estamos en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.login);
+    cy.url().should("eq", CommonPageData.appPages.loginUrl);
   });
 
   it("Correct Login", () => {

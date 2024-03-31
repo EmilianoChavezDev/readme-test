@@ -8,8 +8,8 @@ export class CreateBookMethods {
   }
 
   // Insertar sinopsis
-  static insertSinopsis(sinopsis) {
-    CreateBookElements.textBoxes.sinopsis.type(sinopsis);
+  static insertSynopsis(synopsis) {
+    CreateBookElements.textBoxes.synopsis.type(synopsis);
   }
 
   // Insertar categoria
@@ -38,12 +38,12 @@ export class CreateBookMethods {
   }
 
   // Metodo para crear un libro
-  static createBook(title, sinopsis, category, cover) {
+  static createBook(title, synopsis, category, cover) {
     Logger.subStep("Insertar titulo");
     this.insertTitle(title);
 
     Logger.subStep("Insertar sinopsis");
-    this.insertSinopsis(sinopsis);
+    this.insertSynopsis(synopsis);
 
     Logger.subStep("Insertar categoria");
     this.insertCategory(category);
@@ -74,8 +74,8 @@ export class CreateBookMethods {
   }
 
   // Verificar sinopsis vacio
-  static verifyEmptySinopsisError() {
-    CreateBookElements.emptyFieldsErrors.sinopsis.should(
+  static verifyEmptySynopsisError() {
+    CreateBookElements.emptyFieldsErrors.synopsis.should(
       "contain.text",
       "La descripción no puede estar vacio"
     );

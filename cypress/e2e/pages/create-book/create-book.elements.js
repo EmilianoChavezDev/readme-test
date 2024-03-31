@@ -6,7 +6,7 @@ export class CreateBookElements {
         return cy.get("#titulo", { timeout: 10000 });
       },
 
-      get sinopsis() {
+      get synopsis() {
         return cy.get("#sinopsis", { timeout: 10000 });
       },
 
@@ -33,7 +33,7 @@ export class CreateBookElements {
         return cy.get("#titulo + p", { timeout: 10000 });
       },
 
-      get sinopsis() {
+      get synopsis() {
         return cy.get("#sinopsis + p", { timeout: 10000 });
       },
 
