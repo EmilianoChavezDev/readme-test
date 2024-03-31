@@ -1,14 +1,17 @@
-const { Logger } = require("../support/logger");
-const { CommonPageData } = require("./pages/common-page/common-page.data");
-const { LoginData } = require("./pages/login/login.data");
-const { LoginMethods } = require("./pages/login/login.methods");
-const { NavBarMethods } = require("./pages/navbar/navbar.methods");
+const { Logger } = require("../../support/logger");
+const { CommonPageData } = require("../pages/common-page/common-page.data");
+const { LoginData } = require("../pages/login/login.data");
+const { LoginMethods } = require("../pages/login/login.methods");
+const { NavBarMethods } = require("../pages/navbar/navbar.methods");
 
 describe("Logout", () => {
   it("should logout", () => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
     cy.visit(CommonPageData.appPages.login);
+
+    Logger.verification("Estamos en la pagina de login");
+    cy.url().should("eq", CommonPageData.appPages.login);
 
     Logger.stepNumber(2);
     Logger.step("Login con datos validos");

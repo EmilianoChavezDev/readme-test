@@ -10,4 +10,10 @@ export class BookDetailsMethods {
   static removeFavoriteClick() {
     BookDetailsElements.buttons.removeFavoriteButton.click();
   }
+
+  // Verificaciones
+  // Verificamos que la seccion de comentarios este presente
+  static verifyComentarySection() {
+    BookDetailsElements.comentarySection.comentary.should("be.visible");
+  }
 }

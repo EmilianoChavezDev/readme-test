@@ -1,10 +1,10 @@
-const { Logger } = require("../support/logger");
-const { CommonPageData } = require("./pages/common-page/common-page.data");
+const { Logger } = require("../../support/logger");
+const { CommonPageData } = require("../pages/common-page/common-page.data");
 const {
   CommonPageMethods,
-} = require("./pages/common-page/common-page.methods");
-const { NavBarMethods } = require("./pages/navbar/navbar.methods");
-const { RegisterMethods } = require("./pages/register/register.methods");
+} = require("../pages/common-page/common-page.methods");
+const { NavBarMethods } = require("../pages/navbar/navbar.methods");
+const { RegisterMethods } = require("../pages/register/register.methods");
 
 const randomUsername = CommonPageMethods.generateRandomString();
 const randomPassword = CommonPageMethods.generateRandomString(8);
@@ -23,6 +23,9 @@ describe("Register Test", () => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de registrarse");
     cy.visit(CommonPageData.appPages.register);
+
+    Logger.verification("Estamos en la pagina de registrarse");
+    cy.url().should("eq", CommonPageData.appPages.register);
   });
 
   it("Correct Register", () => {

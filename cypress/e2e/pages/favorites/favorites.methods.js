@@ -12,7 +12,7 @@ export class FavoritesMethods {
   }
 
   // Verificaciones
-  // TODO: Verificar el elemento del container
+  // Verificamos que el libro este en favoritos
   static verifyBookInFavorites() {
     FavoritesElements.container.bookContainer.eq(1).should("be.visible");
   }

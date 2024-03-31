@@ -2,6 +2,16 @@ import { Logger } from "../../../support/logger";
 import { NavBarElements } from "./navbar.elements";
 
 export class NavBarMethods {
+  // Damos click en el input de busqueda
+  static searchInputClick() {
+    NavBarElements.searchInput.click();
+  }
+
+  // Damos click en el boton de busqueda
+  static searchButtonClick() {
+    NavBarElements.buttons.searchButton.click();
+  }
+
   // Ir a la pagina de inicio
   static goToHomeClick() {
     NavBarElements.buttons.homeButton.click();
@@ -42,6 +52,18 @@ export class NavBarMethods {
 
     Logger.step("Click en Crear nuevo libro");
     NavBarElements.escribeButtons.createBookButton.click();
+  }
+
+  // Buscar un libro
+  static searchBook(Book) {
+    NavBarMethods.searchInputClick();
+    NavBarElements.searchInput.type(Book);
+    NavBarElements.buttons.searchButton.click();
+  }
+
+  // Limpiar el input de busqueda
+  static clearInput() {
+    NavBarElements.searchInput.clear();
   }
 
   // Verificaciones

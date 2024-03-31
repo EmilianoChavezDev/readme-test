@@ -1,10 +1,12 @@
-const { BooksData } = require("./pages/books/books.data");
-const { BookMethods } = require("./pages/books/books.methods");
-const { LoginData } = require("./pages/login/login.data");
-const { LoginMethods } = require("./pages/login/login.methods");
-const { NavBarMethods } = require("./pages/navbar/navbar.methods");
-import { Logger } from "../support/logger";
-import { CommonPageData } from "./pages/common-page/common-page.data";
+const { CreateBookData } = require("../pages/create-book/create-book.data");
+const {
+  CreateBookMethods,
+} = require("../pages/create-book/create-book.methods");
+const { LoginData } = require("../pages/login/login.data");
+const { LoginMethods } = require("../pages/login/login.methods");
+const { NavBarMethods } = require("../pages/navbar/navbar.methods");
+import { Logger } from "../../support/logger";
+import { CommonPageData } from "../pages/common-page/common-page.data";
 
 // Test create Book
 describe("Test createBook", () => {
@@ -12,6 +14,9 @@ describe("Test createBook", () => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
     cy.visit(CommonPageData.appPages.login);
+
+    Logger.verification("Estamos en la pagina de login");
+    cy.url().should("eq", CommonPageData.appPages.login);
 
     Logger.stepNumber(2);
     Logger.step("Login con datos validos");
@@ -24,7 +29,7 @@ describe("Test createBook", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Fill and submit the book form", () => {
+  it.only("Fill and submit the book form", () => {
     // Vamos al boton crear libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
@@ -39,14 +44,16 @@ describe("Test createBook", () => {
     // Interceptamos la peticion para simular que se creo el libro
     Logger.stepNumber(4);
     Logger.step("Llenamos el formulario y damos click en Seguir");
-    cy.intercept("POST", CommonPageData.endPoints.postBook).as("createBook");
+    cy.intercept("POST", "https://readme-backend.fly.dev/libros").as(
+      "createBook"
+    );
 
     // Metodo para crear un libro y enviar la peticion
-    BookMethods.createBook(
-      BooksData.bookData.title,
-      BooksData.bookData.sinopsis,
-      BooksData.bookData.category,
-      BooksData.bookData.cover
+    CreateBookMethods.createBook(
+      CreateBookData.bookData.title,
+      CreateBookData.bookData.sinopsis,
+      CreateBookData.bookData.category,
+      CreateBookData.bookData.cover
     );
 
     // Esperamos a que la peticion se complete
@@ -70,13 +77,13 @@ describe("Test createBook", () => {
     // Hacemos click en el boton de crear de la pagina books/create
     Logger.stepNumber(4);
     Logger.step("Damos click en Seguir sin llenar los campos");
-    BookMethods.seguirButtonClick();
+    CreateBookMethods.seguirButtonClick();
 
     // Verificamos que se muestren los mensajes de error
     Logger.verification("Deberia mostrar los mensajes de error");
-    BookMethods.verifyEmptyTitleError();
-    BookMethods.verifyEmptySinopsisError();
-    BookMethods.verifyEmptyCategoryError();
+    CreateBookMethods.verifyEmptyTitleError();
+    CreateBookMethods.verifyEmptySinopsisError();
+    CreateBookMethods.verifyEmptyCategoryError();
   });
 
   it("Display uploaded image in preview", () => {
@@ -94,11 +101,11 @@ describe("Test createBook", () => {
     // Usamos el metodo para cargar una portada
     Logger.stepNumber(4);
     Logger.step("Cargamos una portada");
-    BookMethods.coverPreview(BooksData.bookData.cover);
+    CreateBookMethods.coverPreview(BooksData.bookData.cover);
 
     // Verificamos que la imagen se haya cargado
     Logger.verification("Verificamos si la imagen se cargo correctamente");
-    BookMethods.verifyCoverPreview();
+    CreateBookMethods.verifyCoverPreview();
   });
 
   it("Redirect to home page when 'Cancelar' button is clicked", () => {
@@ -116,7 +123,7 @@ describe("Test createBook", () => {
     // Hacemos click en el boton de cancelar
     Logger.stepNumber(4);
     Logger.step("Damos click en Cancelar");
-    BookMethods.cancelButtonClick();
+    CreateBookMethods.cancelButtonClick();
 
     // Verificamos que la url sea la misma
     Logger.verification("La url deberia ser la misma que la de home");
@@ -131,15 +138,15 @@ describe("Test createBook", () => {
   //   cy.intercept("POST", CommonPageData.endPoints.postBook).as("createBook");
 
   //   // Metodo para crear un libro y enviar la peticion
-  //   BookMethods.createBook(
-  //     BooksData.bookData.title,
-  //     BooksData.bookData.sinopsis,
-  //     BooksData.bookData.category,
-  //     BooksData.bookData.cover
+  //   CreateBookMethods.createBook(
+  //     CreateBookData.bookData.title,
+  //     CreateBookData.bookData.sinopsis,
+  //     CreateBookData.bookData.category,
+  //     CreateBookData.bookData.cover
   //   );
 
   //   // Verificamos que el boton de crear este deshabilitado mientras se envia la peticion
-  //   BookMethods.verifyDisabledSeguirButton();
+  //   CreateBookMethods.verifyDisabledSeguirButton();
 
   //   // Verificamos que la url sea la misma
   //   cy.url().should("eq", CommonPageData.appPages.createBookUrl);
@@ -150,6 +157,6 @@ describe("Test createBook", () => {
   //   });
 
   //   // Verificamos que el boton de crear no este deshabilitado después de la petición
-  //   BookMethods.verifyEnabledSeguireButton();
+  //   CreateBookMethods.verifyEnabledSeguireButton();
   // });
 });

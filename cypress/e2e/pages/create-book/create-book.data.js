@@ -5,7 +5,7 @@ import {
   cover,
 } from "../../../fixtures/CreateBook.json";
 
-export class BooksData {
+export class CreateBookData {
   static get bookData() {
     return {
       title: title,

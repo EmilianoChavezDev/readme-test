@@ -1,8 +1,8 @@
-import { BooksData } from "./pages/books/books.data";
-import { BookMethods } from "./pages/books/books.methods";
-import { LoginData } from "./pages/login/login.data";
-import { LoginMethods } from "./pages/login/login.methods";
-import { NavBarElements } from "./pages/navbar/navbar.elements";
+import { BooksData } from "../pages/create-book/create-book.data";
+import { BookMethods } from "../pages/create-book/create-book.methods";
+import { LoginData } from "../pages/login/login.data";
+import { LoginMethods } from "../pages/login/login.methods";
+import { NavBarElements } from "../pages/navbar/navbar.elements";
 
 //TODO: Code Refractor / finish testing
 // describe("Write Chapter", () => {

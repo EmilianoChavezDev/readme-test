@@ -18,6 +18,15 @@ export class NavBarElements {
         return cy.contains("p", "Escribe", { timeout: 10000 });
       },
 
+      get searchButton() {
+        return cy
+          .get(
+            'button[class="bg-transparent p-2 rounded-md _lg:text-black _lg:hover:text-white text-white hover:cursor-pointer hover:font-bold transition-all duration-300 hover:scale-110"]',
+            { timeout: 10000 }
+          )
+          .first();
+      },
+
       get accountMenuBotton() {
         return cy
           .get(
@@ -29,6 +38,15 @@ export class NavBarElements {
     };
   }
 
+  // Input de busqueda del navbar
+  static get searchInput() {
+    return cy
+      .get('input[placeholder="Buscar Libros por ej.: Nombre, Autor..."]', {
+        timeout: 10000,
+      })
+      .eq(0);
+  }
+
   // Botones del desplegable de Escribe
   static get escribeButtons() {
     return {
@@ -38,10 +56,6 @@ export class NavBarElements {
 
       get myBooksButton() {
         return cy.get("li.border-b", { timeout: 10000 }).eq(1);
-      },
-
-      get myDraftsButton() {
-        return cy.get("li.transition-all", { timeout: 10000 }).eq(2);
       },
     };
   }

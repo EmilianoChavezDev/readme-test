@@ -51,8 +51,7 @@ export class AccountElements {
     };
   }
 
-  // Botones de la imagen de perfil
-
+  // Botones de la imagen de perfil de la pagina de mi cuenta
   static get profileButtons() {
     return {
       get changeProfile() {
@@ -72,6 +71,7 @@ export class AccountElements {
     };
   }
 
+  // Mensajes de error de la pagina de mi cuenta
   static get errorMessages() {
     return {
       get incorrectPassword() {
@@ -80,6 +80,7 @@ export class AccountElements {
     };
   }
 
+  // Mensajes de exito de la pagina de mi cuenta
   static get successMessages() {
     return {
       get profileUpdate() {

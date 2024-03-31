@@ -27,19 +27,19 @@ export class LoginMethods {
     this.clickLoginButton();
   }
 
-  // Verification
+  // Verificaciones
   // Verifica si la contraseña o el usuario no son validos
   static verifyUserOrPasswordNotValid() {
-    LoginElements.messages.userOrPasswordNotValid.should("be.visible");
+    LoginElements.errorMessagess.userOrPasswordNotValid.should("be.visible");
   }
 
   // Verifica si el campo de usuario esta vacio
   static verifyUsernameEmptyField() {
-    LoginElements.messages.usernameEmpty.should("be.visible");
+    LoginElements.errorMessagess.usernameEmpty.should("be.visible");
   }
 
   // Verifica si el campo de contraseña esta vacio
   static verifyPasswordEmptyField() {
-    LoginElements.messages.passwordEmpty.should("be.visible");
+    LoginElements.errorMessagess.passwordEmpty.should("be.visible");
   }
 }

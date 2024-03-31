@@ -1,40 +1,40 @@
 import { Logger } from "../../../support/logger";
-import { BooksElements } from "./books.elements";
+import { CreateBookElements } from "./create-book.elements";
 
-export class BookMethods {
+export class CreateBookMethods {
   // Insertar titulo
   static insertTitle(title) {
-    BooksElements.textBoxes.title.type(title);
+    CreateBookElements.textBoxes.title.type(title);
   }
 
   // Insertar sinopsis
   static insertSinopsis(sinopsis) {
-    BooksElements.textBoxes.sinopsis.type(sinopsis);
+    CreateBookElements.textBoxes.sinopsis.type(sinopsis);
   }
 
   // Insertar categoria
   static insertCategory(category) {
-    BooksElements.textBoxes.category.select(category);
+    CreateBookElements.textBoxes.category.select(category);
   }
 
   // Marcar como adulto
   static adult() {
-    BooksElements.textBoxes.adult.check();
+    CreateBookElements.textBoxes.adult.check();
   }
 
   // Insertar portada
   static insertCover(cover) {
-    BooksElements.textBoxes.cover.attachFile(cover);
+    CreateBookElements.textBoxes.cover.attachFile(cover);
   }
 
   // Click en el boton de seguir
   static seguirButtonClick() {
-    BooksElements.bookButtons.seguirButton.click();
+    CreateBookElements.bookButtons.seguirButton.click();
   }
 
   // Click en el boton de cancelar
   static cancelButtonClick() {
-    BooksElements.bookButtons.cancelButton.click();
+    CreateBookElements.bookButtons.cancelButton.click();
   }
 
   // Metodo para crear un libro
@@ -67,7 +67,7 @@ export class BookMethods {
   // Verificaciones
   // Verificar titulo vacio
   static verifyEmptyTitleError() {
-    BooksElements.emptyFieldsErrors.title.should(
+    CreateBookElements.emptyFieldsErrors.title.should(
       "contain.text",
       "El título no puede estar vacio."
     );
@@ -75,7 +75,7 @@ export class BookMethods {
 
   // Verificar sinopsis vacio
   static verifyEmptySinopsisError() {
-    BooksElements.emptyFieldsErrors.sinopsis.should(
+    CreateBookElements.emptyFieldsErrors.sinopsis.should(
       "contain.text",
       "La descripción no puede estar vacio"
     );
@@ -83,7 +83,7 @@ export class BookMethods {
 
   // Verificar categoria vacio
   static verifyEmptyCategoryError() {
-    BooksElements.emptyFieldsErrors.category.should(
+    CreateBookElements.emptyFieldsErrors.category.should(
       "contain.text",
       "Debes seleccionar una categoría"
     );
@@ -92,16 +92,19 @@ export class BookMethods {
   // Verificar boton de crear deshabilitado
   static verifyDisabledSeguirButton() {
     this.seguirButtonClick();
-    BooksElements.bookButtons.seguirButton.should("be.disabled");
+    CreateBookElements.bookButtons.seguirButton.should("be.disabled");
   }
 
   // Verificar boton de crear habilitado
   static verifyEnabledSeguireButton() {
-    BooksElements.bookButtons.seguirButton.should("be.disabled");
+    CreateBookElements.bookButtons.seguirButton.should("be.disabled");
   }
 
   // Verificar que la imagen se haya cargado
   static verifyCoverPreview() {
-    BooksElements.coverPreview.cover.should("contain.text", "Cambiar portada");
+    CreateBookElements.coverPreview.cover.should(
+      "contain.text",
+      "Cambiar portada"
+    );
   }
 }

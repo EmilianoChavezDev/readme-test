@@ -1,4 +1,4 @@
-export class BooksElements {
+export class CreateBookElements {
   // Elementos del formulario de libros
   static get textBoxes() {
     return {
@@ -19,7 +19,9 @@ export class BooksElements {
       },
 
       get cover() {
-        return cy.get("#portada", { timeout: 10000 });
+        return cy.get('label.bg-ChaptearHeader input[type="file"]', {
+          timeout: 10000,
+        });
       },
     };
   }

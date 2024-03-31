@@ -22,7 +22,7 @@ export class LoginElements {
   }
 
   // Mensajes de error del formulario de login
-  static get messages() {
+  static get errorMessagess() {
     return {
       get userOrPasswordNotValid() {
         return cy.contains("p", "Usuario o contraseña no valido", {

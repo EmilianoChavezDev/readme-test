@@ -11,4 +11,13 @@ export class BookDetailsElements {
       },
     };
   }
+
+  // Seccion de comentarios en los detalles del libro
+  static get comentarySection() {
+    return {
+      get comentary() {
+        return cy.get('textarea[placeholder="Añadir un comment"]');
+      },
+    };
+  }
 }
