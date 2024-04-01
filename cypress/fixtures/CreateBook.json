@@ -1,6 +1,12 @@
 {
-  "title": "Libro de prueba",
-  "synopsis": "Sinopsis de prueba",
-  "category": "Fantasia",
-  "cover": "image/portada.png"
+  "createBook": {
+    "title": "Libro de prueba",
+    "synopsis": "Sinopsis de prueba",
+    "category": "Fantasía",
+    "cover": "image/portada.png"
+  },
+  "writeChapter": {
+    "title": "Capitulo 1",
+    "content": "Contenido del capitulo 1"
+  }
 }

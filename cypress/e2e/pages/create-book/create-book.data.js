@@ -1,17 +1,12 @@
-import {
-  title,
-  synopsis,
-  category,
-  cover,
-} from "../../../fixtures/CreateBook.json";
+import { createBook } from "../../../fixtures/CreateBook.json";
 
 export class CreateBookData {
   static get bookData() {
     return {
-      title: title,
-      synopsis: synopsis,
-      category: category,
-      cover: cover,
+      title: createBook.title,
+      synopsis: createBook.synopsis,
+      category: createBook.category,
+      cover: createBook.cover,
     };
   }
 }

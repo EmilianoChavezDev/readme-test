@@ -23,6 +23,10 @@ export class CommonPageData {
       get postLogin() {
         return "https://readme-backend.fly.dev/login";
       },
+
+      get chapters() {
+        return "https://readme-backend.fly.dev/capitulos/";
+      },
     };
   }
 

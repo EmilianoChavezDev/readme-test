@@ -6,6 +6,8 @@ const { LoginData } = require("../pages/login/login.data");
 const { LoginMethods } = require("../pages/login/login.methods");
 const { NavBarMethods } = require("../pages/navbar/navbar.methods");
 import { Logger } from "../../support/logger";
+import { ChaptersData } from "../pages/chapters/chapters.data";
+import { ChaptersMethods } from "../pages/chapters/chapters.methods";
 import { CommonPageData } from "../pages/common-page/common-page.data";
 
 let bookId;
@@ -57,14 +59,52 @@ describe("Test create book", () => {
     cy.wait("@createBook").then((interception) => {
       expect(interception.response.statusCode).to.equal(201);
       bookId = interception.response.body.id;
-    });
 
-    // Verificamos que estemos en la pagina de publicar capitulos
-    Logger.verification("Estamos en la pagina de publicar capitulos");
-    cy.url().should(
-      "eq",
-      `${CommonPageData.appPages.baseUrl}/books/${bookId}/chapters/write`
-    );
+      // Verificamos que estemos en la pagina de publicar capitulos
+      Logger.verification("Estamos en la pagina de publicar capitulos");
+      cy.url().should(
+        "eq",
+        `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`
+      );
+
+      // Insertamos el titulo
+      Logger.stepNumber(5);
+      Logger.step("Insertamos el titulo del capitulo");
+      ChaptersMethods.insertTitle(ChaptersData.chapterContent.title);
+
+      // Insertamos el contenido del capitulo
+      Logger.stepNumber(6);
+      Logger.step("Insertamos el contenido del capitulo");
+      ChaptersMethods.insertContent(ChaptersData.chapterContent.content);
+
+      // Interceptamos la peticion
+      cy.intercept("POST", `${CommonPageData.endPoints.chapters}${bookId}`).as(
+        "publishChapter"
+      );
+
+      // Publicamos el capitulo
+      Logger.stepNumber(7);
+      Logger.step("Damos click en Publicar");
+      ChaptersMethods.publishButtonClick();
+
+      cy.wait("@publishChapter").then((interception) => {
+        expect(interception.response.statusCode).to.equal(201);
+      });
+
+      //Verficamos el mensaje que se publico el capitulo
+      Logger.verification("El capitulo ha sido publicado");
+      ChaptersMethods.verifyChapterPublished();
+
+      // Verificamos que la url sea la misma
+      Logger.verification(
+        "La url deberia ser la misma que la del escribir capitulo"
+      );
+
+      cy.url().should(
+        "eq",
+        `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`
+      );
+    });
   });
 
   it("Show validation errors for empty fields", () => {
