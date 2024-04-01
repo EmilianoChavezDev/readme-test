@@ -6,6 +6,8 @@ import { LoginData } from "../pages/login/login.data";
 import { LoginMethods } from "../pages/login/login.methods";
 import { NavBarMethods } from "../pages/navbar/navbar.methods";
 
+const getFirstBook = cy.get("div.bg-gradient-to-t").eq(0);
+
 describe("Add Book to favorite", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
@@ -30,7 +32,7 @@ describe("Add Book to favorite", () => {
     // Seleccionamos el primer libro de novedades
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el primer libro de novedades");
-    cy.get("div.bg-gradient-to-t").eq(0).click();
+    getFirstBook.click();
 
     // Añadimos el libro a favoritos desde los detalles del libro
     Logger.stepNumber(4);
@@ -85,7 +87,7 @@ describe("Add Book to favorite", () => {
     // Seleccionamos el primer libro
     Logger.stepNumber(3);
     Logger.step("Select the first book of new releases");
-    cy.get("div.bg-gradient-to-t").eq(0).click();
+    getFirstBook.click();
 
     // Añadimos el libro a favoritos desde los detalles del libro
     Logger.stepNumber(4);
@@ -109,7 +111,7 @@ describe("Add Book to favorite", () => {
     // Volvemos a seleccionar el primer libro
     Logger.stepNumber(7);
     Logger.step("Select the first book of new releases");
-    cy.get("div.bg-gradient-to-t").eq(0).click();
+    getFirstBook.click();
 
     // Sacamos de favoritos en la pagina de detalles del libro
     Logger.stepNumber(8);

@@ -28,6 +28,6 @@ describe("Logout", () => {
     NavBarMethods.goToLogout();
 
     Logger.verification("Deberiamos estar en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.login);
+    cy.url().should("eq", CommonPageData.appPages.loginUrl);
   });
 });

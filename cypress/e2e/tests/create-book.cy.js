@@ -8,6 +8,8 @@ const { NavBarMethods } = require("../pages/navbar/navbar.methods");
 import { Logger } from "../../support/logger";
 import { CommonPageData } from "../pages/common-page/common-page.data";
 
+let bookId;
+
 describe("Test create book", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
@@ -28,17 +30,15 @@ describe("Test create book", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it.only("Fill and submit the book form", () => {
+  it.only("Creat book and publish chapter", () => {
     // Vamos al boton crear libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
     NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.createBookUrl);
+    Logger.verification("La url deberia ser la de creacion de libro");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
 
     // Interceptamos la peticion para simular que se creo el libro
     Logger.stepNumber(4);
@@ -56,7 +56,15 @@ describe("Test create book", () => {
     // Esperamos a que la peticion se complete
     cy.wait("@createBook").then((interception) => {
       expect(interception.response.statusCode).to.equal(201);
+      bookId = interception.response.body.id;
     });
+
+    // Verificamos que estemos en la pagina de publicar capitulos
+    Logger.verification("Estamos en la pagina de publicar capitulos");
+    cy.url().should(
+      "eq",
+      `${CommonPageData.appPages.baseUrl}/books/${bookId}/chapters/write`
+    );
   });
 
   it("Show validation errors for empty fields", () => {
@@ -66,10 +74,8 @@ describe("Test create book", () => {
     NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.createBookUrl);
+    Logger.verification("La url deberia ser la de creacion de libro");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
 
     // Hacemos click en el boton de crear de la pagina books/create
     Logger.stepNumber(4);
@@ -90,10 +96,8 @@ describe("Test create book", () => {
     NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.createBookUrl);
+    Logger.verification("La url deberia ser la de creacion de libro");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
 
     // Usamos el metodo para cargar una portada
     Logger.stepNumber(4);
@@ -112,10 +116,8 @@ describe("Test create book", () => {
     NavBarMethods.goToWriteBook();
 
     // Verificamos que la url sea de creacion de libro
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.createBookUrl);
+    Logger.verification("La url deberia ser la de creacion de libro");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
 
     // Hacemos click en el boton de cancelar
     Logger.stepNumber(4);
@@ -124,6 +126,6 @@ describe("Test create book", () => {
 
     // Verificamos que la url sea la misma
     Logger.verification("La url deberia ser la misma que la de home");
-    cy.url().should("eq", CommonPageData.appPages.homeUrl);
+    cy.url().should("eq", CommonPageData.appPages.baseUrl);
   });
 });

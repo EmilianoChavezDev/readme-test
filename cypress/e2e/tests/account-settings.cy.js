@@ -18,7 +18,7 @@ describe("My Account Test", () => {
     cy.visit(CommonPageData.appPages.loginUrl);
 
     Logger.verification("Estamos en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.login);
+    cy.url().should("eq", CommonPageData.appPages.loginUrl);
 
     Logger.stepNumber(2);
     Logger.step("Login con datos validos");

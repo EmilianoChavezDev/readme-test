@@ -37,10 +37,9 @@ describe("Edit book test", () => {
     Logger.step("Click en Escribe y en Mis Libros");
     NavBarMethods.goToMyBooks();
 
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.myBooksUrl);
+    Logger.verification("La url deberia ser la de mis libros");
+
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
 
     Logger.stepNumber(4);
     Logger.step("Desplegamos el menu de opciones");
@@ -68,7 +67,7 @@ describe("Edit book test", () => {
         Logger.verification("Verificamos que estemos en la pagina de edicion");
         cy.url().should(
           "eq",
-          `${CommonPageData.appPages.editBookUrl}${bookId}`
+          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
         );
 
         // Interceptamos la peticion PUT con el id del libro
@@ -89,7 +88,10 @@ describe("Edit book test", () => {
         });
 
         Logger.verification("Verificamos que el libro se haya actualizado");
-        cy.url().should("eq", CommonPageData.appPages.bookDetailUrl + bookId);
+        cy.url().should(
+          "eq",
+          CommonPageData.appPages.baseUrl + "books" + bookId
+        );
       });
   });
 
@@ -98,10 +100,8 @@ describe("Edit book test", () => {
     Logger.step("Click en Escribe y en Mis Libros");
     NavBarMethods.goToMyBooks();
 
-    Logger.verification(
-      "La url deberia ser la misma que la de creacion de libro"
-    );
-    cy.url().should("eq", CommonPageData.appPages.myBooksUrl);
+    Logger.verification("La url deberia ser la de mis libros");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
 
     Logger.stepNumber(4);
     Logger.step("Desplegamos el menu de opciones");
@@ -127,7 +127,7 @@ describe("Edit book test", () => {
         Logger.verification("Verificamos que estemos en la pagina de edicion");
         cy.url().should(
           "eq",
-          `${CommonPageData.appPages.editBookUrl}${bookId}`
+          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
         );
 
         Logger.stepNumber(8);
