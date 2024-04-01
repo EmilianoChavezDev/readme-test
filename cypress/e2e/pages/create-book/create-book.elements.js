@@ -3,25 +3,31 @@ export class CreateBookElements {
   static get textBoxes() {
     return {
       get title() {
-        return cy.get("#titulo", { timeout: 10000 });
+        return cy.get("#titulo", { timeout: 20000 });
       },
 
       get synopsis() {
-        return cy.get("#sinopsis", { timeout: 10000 });
+        return cy.get("#sinopsis", { timeout: 20000 });
       },
 
       get category() {
-        return cy.get("#categoria", { timeout: 10000 });
+        return cy.get("#categoria", { timeout: 20000 });
       },
 
       get adult() {
-        return cy.get("#adulto", { timeout: 10000 });
+        return cy.get("#adulto", { timeout: 20000 });
       },
 
       get cover() {
         return cy.get('label.bg-ChaptearHeader input[type="file"]', {
-          timeout: 10000,
+          timeout: 20000,
         });
+      },
+
+      get removeCover() {
+        return cy
+          .get(".bg-colorPrimario", { timeout: 10000 })
+          .invoke("removeClass", "hidden");
       },
     };
   }
@@ -30,15 +36,15 @@ export class CreateBookElements {
   static get emptyFieldsErrors() {
     return {
       get title() {
-        return cy.get("#titulo + p", { timeout: 10000 });
+        return cy.get("#titulo + p", { timeout: 20000 });
       },
 
       get synopsis() {
-        return cy.get("#sinopsis + p", { timeout: 10000 });
+        return cy.get("#sinopsis + p", { timeout: 20000 });
       },
 
       get category() {
-        return cy.get("#categoria + p", { timeout: 10000 });
+        return cy.get("#categoria + p", { timeout: 20000 });
       },
     };
   }

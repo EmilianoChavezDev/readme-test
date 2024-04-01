@@ -1,0 +1,8 @@
+{
+  "newBook": {
+    "title": "The Hobbit",
+    "synopsis": "In a hole in the ground there lived a hobbit.",
+    "category": "Aventura",
+    "cover": "image/hobbit_cover.jpg"
+  }
+}

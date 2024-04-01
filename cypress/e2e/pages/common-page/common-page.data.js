@@ -4,7 +4,7 @@ export class CommonPageData {
   // Devolvemos los endpoints de la API
   static get endPoints() {
     return {
-      get postBook() {
+      get books() {
         return "https://readme-backend.fly.dev/libros";
       },
 
@@ -46,6 +46,14 @@ export class CommonPageData {
 
       get myBooksUrl() {
         return "https://test--readme-test.netlify.app/books/mybooks";
+      },
+
+      get editBookUrl() {
+        return "https://test--readme-test.netlify.app/books/edit/";
+      },
+
+      get bookDetailUrl() {
+        return "https://test--readme-test.netlify.app/books/";
       },
     };
   }

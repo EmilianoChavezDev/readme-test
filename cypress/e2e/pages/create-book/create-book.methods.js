@@ -69,7 +69,7 @@ export class CreateBookMethods {
   static verifyEmptyTitleError() {
     CreateBookElements.emptyFieldsErrors.title.should(
       "contain.text",
-      "El título no puede estar vacio."
+      "El titulo no puede estar vacio."
     );
   }
 

@@ -15,9 +15,6 @@ const randomBirthDate = CommonPageMethods.generateRandomBirthDate();
 const randomBirthDateInvalid =
   CommonPageMethods.generateRandomBirthDateInvalid();
 
-console.log(randomPassword);
-console.log(randomPasswordDifferent);
-
 describe("Register Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);

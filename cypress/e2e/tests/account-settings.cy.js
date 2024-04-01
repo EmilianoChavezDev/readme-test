@@ -10,6 +10,7 @@ const { LoginData } = require("../pages/login/login.data");
 const { LoginMethods } = require("../pages/login/login.methods");
 const { NavBarMethods } = require("../pages/navbar/navbar.methods");
 
+//TODO: Fixes
 describe("My Account Test", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
