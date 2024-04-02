@@ -1,4 +1,5 @@
 export class ChaptersElements {
+  // Campos de textos de capitulos
   static get textBoxes() {
     return {
       get title() {
@@ -13,20 +14,32 @@ export class ChaptersElements {
     };
   }
 
+  // Botones de capitulos
   static get buttons() {
     return {
       get publish() {
         return cy.contains("button", "Publicar", { timeout: 10000 });
       },
+
+      get save() {
+        return cy.contains("button", "Guardar", { timeout: 10000 });
+      },
     };
   }
 
+  // Mensajes de exito
   static get successMessages() {
     return {
       get publishedChapter() {
         return cy
           .get(".go3958317564")
           .contains("El capítulo de tu libro ha sido publicado");
+      },
+
+      get savedChapter() {
+        return cy
+          .get(".go2072408551")
+          .contains("El capítulo de tu libro ha sido guardado");
       },
     };
   }

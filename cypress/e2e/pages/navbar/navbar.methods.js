@@ -29,37 +29,37 @@ export class NavBarMethods {
 
   // Ir a la pagina de mi cuenta
   static goToMyAccount() {
-    Logger.step("Click en el menu de cuenta");
+    Logger.subStep("Click en el menu de cuenta");
     NavBarElements.buttons.accountMenuBotton.click();
 
-    Logger.step("Click en Mi informacion personal");
+    Logger.subStep("Click en Mi informacion personal");
     NavBarElements.accountMenuButtons.myAccountButton.click();
   }
 
   // Ir a la pagina de crear un nuevo libro
   static goToWriteBook() {
-    Logger.step("Click en Escribe");
+    Logger.subStep("Click en Escribe");
     NavBarElements.buttons.writeButton.click();
 
-    Logger.step("Click en Crear nuevo libro");
+    Logger.subStep("Click en Crear nuevo libro");
     NavBarElements.escribeButtons.createBookButton.click();
   }
 
   // Ir a la pagina de mis libros
   static goToMyBooks() {
-    Logger.step("Click en Escribe");
+    Logger.subStep("Click en Escribe");
     NavBarElements.buttons.writeButton.click();
 
-    Logger.step("Click en Mis libros");
+    Logger.subStep("Click en Mis libros");
     NavBarElements.escribeButtons.myBooksButton.click();
   }
 
   // Hacer logout
   static goToLogout() {
-    Logger.step("Click en el menu de cuenta");
+    Logger.subStep("Click en el menu de cuenta");
     NavBarElements.buttons.accountMenuBotton.click();
 
-    Logger.step("Click en Cerrar sesion");
+    Logger.subStep("Click en Cerrar sesion");
     NavBarElements.accountMenuButtons.logoutButton.click();
   }
 

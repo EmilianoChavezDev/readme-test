@@ -50,15 +50,15 @@ describe("My Account Test", () => {
       AccountSettingsData.accountData.profile
     );
 
+    cy.intercept("PUT", CommonPageData.endPoints.profile).as("profile");
     Logger.stepNumber(7);
     Logger.step("Guardar cambios");
-    cy.intercept("PUT", CommonPageData.endPoints.putProfile).as("profile");
     AccountSettingsMethods.saveChangesClick();
 
     Logger.verification(
-      "El popup de cambio de foto de perfil deberia ser visible"
+      "El mensaje de cambio de foto de perfil deberia ser visible"
     );
-    AccountSettingsMethods.verifyProfileChanged();
+    AccountSettingsMethods.verifyDataUpdated();
 
     cy.wait("@profile").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);

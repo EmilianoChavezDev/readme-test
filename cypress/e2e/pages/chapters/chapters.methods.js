@@ -16,6 +16,11 @@ export class ChaptersMethods {
     ChaptersElements.buttons.publish.click();
   }
 
+  // Click en el boton guardar
+  static saveButtonClick() {
+    ChaptersElements.buttons.save.click();
+  }
+
   // Verificaciones
   // Verificamos que el capitulo ha sido publicado
   static verifyChapterPublished() {

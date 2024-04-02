@@ -1,8 +1,8 @@
-const { Logger } = require("../../support/logger");
-const { CommonPageData } = require("../pages/common-page/common-page.data");
-const { LoginData } = require("../pages/login/login.data");
-const { LoginMethods } = require("../pages/login/login.methods");
-const { NavBarMethods } = require("../pages/navbar/navbar.methods");
+import { Logger } from "../../../support/logger";
+import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { LoginData } from "../../pages/login/login.data";
+import { LoginMethods } from "../../pages/login/login.methods";
+import { NavBarMethods } from "../../pages/navbar/navbar.methods";
 
 describe("Logout", () => {
   it("should logout", () => {

@@ -63,7 +63,7 @@ export class AccountSettingsElements {
       get removeProfile() {
         return cy
           .get(
-            'button[class="absolute top-0 right-0 mt-2 mr-2 p-2 rounded-full bg-red-500 text-white hover:bg-red-600"][style="z-index: 50;"]',
+            'button[class="absolute top-0 right-0 mt-2 mr-2 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all transform opacity-100 duration-700"][style="z-index: 50;"]',
             { timeout: 10000 }
           )
           .contains("Borrar perfil");
@@ -77,13 +77,17 @@ export class AccountSettingsElements {
       get incorrectPassword() {
         return cy.get(".go3958317564", { timeout: 10000 });
       },
+
+      get passwordNotMatch() {
+        return cy.get(".go2072408551", { timeout: 10000 });
+      },
     };
   }
 
   // Mensajes de exito de la pagina de mi cuenta
   static get successMessages() {
     return {
-      get profileUpdate() {
+      get dataUpdated() {
         return cy.get(".go2072408551", { timeout: 10000 });
       },
     };

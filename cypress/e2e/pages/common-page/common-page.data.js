@@ -1,6 +1,4 @@
 export class CommonPageData {
-  static postBook = "https://readme-backend.fly.dev/libros";
-
   // Devolvemos los endpoints de la API
   static get endPoints() {
     return {
@@ -8,15 +6,15 @@ export class CommonPageData {
         return "https://readme-backend.fly.dev/libros";
       },
 
-      get putProfile() {
+      get profile() {
         return "https://readme-backend.fly.dev/users/profile";
       },
 
-      get postDeleteProfile() {
+      get deleteProfile() {
         return "https://readme-backend.fly.dev/users/delete_profile";
       },
 
-      get putPassword() {
+      get password() {
         return "https://readme-backend.fly.dev/users/password";
       },
 
@@ -25,7 +23,7 @@ export class CommonPageData {
       },
 
       get chapters() {
-        return "https://readme-backend.fly.dev/capitulos/";
+        return "https://readme-backend.fly.dev/capitulos";
       },
     };
   }

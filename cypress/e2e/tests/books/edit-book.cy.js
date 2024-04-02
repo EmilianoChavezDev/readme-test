@@ -1,14 +1,12 @@
-const { Logger } = require("../../support/logger");
-const { CommonPageData } = require("../pages/common-page/common-page.data");
-const {
-  CreateBookMethods,
-} = require("../pages/create-book/create-book.methods");
-const { EditBookData } = require("../pages/edit-book/edit-book.data");
-const { EditBookMethods } = require("../pages/edit-book/edit.book.methods");
-const { LoginData } = require("../pages/login/login.data");
-const { LoginMethods } = require("../pages/login/login.methods");
-const { MyBooksMethods } = require("../pages/mybooks/mybooks.methods");
-const { NavBarMethods } = require("../pages/navbar/navbar.methods");
+import { Logger } from "../../../support/logger";
+import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { CreateBookMethods } from "../../pages/create-book/create-book.methods";
+import { EditBookData } from "../../pages/edit-book/edit-book.data";
+import { EditBookMethods } from "../../pages/edit-book/edit.book.methods";
+import { LoginData } from "../../pages/login/login.data";
+import { LoginMethods } from "../../pages/login/login.methods";
+import { MyBooksMethods } from "../../pages/mybooks/mybooks.methods";
+import { NavBarMethods } from "../../pages/navbar/navbar.methods";
 
 let bookId;
 
@@ -30,6 +28,51 @@ describe("Edit book test", () => {
 
     Logger.verification("El boton de Escribe del NavBar deberia ser visible");
     NavBarMethods.verifyWriteButton();
+  });
+
+  it("Edit book info empty fields validations", () => {
+    Logger.stepNumber(3);
+    Logger.step("Click en Escribe y en Mis Libros");
+    NavBarMethods.goToMyBooks();
+
+    Logger.verification("La url deberia ser la de mis libros");
+    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
+
+    Logger.stepNumber(4);
+    Logger.step("Desplegamos el menu de opciones");
+    MyBooksMethods.openMenu();
+
+    Logger.stepNumber(5);
+    Logger.step("Click en Editar libro");
+    MyBooksMethods.editBook();
+
+    // Esperar a que la URL cambie a la pagina de edicion del libro
+    cy.url()
+      .should("include", "/books/edit/")
+      .then((url) => {
+        Logger.stepNumber(6);
+        Logger.step("Limpiamos el campo de titulo");
+        EditBookMethods.clearTitle();
+
+        Logger.stepNumber(7);
+        Logger.step("Limpiamos el campo de sinopsis");
+        EditBookMethods.clearSynopsis();
+
+        // Verificamos que la url sea la de editar el libro
+        Logger.verification("Verificamos que estemos en la pagina de edicion");
+        cy.url().should(
+          "eq",
+          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
+        );
+
+        Logger.stepNumber(8);
+        Logger.step("Actualizamos el libro");
+        EditBookMethods.updateBookClick();
+
+        Logger.verification("Verificamos que no puede haber campos vacios");
+        CreateBookMethods.verifyEmptyTitleError();
+        CreateBookMethods.verifyEmptySynopsisError();
+      });
   });
 
   it("Edit book info", () => {
@@ -92,51 +135,6 @@ describe("Edit book test", () => {
           "eq",
           CommonPageData.appPages.baseUrl + "books" + bookId
         );
-      });
-  });
-
-  it("Edit book info empty fields validations", () => {
-    Logger.stepNumber(3);
-    Logger.step("Click en Escribe y en Mis Libros");
-    NavBarMethods.goToMyBooks();
-
-    Logger.verification("La url deberia ser la de mis libros");
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
-
-    Logger.stepNumber(4);
-    Logger.step("Desplegamos el menu de opciones");
-    MyBooksMethods.openMenu();
-
-    Logger.stepNumber(5);
-    Logger.step("Click en Editar libro");
-    MyBooksMethods.editBook();
-
-    // Esperar a que la URL cambie a la pagina de edicion del libro
-    cy.url()
-      .should("include", "/books/edit/")
-      .then((url) => {
-        Logger.stepNumber(6);
-        Logger.step("Limpiamos el campo de titulo");
-        EditBookMethods.clearTitle();
-
-        Logger.stepNumber(7);
-        Logger.step("Limpiamos el campo de sinopsis");
-        EditBookMethods.clearSynopsis();
-
-        // Verificamos que la url sea la de editar el libro
-        Logger.verification("Verificamos que estemos en la pagina de edicion");
-        cy.url().should(
-          "eq",
-          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
-        );
-
-        Logger.stepNumber(8);
-        Logger.step("Actualizamos el libro");
-        EditBookMethods.updateBookClick();
-
-        Logger.verification("Verificamos que no puede haber campos vacios");
-        CreateBookMethods.verifyEmptyTitleError();
-        CreateBookMethods.verifyEmptySynopsisError();
       });
   });
 });

@@ -1,17 +1,11 @@
-const { Logger } = require("../../support/logger");
-const {
-  BookDetailsMethods,
-} = require("../pages/book-details/book-details.methods");
-const { CommonPageData } = require("../pages/common-page/common-page.data");
-const { LoginData } = require("../pages/login/login.data");
-const { LoginMethods } = require("../pages/login/login.methods");
-const {
-  NavBarSearchMethods,
-} = require("../pages/navbar-search/navbar-search.methods");
-const { NavBarMethods } = require("../pages/navbar/navbar.methods");
-const {
-  ReadChapterMethods,
-} = require("../pages/read-chapter/read-chapter.methods");
+import { Logger } from "../../../support/logger";
+import { BookDetailsMethods } from "../../pages/book-details/book-details.methods";
+import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { LoginData } from "../../pages/login/login.data";
+import { LoginMethods } from "../../pages/login/login.methods";
+import { NavBarSearchMethods } from "../../pages/navbar-search/navbar-search.methods";
+import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+import { ReadChapterMethods } from "../../pages/read-chapter/read-chapter.methods";
 
 describe("Search navbar test", () => {
   beforeEach(() => {
@@ -176,9 +170,7 @@ describe("Search navbar test", () => {
     Logger.step("Damos click en leer libro");
     NavBarSearchMethods.readBook();
 
-    Logger.verification(
-      "Verificamos que nos de el mensaje que no hay capitulos"
-    );
+    Logger.verification("Verificamos que tenga capitulos");
 
     BookDetailsMethods.verifyComentarySection();
   });
@@ -199,9 +191,7 @@ describe("Search navbar test", () => {
     Logger.step("Damos click en leer libro");
     NavBarSearchMethods.readBook();
 
-    Logger.verification(
-      "Verificamos que nos de el mensaje que no hay capitulos"
-    );
+    Logger.verification("Verificamos el mensaje que no hay capitulos");
 
     ReadChapterMethods.verifyEmptyCapitule();
   });

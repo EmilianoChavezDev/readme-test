@@ -1,4 +1,4 @@
-import { writeChapter } from "../../../fixtures/CreateBook.json";
+import { writeChapter } from "../../../fixtures/Chapters.json";
 
 export class ChaptersData {
   static get chapterContent() {

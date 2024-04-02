@@ -1,7 +1,6 @@
 import { Logger } from "../../../support/logger";
 import { CreateBookElements } from "../create-book/create-book.elements";
 import { CreateBookMethods } from "../create-book/create-book.methods";
-import { EditBookData } from "./edit-book.data";
 import { EditBookElements } from "./edit-book.elements";
 
 export class EditBookMethods {

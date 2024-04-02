@@ -1,16 +1,15 @@
-const { Logger } = require("../../support/logger");
-const { CommonPageData } = require("../pages/common-page/common-page.data");
-const {
-  CommonPageMethods,
-} = require("../pages/common-page/common-page.methods");
-const { NavBarMethods } = require("../pages/navbar/navbar.methods");
-const { RegisterMethods } = require("../pages/register/register.methods");
+import { Logger } from "../../../support/logger";
+import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { CommonPageMethods } from "../../pages/common-page/common-page.methods";
+import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+import { RegisterMethods } from "../../pages/register/register.methods";
 
 const randomUsername = CommonPageMethods.generateRandomString();
 const randomPassword = CommonPageMethods.generateRandomString(8);
 
 const randomPasswordDifferent = CommonPageMethods.generateRandomString(8);
 const randomPasswordInvalidLength = CommonPageMethods.generateRandomString(4);
+
 const randomBirthDate = CommonPageMethods.generateRandomBirthDate();
 const randomBirthDateInvalid =
   CommonPageMethods.generateRandomBirthDateInvalid();

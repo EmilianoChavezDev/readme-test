@@ -1,8 +1,5 @@
 import { Logger } from "../../../support/logger";
-import {
-  AccountElements,
-  AccountSettingsElements,
-} from "./account-settings.elements";
+import { AccountSettingsElements } from "./account-settings.elements";
 
 export class AccountSettingsMethods {
   // Ir a la pagina de mi cuenta
@@ -67,9 +64,6 @@ export class AccountSettingsMethods {
 
     Logger.subStep("Confirmar nueva contraseña");
     this.inputNewPasswordConfirm(newPassword);
-
-    Logger.subStep("Guardar cambios");
-    this.saveChangesClick();
   }
 
   // Verificaciones
@@ -77,13 +71,20 @@ export class AccountSettingsMethods {
   static verifyIncorrectPassword() {
     AccountSettingsElements.errorMessages.incorrectPassword
       .invoke("text")
-      .should("eq", "Contraseña incorrecta");
+      .should("eq", "Contraseña actual incorrecta");
   }
 
-  // Verificar que se muestre el mensaje de error de contraseña nueva
-  static verifyProfileChanged() {
-    AccountSettingsElements.successMessages.profileUpdate
+  // Verificamos que se cambiaron los datos correctamente
+  static verifyDataUpdated() {
+    AccountSettingsElements.successMessages.dataUpdated
       .invoke("text")
-      .should("eq", "Foto de perfil actualizado");
+      .should("eq", "Datos actualizado con exito");
+  }
+
+  // Verificar que se muestre el mensaje de error de contraseña no coinciden
+  static verifyPasswordsDontMatch() {
+    AccountSettingsElements.errorMessages.passwordNotMatch
+      .invoke("text")
+      .should("eq", "Las contraseñas no coinciden");
   }
 }

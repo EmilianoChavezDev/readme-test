@@ -21,8 +21,10 @@ export class LoginMethods {
   static login(username, password) {
     Logger.subStep("Insertar username");
     this.insertUsername(username);
+
     Logger.subStep("Insertar password");
     this.insertPassword(password);
+
     Logger.subStep("Click en el boton de login");
     this.clickLoginButton();
   }
