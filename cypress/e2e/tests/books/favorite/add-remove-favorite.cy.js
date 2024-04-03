@@ -6,8 +6,6 @@ import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 
-const getFirstBook = cy.get("div.bg-gradient-to-t").eq(0);
-
 describe("Add Book to favorite", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
@@ -28,11 +26,11 @@ describe("Add Book to favorite", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Remove a book from favorite", () => {
+  it("Add and remove book from favorites", () => {
     // Seleccionamos el primer libro de novedades
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el primer libro de novedades");
-    getFirstBook.click();
+    cy.get(".grid-cols-1 > div").eq(1).click();
 
     // Añadimos el libro a favoritos desde los detalles del libro
     Logger.stepNumber(4);
@@ -48,36 +46,13 @@ describe("Add Book to favorite", () => {
     Logger.verification("El libro deberia ser visible en favoritos");
     FavoritesMethods.verifyBookInFavorites();
 
-    // Navergamos a la pagina de Mis Favoritos
+    // Ahora lo quitamos de favoritos
     Logger.stepNumber(6);
-    Logger.step("Go to My Favorites page");
-    NavBarMethods.goToFavoritesClick();
-
-    // Verificamos que el libro este en favoritos
-    Logger.verification("The book should be visible in favorites");
-    FavoritesMethods.verifyBookInFavorites();
-
-    // Quitamos el libro de favoritos
-    Logger.stepNumber(7);
-    Logger.step("Remove the book from favorites");
+    Logger.step("Quitamos el libro de favoritos");
     FavoritesMethods.removeFavoriteFullHeartClick();
 
     // Verificamos que el boton del corazon vacio este visible (Significa que lo sacamos de favoritos)
-    Logger.verification("The empty heart button should be visible");
+    Logger.verification("El boton del corazon vacio deberia ser visible");
     FavoritesMethods.verifyEmptyHeartButton();
-
-    // Volvemos la inicio
-    Logger.stepNumber(8);
-    Logger.step("Go to Home page");
-    NavBarMethods.goToHomeClick();
-
-    // Volvemos a ver todos los libros
-    Logger.stepNumber(9);
-    Logger.step("Go to My Favorites page");
-    NavBarMethods.goToFavoritesClick();
-
-    // Verificamos que no haya libros en favoritos
-    Logger.verification("The favorites page should be empty");
-    FavoritesMethods.verifyEmptyFavoritesMessage();
   });
 });

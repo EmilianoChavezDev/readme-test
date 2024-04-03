@@ -2,9 +2,12 @@ import { Logger } from "../../../support/logger";
 import { AccountSettingsData } from "../../pages/account-settings/account-settings.data";
 import { AccountSettingsMethods } from "../../pages/account-settings/account-settings.methods";
 import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { CommonPageMethods } from "../../pages/common-page/common-page.methods";
 import { LoginData } from "../../pages/login/login.data";
 import { LoginMethods } from "../../pages/login/login.methods";
 import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+
+const newBirthDate = CommonPageMethods.generateRandomBirthDate();
 
 describe("Change birthday", () => {
   beforeEach(() => {
@@ -37,9 +40,7 @@ describe("Change birthday", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos la nueva fecha");
-    AccountSettingsMethods.inputBirthDate(
-      AccountSettingsData.accountData.newBirthDate
-    );
+    AccountSettingsMethods.inputBirthDate(newBirthDate);
 
     Logger.stepNumber(6);
     Logger.step("Insertamos la contraseña actual");

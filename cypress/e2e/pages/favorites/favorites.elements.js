@@ -2,12 +2,14 @@ export class FavoritesElements {
   // Botones de favoritos al ver la pagina Mis Favoritos Corazones llenos y vacios)
   static get buttons() {
     return {
-      get fullHeartButton() {
-        return cy.get('img[alt="Corazón lleno"]', { timeout: 10000 });
-      },
-
-      get emptyHeartButton() {
-        return cy.get('img[alt="Corazón vacio"]', { timeout: 10000 });
+      get heart() {
+        return cy
+          .get("div.favorites_botonContainer__WSkkj button", {
+            timeout: 10000,
+            multiple: true,
+          })
+          .find("svg")
+          .find("path");
       },
     };
   }

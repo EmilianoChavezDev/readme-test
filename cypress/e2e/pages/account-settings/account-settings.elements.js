@@ -11,7 +11,7 @@ export class AccountSettingsElements {
       },
 
       get saveChanges() {
-        return cy.get('button[type="submit"]', { timeout: 10000 });
+        return cy.get('button[type="submit"]', { force: true, timeout: 10000 });
       },
 
       get cancelChanges() {

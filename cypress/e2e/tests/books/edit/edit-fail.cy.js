@@ -49,6 +49,8 @@ describe("Edit book test", () => {
     cy.url()
       .should("include", "/books/edit/")
       .then((url) => {
+        bookId = url.split("/").pop();
+
         Logger.stepNumber(6);
         Logger.step("Limpiamos el campo de titulo");
         EditBookMethods.clearTitle();
@@ -61,7 +63,7 @@ describe("Edit book test", () => {
         Logger.verification("Verificamos que estemos en la pagina de edicion");
         cy.url().should(
           "eq",
-          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
+          `${CommonPageData.appPages.baseUrl}books/edit/${bookId}`
         );
 
         Logger.stepNumber(8);

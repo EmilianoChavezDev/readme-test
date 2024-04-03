@@ -2,9 +2,12 @@ import { Logger } from "../../../support/logger";
 import { AccountSettingsData } from "../../pages/account-settings/account-settings.data";
 import { AccountSettingsMethods } from "../../pages/account-settings/account-settings.methods";
 import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { CommonPageMethods } from "../../pages/common-page/common-page.methods";
 import { LoginData } from "../../pages/login/login.data";
 import { LoginMethods } from "../../pages/login/login.methods";
 import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+
+const generateNewPassword = CommonPageMethods.generateRandomString();
 
 describe("Change password fail", () => {
   beforeEach(() => {
@@ -46,8 +49,8 @@ describe("Change password fail", () => {
     Logger.stepNumber(7);
     Logger.step("Ingresamos la nueva contraseña");
     AccountSettingsMethods.updateUserPassword(
-      AccountSettingsData.accountData.newPassword,
-      AccountSettingsData.accountData.newPassword
+      generateNewPassword,
+      generateNewPassword
     );
 
     cy.intercept("PUT", CommonPageData.endPoints.password).as("updatePassword");
@@ -57,7 +60,7 @@ describe("Change password fail", () => {
     AccountSettingsMethods.saveChangesClick();
 
     Logger.verification("La contraseña no ha sido actualizada");
-    AccountSettingsMethods.verifyIncorrectPassword();
+    AccountSettingsMethods.verifyActualPassword();
 
     cy.wait("@updatePassword").then((interception) => {
       expect(interception.response.statusCode).to.eq(422);

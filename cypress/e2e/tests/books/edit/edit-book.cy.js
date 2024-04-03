@@ -30,51 +30,6 @@ describe("Edit book test", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Edit book info empty fields validations", () => {
-    Logger.stepNumber(3);
-    Logger.step("Click en Escribe y en Mis Libros");
-    NavBarMethods.goToMyBooks();
-
-    Logger.verification("La url deberia ser la de mis libros");
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
-
-    Logger.stepNumber(4);
-    Logger.step("Desplegamos el menu de opciones");
-    MyBooksMethods.openMenu();
-
-    Logger.stepNumber(5);
-    Logger.step("Click en Editar libro");
-    MyBooksMethods.editBookClick();
-
-    // Esperar a que la URL cambie a la pagina de edicion del libro
-    cy.url()
-      .should("include", "/books/edit/")
-      .then((url) => {
-        Logger.stepNumber(6);
-        Logger.step("Limpiamos el campo de titulo");
-        EditBookMethods.clearTitle();
-
-        Logger.stepNumber(7);
-        Logger.step("Limpiamos el campo de sinopsis");
-        EditBookMethods.clearSynopsis();
-
-        // Verificamos que la url sea la de editar el libro
-        Logger.verification("Verificamos que estemos en la pagina de edicion");
-        cy.url().should(
-          "eq",
-          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
-        );
-
-        Logger.stepNumber(8);
-        Logger.step("Actualizamos el libro");
-        EditBookMethods.updateBookClick();
-
-        Logger.verification("Verificamos que no puede haber campos vacios");
-        CreateBookMethods.verifyEmptyTitleError();
-        CreateBookMethods.verifyEmptySynopsisError();
-      });
-  });
-
   it("Edit book info", () => {
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Mis Libros");
@@ -82,7 +37,7 @@ describe("Edit book test", () => {
 
     Logger.verification("La url deberia ser la de mis libros");
 
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
+    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/mybooks`);
 
     Logger.stepNumber(4);
     Logger.step("Desplegamos el menu de opciones");
@@ -110,7 +65,7 @@ describe("Edit book test", () => {
         Logger.verification("Verificamos que estemos en la pagina de edicion");
         cy.url().should(
           "eq",
-          `${CommonPageData.appPages.baseUrl}+books/edit/${bookId}`
+          `${CommonPageData.appPages.baseUrl}books/edit/${bookId}`
         );
 
         // Interceptamos la peticion PUT con el id del libro
@@ -133,7 +88,7 @@ describe("Edit book test", () => {
         Logger.verification("Verificamos que el libro se haya actualizado");
         cy.url().should(
           "eq",
-          CommonPageData.appPages.baseUrl + "books" + bookId
+          `${CommonPageData.appPages.baseUrl}books/${bookId}`
         );
       });
   });

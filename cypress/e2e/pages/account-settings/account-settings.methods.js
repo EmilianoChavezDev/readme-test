@@ -59,15 +59,12 @@ export class AccountSettingsMethods {
   }
 
   // Metodo para cambiar la contraseña
-  static updateUserPassword(password, newPassword) {
-    Logger.subStep("Insertar contraseña actual");
-    this.inputPassword(password);
-
+  static updateUserPassword(newPassword, confirmNewPassword) {
     Logger.subStep("Insertar nueva contraseña");
     this.inputNewPassword(newPassword);
 
     Logger.subStep("Confirmar nueva contraseña");
-    this.inputNewPasswordConfirm(newPassword);
+    this.inputNewPasswordConfirm(confirmNewPassword);
   }
 
   // Metodo para cambiar la fecha de nacimiento
@@ -82,6 +79,13 @@ export class AccountSettingsMethods {
   // Verificaciones
   // Verificar que se muestre el mensaje de error de contraseña incorrecta
   static verifyIncorrectPassword() {
+    AccountSettingsElements.errorMessages.incorrectPassword
+      .invoke("text")
+      .should("eq", "Contraseña incorrecta");
+  }
+
+  // Verificamos que la contraseña actual es incorrecta
+  static verifyActualPassword() {
     AccountSettingsElements.errorMessages.incorrectPassword
       .invoke("text")
       .should("eq", "Contraseña actual incorrecta");

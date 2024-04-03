@@ -28,7 +28,7 @@ describe("Add Book to favorite", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Add book to favorite and remove from the books details", () => {
+  it("Add and remove book from the books details", () => {
     // Seleccionamos el primer libro
     Logger.stepNumber(3);
     Logger.step("Select the first book of new releases");

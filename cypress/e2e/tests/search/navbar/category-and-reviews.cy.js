@@ -56,7 +56,7 @@ describe("Search navbar test", () => {
     NavBarSearchMethods.applyReviewsClick();
 
     Logger.verification("Verificamos que haya encontrado el libro");
-    NavBarSearchMethods.verifyBooks("Como ser un alcoholico");
+    NavBarSearchMethods.verifyBooks("Libro de prueba");
 
     Logger.verification("Verificamos que hayan resultados en la busqueda");
     NavBarSearchMethods.verifyResults();

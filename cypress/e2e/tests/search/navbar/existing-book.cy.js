@@ -28,10 +28,10 @@ describe("Search navbar test", () => {
   it("Search existing book", () => {
     Logger.stepNumber(3);
     Logger.step("Buscar el libro Spiderman");
-    NavBarMethods.searchBook("Spiderman");
+    NavBarMethods.searchBook("Libro de prueba");
 
     Logger.verification("Verificar que se hizo la busqueda correctamente");
-    NavBarSearchMethods.verifySearchResults("Spiderman");
+    NavBarSearchMethods.verifySearchResults("Libro de prueba");
 
     Logger.verification("Verificamos que hayan resultados en la busqueda");
     NavBarSearchMethods.verifyResults();

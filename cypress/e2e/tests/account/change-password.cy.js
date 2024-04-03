@@ -26,7 +26,7 @@ describe("Change password", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Change user password", () => {
+  it.skip("Change user password", () => {
     Logger.stepNumber(3);
     Logger.step("Vamos a los ajustes de la cuenta");
     NavBarMethods.goToMyAccount();

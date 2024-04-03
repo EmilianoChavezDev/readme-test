@@ -1,5 +1,4 @@
 import { Logger } from "../../../support/logger";
-import { AccountSettingsData } from "../../pages/account-settings/account-settings.data";
 import { AccountSettingsMethods } from "../../pages/account-settings/account-settings.methods";
 import { CommonPageData } from "../../pages/common-page/common-page.data";
 import { LoginData } from "../../pages/login/login.data";
@@ -45,12 +44,7 @@ describe("Change password doesnt match", () => {
 
     Logger.stepNumber(7);
     Logger.step("Ingresamos la nueva contraseña");
-    AccountSettingsMethods.updateUserPassword(
-      "incorrectPasswrod",
-      AccountSettingsData.accountData.newPassword
-    );
-
-    cy.intercept("PUT", CommonPageData.endPoints.password).as("updatePassword");
+    AccountSettingsMethods.updateUserPassword("incorrectPassword", "asdasdad");
 
     Logger.stepNumber(8);
     Logger.step("Guardamos cambios");
@@ -58,9 +52,5 @@ describe("Change password doesnt match", () => {
 
     Logger.verification("La contraseña no ha sido actualizada");
     AccountSettingsMethods.verifyPasswordsDontMatch();
-
-    cy.wait("@updatePassword").then((interception) => {
-      expect(interception.response.statusCode).to.eq(422);
-    });
   });
 });

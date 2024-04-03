@@ -36,25 +36,24 @@ describe("Change profile fail", () => {
     AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
-    Logger.step("Ingresamos la contraseña incorrecta");
-    AccountSettingsMethods.inputPassword("incorrectPassword");
-
-    Logger.stepNumber(6);
     Logger.step("Cambiamos la foto de perfil");
     AccountSettingsMethods.changeUserProfile(
       AccountSettingsData.accountData.profile
     );
+
+    Logger.stepNumber(6);
+    Logger.step("Ingresamos la contraseña incorrecta");
+    AccountSettingsMethods.inputPassword("incorrectPassword");
 
     cy.intercept("PUT", CommonPageData.endPoints.profile).as("profile");
     Logger.stepNumber(7);
     Logger.step("Guardar cambios");
     AccountSettingsMethods.saveChangesClick();
 
-    // Logger.verification("Error message should be visible");
+    Logger.verification("Error message should be visible");
     AccountSettingsMethods.verifyIncorrectPassword();
 
     cy.wait("@profile").then((interception) => {
-      console.log(interception);
       expect(interception.response.statusCode).to.equal(422);
     });
   });

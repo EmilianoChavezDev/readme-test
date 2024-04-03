@@ -54,7 +54,6 @@ describe("Change profile", () => {
     AccountSettingsMethods.verifyDataUpdated();
 
     cy.wait("@profile").then((interception) => {
-      console.log(interception);
       expect(interception.response.statusCode).to.equal(200);
     });
   });
