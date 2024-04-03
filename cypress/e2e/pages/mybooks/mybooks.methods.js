@@ -7,18 +7,23 @@ export class MyBooksMethods {
   }
 
   // Click en editar libro
-  static editBook() {
+  static editBookClick() {
     MyBooksElements.actionButtons.editButton.click();
   }
 
   // Click en eliminar libro
-  static deleteBook() {
+  static deleteBookClick() {
     MyBooksElements.actionButtons.deleteButton.click();
   }
 
   // Click en confirmar eliminar libro
   static confirmDeleteBook() {
     MyBooksElements.actionButtons.confirmDeleteButton.click();
+  }
+
+  // Click en seguir escribiendo
+  static continueWritingClick() {
+    MyBooksElements.buttons.continueWriting.click();
   }
 
   // Verificaciones

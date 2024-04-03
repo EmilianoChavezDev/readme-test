@@ -10,16 +10,16 @@ export class CommonPageData {
         return "https://readme-backend.fly.dev/users/profile";
       },
 
+      get birthDay() {
+        return "https://readme-backend.fly.dev/users/birthday";
+      },
+
       get deleteProfile() {
         return "https://readme-backend.fly.dev/users/delete_profile";
       },
 
       get password() {
         return "https://readme-backend.fly.dev/users/password";
-      },
-
-      get postLogin() {
-        return "https://readme-backend.fly.dev/login";
       },
 
       get chapters() {

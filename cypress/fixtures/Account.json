@@ -5,5 +5,9 @@
 
   "newUserPassword": {
     "password": "zz123456"
+  },
+
+  "newBirthDate": {
+    "birthDate": "2005-01-01"
   }
 }

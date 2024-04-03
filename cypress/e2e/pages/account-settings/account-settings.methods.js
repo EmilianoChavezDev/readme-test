@@ -32,6 +32,10 @@ export class AccountSettingsMethods {
     AccountSettingsElements.profileButtons.removeProfile.click();
   }
 
+  static inputBirthDate(birth_date) {
+    AccountSettingsElements.textBoxes.dateBirth.type(birth_date);
+  }
+
   // Insertar la contraseña actual
   static inputPassword(password) {
     AccountSettingsElements.textBoxes.oldPassword.type(password);
@@ -64,6 +68,15 @@ export class AccountSettingsMethods {
 
     Logger.subStep("Confirmar nueva contraseña");
     this.inputNewPasswordConfirm(newPassword);
+  }
+
+  // Metodo para cambiar la fecha de nacimiento
+  static changeBirthDate(birth_date, password) {
+    Logger.subStep("Insertamos la nueva fecha de nacimiento");
+    this.inputBirthDate(birth_date);
+
+    Logger.subStep("Insertamos la contraseña");
+    this.inputPassword(password);
   }
 
   // Verificaciones

@@ -1,9 +1,9 @@
-import { CreateBookMethods } from "../../pages/create-book/create-book.methods";
-import { LoginData } from "../../pages/login/login.data";
-import { LoginMethods } from "../../pages/login/login.methods";
-import { NavBarMethods } from "../../pages/navbar/navbar.methods";
-import { Logger } from "../../../support/logger";
-import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
+import { LoginData } from "../../../pages/login/login.data";
+import { LoginMethods } from "../../../pages/login/login.methods";
+import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../support/logger";
+import { CommonPageData } from "../../../pages/common-page/common-page.data";
 
 describe("Create book fail", () => {
   beforeEach(() => {

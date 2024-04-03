@@ -10,6 +10,12 @@ export class MyBooksElements {
           })
           .eq(0);
       },
+
+      get continueWriting() {
+        return cy
+          .get("div.mybooks_write_content__lGcID a", { timeout: 10000 })
+          .eq(0);
+      },
     };
   }
 

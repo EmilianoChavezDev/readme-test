@@ -1,12 +1,12 @@
-import { Logger } from "../../../support/logger";
-import { CommonPageData } from "../../pages/common-page/common-page.data";
-import { CreateBookMethods } from "../../pages/create-book/create-book.methods";
-import { EditBookData } from "../../pages/edit-book/edit-book.data";
-import { EditBookMethods } from "../../pages/edit-book/edit.book.methods";
-import { LoginData } from "../../pages/login/login.data";
-import { LoginMethods } from "../../pages/login/login.methods";
-import { MyBooksMethods } from "../../pages/mybooks/mybooks.methods";
-import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../support/logger";
+import { CommonPageData } from "../../../pages/common-page/common-page.data";
+import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
+import { EditBookData } from "../../../pages/edit-book/edit-book.data";
+import { EditBookMethods } from "../../../pages/edit-book/edit.book.methods";
+import { LoginData } from "../../../pages/login/login.data";
+import { LoginMethods } from "../../../pages/login/login.methods";
+import { MyBooksMethods } from "../../../pages/mybooks/mybooks.methods";
+import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 
 let bookId;
 
@@ -44,7 +44,7 @@ describe("Edit book test", () => {
 
     Logger.stepNumber(5);
     Logger.step("Click en Editar libro");
-    MyBooksMethods.editBook();
+    MyBooksMethods.editBookClick();
 
     // Esperar a que la URL cambie a la pagina de edicion del libro
     cy.url()
@@ -90,7 +90,7 @@ describe("Edit book test", () => {
 
     Logger.stepNumber(5);
     Logger.step("Click en Editar libro");
-    MyBooksMethods.editBook();
+    MyBooksMethods.editBookClick();
 
     // Esperar a que la URL cambie a la pagina de edicion del libro
     cy.url()

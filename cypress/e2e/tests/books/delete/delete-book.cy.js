@@ -1,9 +1,9 @@
-import { Logger } from "../../../support/logger";
-import { CommonPageData } from "../../pages/common-page/common-page.data";
-import { LoginData } from "../../pages/login/login.data";
-import { LoginMethods } from "../../pages/login/login.methods";
-import { MyBooksMethods } from "../../pages/mybooks/mybooks.methods";
-import { NavBarMethods } from "../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../support/logger";
+import { CommonPageData } from "../../../pages/common-page/common-page.data";
+import { LoginData } from "../../../pages/login/login.data";
+import { LoginMethods } from "../../../pages/login/login.methods";
+import { MyBooksMethods } from "../../../pages/mybooks/mybooks.methods";
+import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 
 describe("Delete Book test", () => {
   beforeEach(() => {
@@ -39,7 +39,7 @@ describe("Delete Book test", () => {
 
     Logger.stepNumber(5);
     Logger.step("Click en Eliminar libro");
-    MyBooksMethods.deleteBook();
+    MyBooksMethods.deleteBookClick();
 
     Logger.stepNumber(6);
     Logger.step("Click en confirmar eliminar libro");

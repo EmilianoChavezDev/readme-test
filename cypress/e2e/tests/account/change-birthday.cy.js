@@ -6,7 +6,7 @@ import { LoginData } from "../../pages/login/login.data";
 import { LoginMethods } from "../../pages/login/login.methods";
 import { NavBarMethods } from "../../pages/navbar/navbar.methods";
 
-describe("Change password doesnt match", () => {
+describe("Change birthday", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegar a la pagina de login");
@@ -26,7 +26,7 @@ describe("Change password doesnt match", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Change user password not match", () => {
+  it("Change user birthday", () => {
     Logger.stepNumber(3);
     Logger.step("Vamos a los ajustes de la cuenta");
     NavBarMethods.goToMyAccount();
@@ -36,31 +36,28 @@ describe("Change password doesnt match", () => {
     AccountSettingsMethods.myAccountClick();
 
     Logger.stepNumber(5);
+    Logger.step("Ingresamos la nueva fecha");
+    AccountSettingsMethods.inputBirthDate(
+      AccountSettingsData.accountData.newBirthDate
+    );
+
+    Logger.stepNumber(6);
     Logger.step("Insertamos la contraseña actual");
     AccountSettingsMethods.inputPassword(LoginData.validCredentials.password);
 
-    Logger.stepNumber(6);
-    Logger.step("Abrir dropdown de cambio de contraseña");
-    AccountSettingsMethods.openDropDownClick();
-
-    Logger.stepNumber(7);
-    Logger.step("Ingresamos la nueva contraseña");
-    AccountSettingsMethods.updateUserPassword(
-      "incorrectPasswrod",
-      AccountSettingsData.accountData.newPassword
+    cy.intercept("PUT", CommonPageData.endPoints.birthDay).as(
+      "updateBrithDate"
     );
 
-    cy.intercept("PUT", CommonPageData.endPoints.password).as("updatePassword");
-
-    Logger.stepNumber(8);
+    Logger.stepNumber(7);
     Logger.step("Guardamos cambios");
     AccountSettingsMethods.saveChangesClick();
 
-    Logger.verification("La contraseña no ha sido actualizada");
-    AccountSettingsMethods.verifyPasswordsDontMatch();
+    Logger.verification("La fecha de nacimiento ha sido actualizada");
+    AccountSettingsMethods.verifyDataUpdated();
 
-    cy.wait("@updatePassword").then((interception) => {
-      expect(interception.response.statusCode).to.eq(422);
+    cy.wait("@updateBrithDate").then((interception) => {
+      expect(interception.response.statusCode).to.eq(200);
     });
   });
 });

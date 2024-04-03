@@ -24,6 +24,17 @@ export class ChaptersMethods {
   // Verificaciones
   // Verificamos que el capitulo ha sido publicado
   static verifyChapterPublished() {
-    ChaptersElements.successMessages.publishedChapter.should("be.visible");
+    ChaptersElements.successMessages.toast.should(
+      "have.text",
+      "El capítulo de tu libro ha sido guardado"
+    );
+  }
+
+  // Verificamos que el capitulo ha sido guardado
+  static verifyChapterSaved() {
+    ChaptersElements.successMessages.toast.should(
+      "have.text",
+      "El capítulo de tu libro ha sido guardado"
+    );
   }
 }

@@ -30,16 +30,8 @@ export class ChaptersElements {
   // Mensajes de exito
   static get successMessages() {
     return {
-      get publishedChapter() {
-        return cy
-          .get(".go3958317564")
-          .contains("El capítulo de tu libro ha sido publicado");
-      },
-
-      get savedChapter() {
-        return cy
-          .get(".go2072408551")
-          .contains("El capítulo de tu libro ha sido guardado");
+      get toast() {
+        return cy.get(".go3958317564", { timeout: 10000 });
       },
     };
   }

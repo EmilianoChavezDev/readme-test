@@ -1,12 +1,12 @@
-import { CreateBookData } from "../../pages/create-book/create-book.data";
-import { LoginData } from "../../pages/login/login.data";
-import { LoginMethods } from "../../pages/login/login.methods";
-import { NavBarMethods } from "../../pages/navbar/navbar.methods";
-import { Logger } from "../../../support/logger";
-import { ChaptersData } from "../../pages/chapters/chapters.data";
-import { ChaptersMethods } from "../../pages/chapters/chapters.methods";
-import { CommonPageData } from "../../pages/common-page/common-page.data";
-import { CreateBookMethods } from "../../pages/create-book/create-book.methods";
+import { CreateBookData } from "../../../pages/create-book/create-book.data";
+import { LoginData } from "../../../pages/login/login.data";
+import { LoginMethods } from "../../../pages/login/login.methods";
+import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../support/logger";
+import { ChaptersData } from "../../../pages/chapters/chapters.data";
+import { ChaptersMethods } from "../../../pages/chapters/chapters.methods";
+import { CommonPageData } from "../../../pages/common-page/common-page.data";
+import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
 
 let bookId;
 
