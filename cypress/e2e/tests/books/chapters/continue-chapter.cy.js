@@ -11,7 +11,7 @@ import { MyBooksMethods } from "../../../pages/mybooks/mybooks.methods";
 
 let bookId;
 
-describe("Save chapter", () => {
+describe("Continue chapter", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
