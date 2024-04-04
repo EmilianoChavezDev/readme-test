@@ -3,20 +3,24 @@ export class BookDetailsElements {
   static get buttons() {
     return {
       get startReading() {
-        return cy.contains("button", "Comenzar a leer", { timeout: 10000 });
+        return cy.contains("button", "Comenzar a leer", { timeout: timeout });
       },
 
       get addFavoriteButton() {
-        return cy.contains("button", "Añadir a Favoritos", { timeout: 10000 });
+        return cy.contains("button", "Añadir a Favoritos", {
+          timeout: timeout,
+        });
       },
 
       get removeFavoriteButton() {
-        return cy.contains("button", "Quitar de Favoritos", { timeout: 10000 });
+        return cy.contains("button", "Quitar de Favoritos", {
+          timeout: timeout,
+        });
       },
 
       get reviews() {
         return cy
-          .get("div.col-span-12", { timeout: 10000 })
+          .get("div.col-span-12", { timeout: timeout })
           .find("div.flex.gap-1");
       },
     };
@@ -26,7 +30,9 @@ export class BookDetailsElements {
   static get comentarySection() {
     return {
       get comentary() {
-        return cy.get('textarea[placeholder="Añadir un comment"]');
+        return cy.get('textarea[placeholder="Añadir un comment"]', {
+          timeout: timeout,
+        });
       },
     };
   }

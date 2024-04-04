@@ -1,26 +1,31 @@
+import { timeout } from "../common-page/commo-page.timeout";
+
 export class AccountSettingsElements {
   // Botones de la pagina de mi cuenta
   static get buttons() {
     return {
       get myInformation() {
-        return cy.get("li.rounded-lg button", { timeout: 10000 }).eq(0);
+        return cy.get("li.rounded-lg button", { timeout: timeout }).eq(0);
       },
 
       get myStatistics() {
-        return cy.get("li.rounded-lg button", { timeout: 10000 }).eq(1);
+        return cy.get("li.rounded-lg button", { timeout: timeout }).eq(1);
       },
 
       get saveChanges() {
-        return cy.get('button[type="submit"]', { force: true, timeout: 10000 });
+        return cy.get('button[type="submit"]', {
+          force: true,
+          timeout: timeout,
+        });
       },
 
       get cancelChanges() {
-        return cy.contains("button", "Cancelar", { timeout: 10000 });
+        return cy.contains("button", "Cancelar", { timeout: timeout });
       },
 
       get openDropDown() {
         return cy
-          .get("button.chakra-accordion__button", { timeout: 10000 })
+          .get("button.chakra-accordion__button", { timeout: timeout })
           .contains("Deseas cambiar tu Contraseña?");
       },
     };
@@ -30,23 +35,23 @@ export class AccountSettingsElements {
   static get textBoxes() {
     return {
       get username() {
-        return cy.get('input[name="username"]', { timeout: 10000 });
+        return cy.get('input[name="username"]', { timeout: timeout });
       },
 
       get dateBirth() {
-        return cy.get('input[name="fecha_nacimiento"]', { timeout: 10000 });
+        return cy.get('input[name="fecha_nacimiento"]', { timeout: timeout });
       },
 
       get oldPassword() {
-        return cy.get('input[name="oldPassword"]', { timeout: 10000 });
+        return cy.get('input[name="oldPassword"]', { timeout: timeout });
       },
 
       get newPassword() {
-        return cy.get('input[name="newPassword"]', { timeout: 10000 });
+        return cy.get('input[name="newPassword"]', { timeout: timeout });
       },
 
       get newPasswordConfirm() {
-        return cy.get('input[name="confirmNewPassword"]', { timeout: 10000 });
+        return cy.get('input[name="confirmNewPassword"]', { timeout: timeout });
       },
     };
   }
@@ -56,7 +61,7 @@ export class AccountSettingsElements {
     return {
       get changeProfile() {
         return cy
-          .get("#profile-input", { timeout: 10000 })
+          .get("#profile-input", { timeout: timeout })
           .invoke("removeAttr", "style");
       },
 
@@ -64,7 +69,7 @@ export class AccountSettingsElements {
         return cy
           .get(
             'button[class="absolute top-0 right-0 mt-2 mr-2 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all transform opacity-100 duration-700"][style="z-index: 50;"]',
-            { timeout: 10000 }
+            { timeout: timeout }
           )
           .contains("Borrar perfil");
       },
@@ -75,11 +80,11 @@ export class AccountSettingsElements {
   static get errorMessages() {
     return {
       get incorrectPassword() {
-        return cy.get(".go3958317564", { timeout: 10000 });
+        return cy.get(".go3958317564", { timeout: timeout });
       },
 
       get passwordNotMatch() {
-        return cy.get(".go2072408551", { timeout: 10000 });
+        return cy.get(".go2072408551", { timeout: timeout });
       },
     };
   }
@@ -88,7 +93,7 @@ export class AccountSettingsElements {
   static get successMessages() {
     return {
       get dataUpdated() {
-        return cy.get(".go2072408551", { timeout: 10000 });
+        return cy.get(".go2072408551", { timeout: timeout });
       },
     };
   }

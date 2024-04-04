@@ -5,7 +5,7 @@ export class ReadChapterElements {
         return cy.contains(
           "p",
           " ¡Vaya! Parece que este libro aún no tiene ningún capítulo.",
-          { timeout: 10000 }
+          { timeout: timeout }
         );
       },
     };

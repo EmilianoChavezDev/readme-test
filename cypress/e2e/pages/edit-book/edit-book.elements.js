@@ -2,7 +2,7 @@ export class EditBookElements {
   static get buttons() {
     return {
       get updateButton() {
-        return cy.contains("button", "Actualizar", { timeout: 10000 });
+        return cy.contains("button", "Actualizar", { timeout: timeout });
       },
     };
   }

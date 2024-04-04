@@ -4,12 +4,12 @@ export class ChaptersElements {
     return {
       get title() {
         return cy.get('input[placeholder="Ingrese el título del capítulo"]', {
-          timeout: 10000,
+          timeout: timeout,
         });
       },
 
       get content() {
-        return cy.get('div[data-gramm="false"]', { timeout: 10000 });
+        return cy.get('div[data-gramm="false"]', { timeout: timeout });
       },
     };
   }
@@ -18,11 +18,11 @@ export class ChaptersElements {
   static get buttons() {
     return {
       get publish() {
-        return cy.contains("button", "Publicar", { timeout: 10000 });
+        return cy.contains("button", "Publicar", { timeout: timeout });
       },
 
       get save() {
-        return cy.contains("button", "Guardar", { timeout: 10000 });
+        return cy.contains("button", "Guardar", { timeout: timeout });
       },
     };
   }
@@ -31,7 +31,7 @@ export class ChaptersElements {
   static get successMessages() {
     return {
       get toast() {
-        return cy.get(".go3958317564", { timeout: 10000 });
+        return cy.get(".go3958317564", { timeout: timeout });
       },
     };
   }

@@ -3,21 +3,21 @@ export class RegisterElements {
   static get textBoxes() {
     return {
       get username() {
-        return cy.get('input[name="username"]', { timeout: 10000 });
+        return cy.get('input[name="username"]', { timeout: timeout });
       },
 
       get password() {
-        return cy.get('input[name="password"]', { timeout: 10000 });
+        return cy.get('input[name="password"]', { timeout: timeout });
       },
 
       get confirmPassword() {
         return cy.get('input[name="password_confirmation"]', {
-          timeout: 10000,
+          timeout: timeout,
         });
       },
 
       get birthDate() {
-        return cy.get('input[name="fecha_nacimiento"]', { timeout: 10000 });
+        return cy.get('input[name="fecha_nacimiento"]', { timeout: timeout });
       },
     };
   }
@@ -27,32 +27,34 @@ export class RegisterElements {
     return {
       get userAlreadyExist() {
         return cy
-          .get("p", { timeout: 10000 })
+          .get("p", { timeout: timeout })
           .contains("Nombre de usuario en uso");
       },
 
       get fillAllFields() {
         return cy.contains("p", "Por favor complete todos los campos", {
-          timeout: 10000,
+          timeout: timeout,
         });
       },
 
       get birthDateEmpty() {
-        return cy.get('input[name="fecha_nacimiento"]', { timeout: 10000 });
+        return cy.get('input[name="fecha_nacimiento"]', { timeout: timeout });
       },
 
       get passwordNotMatch() {
         return cy
-          .get("p", { timeout: 10000 })
+          .get("p", { timeout: timeout })
           .contains("Las contraseñas no coinciden");
       },
 
       get passwordLengthInvalid() {
-        return cy.get("div.text-white", { timeout: 10000 });
+        return cy.get("div.text-white", { timeout: timeout });
       },
 
       get birthDateInvalid() {
-        return cy.contains("p", "Debes tener 15 o mas para");
+        return cy.contains("p", "Debes tener 15 o mas para", {
+          timeout: timeout,
+        });
       },
     };
   }
@@ -61,7 +63,7 @@ export class RegisterElements {
   static get registerButton() {
     return {
       get registerButton() {
-        return cy.get("#register-btn", { timeout: 10000 });
+        return cy.get("#register-btn", { timeout: timeout });
       },
     };
   }
