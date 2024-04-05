@@ -19,6 +19,8 @@ Automatics tests with cypress integrated with allure for reports
 ## Scripts
 
 ```bash
+  npm run lint: Check linter problems
+  npm run lint-fix: Fix linter problems
   npm run cy:parallel: Run the tests in parallel
   npm run generate-reports:  Clear all the allure reports
   npm run open-reports:  Open the allure reports
