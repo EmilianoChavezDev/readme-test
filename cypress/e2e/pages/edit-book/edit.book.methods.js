@@ -19,6 +19,7 @@ export class EditBookMethods {
     EditBookElements.buttons.updateButton.click();
   }
 
+  // Remover la portada
   static removeCover() {
     CreateBookElements.textBoxes.removeCover.click();
   }

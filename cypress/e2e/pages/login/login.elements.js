@@ -3,11 +3,11 @@ export class LoginElements {
   static get textBoxes() {
     return {
       get username() {
-        return cy.get('input[name="username"]', { timeout: timeout });
+        return cy.get('input[name="username"]');
       },
 
       get password() {
-        return cy.get('input[name="password"]', { timeout: timeout });
+        return cy.get('input[name="password"]');
       },
     };
   }
@@ -16,7 +16,7 @@ export class LoginElements {
   static get loginButton() {
     return {
       get loginButton() {
-        return cy.get("#login-btn", { timeout: timeout });
+        return cy.get("#login-btn");
       },
     };
   }
@@ -25,17 +25,15 @@ export class LoginElements {
   static get errorMessagess() {
     return {
       get userOrPasswordNotValid() {
-        return cy.contains("p", "Usuario o contraseña no valido", {
-          timeout: timeout,
-        });
+        return cy.contains("p", "Usuario o contraseña no valido");
       },
 
       get usernameEmpty() {
-        return cy.get("div.Inicio_errors__CGJ_C", { timeout: timeout }).eq(0);
+        return cy.get("div.Inicio_errors__CGJ_C").eq(0);
       },
 
       get passwordEmpty() {
-        return cy.get("div.Inicio_errors__CGJ_C", { timeout: timeout }).eq(1);
+        return cy.get("div.Inicio_errors__CGJ_C").eq(1);
       },
     };
   }

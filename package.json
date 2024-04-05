@@ -3,18 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "open": "cypress open",
+    "lint": "eslint cypress/e2e/**/*cy.js",
+    "lint-fix": "eslint cypress/e2e/**/*cy.js --fix",
     "run-tests": "cypress run",
-    "clear-reports": "rm -rf allure-results && rm -rf allure-report",
+    "clear-reports": "rimraf allure-results && rimraf allure-report",
     "generate-report": "allure generate allure-results --clean -o allure-report",
     "open-report": "allure open allure-report",
-    "test": "npm run clear-reports && npm run run-tests && npm run generate-report && npm run open-report",
     "cy:parallel": "npm run clear-reports && cypress-parallel -s run-tests -t 2 -d ./cypress/e2e && npm run generate-report && npm run open-report"
   },
   "dependencies": {
     "cypress-file-upload": "^5.0.8",
     "cypress-parallel": "^0.14.0",
-    "file-saver": "^2.0.5"
+    "eslint-plugin-cypress": "^2.15.1",
+    "file-saver": "^2.0.5",
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "allure-commandline": "^2.27.0",

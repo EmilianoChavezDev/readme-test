@@ -19,18 +19,19 @@ Automatics tests with cypress integrated with allure for reports
 ## Scripts
 
 ```bash
-  npm run test:  Opens the Cypress Test Runner.
+  npm run cy:parallel: Run the tests in parallel
   npm run generate-reports:  Clear all the allure reports
   npm run open-reports:  Open the allure reports
   npm run clear-reports:  Clear all the allure reports
-  npm run open: Open the Cypress Test Runner
 ```
 
 ## Dependencies
 
 ```bash
-  cypress-file-uploadtests.
-  file-saver
+  cypress-file-upload
+  cypress-parallel"
+  file-saver"
+  rimraf"
 ```
 
 ## devDependencies

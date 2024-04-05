@@ -5,16 +5,13 @@ export class MyBooksElements {
       get threeDots() {
         return cy
           .get(".mybooks_btn_menu__kXK5M", {
-            timeout: timeout,
             multiple: true,
           })
           .eq(0);
       },
 
       get continueWriting() {
-        return cy
-          .get("div.mybooks_write_content__lGcID a", { timeout: timeout })
-          .eq(0);
+        return cy.get("div.mybooks_write_content__lGcID a").eq(0);
       },
     };
   }
@@ -23,21 +20,15 @@ export class MyBooksElements {
   static get actionButtons() {
     return {
       get editButton() {
-        return cy.get(".mybooks_btn_edition_option__BZsll", {
-          timeout: timeout,
-        });
+        return cy.get(".mybooks_btn_edition_option__BZsll");
       },
 
       get deleteButton() {
-        return cy.get(".mybooks_btn_delete_option__D0CHQ", {
-          timeout: timeout,
-        });
+        return cy.get(".mybooks_btn_delete_option__D0CHQ");
       },
 
       get confirmDeleteButton() {
-        return cy.get(".mybooks_btn_confirm_delete__B98lD", {
-          timeout: timeout,
-        });
+        return cy.get(".mybooks_btn_confirm_delete__B98lD");
       },
     };
   }
@@ -47,7 +38,7 @@ export class MyBooksElements {
     return {
       get deleteBook() {
         return cy
-          .get(".go3958317564", { timeout: timeout })
+          .get(".go3958317564")
           .should("contain", "Libro eliminado exitosamente");
       },
     };

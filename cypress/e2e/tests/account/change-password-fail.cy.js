@@ -1,5 +1,4 @@
 import { Logger } from "../../../support/logger";
-import { AccountSettingsData } from "../../pages/account-settings/account-settings.data";
 import { AccountSettingsMethods } from "../../pages/account-settings/account-settings.methods";
 import { CommonPageData } from "../../pages/common-page/common-page.data";
 import { CommonPageMethods } from "../../pages/common-page/common-page.methods";

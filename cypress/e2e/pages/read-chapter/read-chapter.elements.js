@@ -4,8 +4,7 @@ export class ReadChapterElements {
       get emptyCapitules() {
         return cy.contains(
           "p",
-          " ¡Vaya! Parece que este libro aún no tiene ningún capítulo.",
-          { timeout: timeout }
+          " ¡Vaya! Parece que este libro aún no tiene ningún capítulo."
         );
       },
     };

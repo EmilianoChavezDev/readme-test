@@ -5,7 +5,6 @@ export class FavoritesElements {
       get heart() {
         return cy
           .get("div.favorites_botonContainer__WSkkj button", {
-            timeout: timeout,
             multiple: true,
           })
           .find("svg")
@@ -18,9 +17,7 @@ export class FavoritesElements {
   static get container() {
     return {
       get bookContainer() {
-        return cy.get("div.favorites_contenedor_datos_cuadro__MqGnE img", {
-          timeout: timeout,
-        });
+        return cy.get("div.favorites_contenedor_datos_cuadro__MqGnE img");
       },
     };
   }
@@ -29,8 +26,7 @@ export class FavoritesElements {
   static get emptyFavoritesMessage() {
     return cy.contains(
       "p",
-      "Parece que tu lista de favoritos está vacía por ahora. ",
-      { timeout: timeout }
+      "Parece que tu lista de favoritos está vacía por ahora. "
     );
   }
 }

@@ -3,31 +3,27 @@ export class CreateBookElements {
   static get textBoxes() {
     return {
       get title() {
-        return cy.get("#titulo", { timeout: timeout });
+        return cy.get("input#titulo");
       },
 
       get synopsis() {
-        return cy.get("#sinopsis", { timeout: timeout });
+        return cy.get("#sinopsis");
       },
 
       get category() {
-        return cy.get("#categoria", { timeout: timeout });
+        return cy.get("#categoria");
       },
 
       get adult() {
-        return cy.get("#adulto", { timeout: timeout });
+        return cy.get("#adulto");
       },
 
       get cover() {
-        return cy.get('label.bg-ChaptearHeader input[type="file"]', {
-          timeout: timeout,
-        });
+        return cy.get('label.bg-ChaptearHeader input[type="file"]');
       },
 
       get removeCover() {
-        return cy
-          .get(".bg-colorPrimario", { timeout: timeout })
-          .invoke("removeClass", "hidden");
+        return cy.get(".bg-colorPrimario").invoke("removeClass", "hidden");
       },
     };
   }
@@ -36,15 +32,15 @@ export class CreateBookElements {
   static get emptyFieldsErrors() {
     return {
       get title() {
-        return cy.get("#titulo + p", { timeout: timeout });
+        return cy.contains("p", "El titulo no puede estar vacio. ");
       },
 
       get synopsis() {
-        return cy.get("#sinopsis + p", { timeout: timeout });
+        return cy.get("#sinopsis + p");
       },
 
       get category() {
-        return cy.get("#categoria + p", { timeout: timeout });
+        return cy.get("#categoria + p");
       },
     };
   }
@@ -53,7 +49,7 @@ export class CreateBookElements {
   static get coverPreview() {
     return {
       get cover() {
-        return cy.get('label[for="portada"]', { timeout: timeout });
+        return cy.get('label[for="portada"]');
       },
     };
   }
@@ -62,11 +58,11 @@ export class CreateBookElements {
   static get bookButtons() {
     return {
       get seguirButton() {
-        return cy.get(".bg-BooksCreateSeguirButton", { timeout: timeout });
+        return cy.get(".bg-BooksCreateSeguirButton");
       },
 
       get cancelButton() {
-        return cy.contains("Cancelar", { timeout: timeout });
+        return cy.contains("Cancelar");
       },
     };
   }

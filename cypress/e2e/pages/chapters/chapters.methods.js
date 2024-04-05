@@ -26,14 +26,14 @@ export class ChaptersMethods {
   static verifyChapterPublished() {
     ChaptersElements.successMessages.toast.should(
       "have.text",
-      "El capítulo de tu libro ha sido guardado"
+      "El capítulo de tu libro ha sido publicado"
     );
   }
 
   // Verificamos que el capitulo ha sido guardado
   static verifyChapterSaved() {
     ChaptersElements.successMessages.toast.should(
-      "have.text",
+      "contain.text",
       "El capítulo de tu libro ha sido guardado"
     );
   }

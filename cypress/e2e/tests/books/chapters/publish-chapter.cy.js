@@ -89,8 +89,6 @@ describe("Publish chapter", () => {
       Logger.verification("El capitulo ha sido publicado");
       ChaptersMethods.verifyChapterPublished();
 
-      cy.wait(20000);
-
       cy.wait("@publishChapter").then((interception) => {
         expect(interception.response.statusCode).to.equal(201);
       });
