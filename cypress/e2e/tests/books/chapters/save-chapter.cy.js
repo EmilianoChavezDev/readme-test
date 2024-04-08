@@ -79,8 +79,8 @@ describe("Save chapter", () => {
       cy.intercept("POST", CommonPageData.endPoints.chapters).as("saveChapter");
 
       //Verficamos el mensaje que se publico el capitulo
-      Logger.verification("El capitulo ha sido publicado");
-      ChaptersMethods.verifyChapterPublished();
+      Logger.verification("El capitulo ha sido guardado");
+      ChaptersMethods.verifyChapterSaved();
 
       // Publicamos el capitulo
       Logger.stepNumber(7);
