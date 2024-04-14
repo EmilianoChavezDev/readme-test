@@ -33,7 +33,7 @@ describe("Search navbar test", () => {
     NavBarMethods.searchBook("a");
 
     Logger.verification("Verificar que se hizo la busqueda correctamente");
-    NavBarSearchMethods.verifySearchResults("a");
+    NavBarSearchMethods.verifySearch("a");
 
     Logger.stepNumber(4);
     Logger.step("Borramos el input de busqueda");

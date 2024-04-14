@@ -31,7 +31,7 @@ describe("Search navbar test", () => {
     NavBarMethods.searchBook("Libro de prueba");
 
     Logger.verification("Verificar que se hizo la busqueda correctamente");
-    NavBarSearchMethods.verifySearchResults("Libro de prueba");
+    NavBarSearchMethods.verifySearch("Libro de prueba");
 
     Logger.verification("Verificamos que hayan resultados en la busqueda");
     NavBarSearchMethods.verifyResults();

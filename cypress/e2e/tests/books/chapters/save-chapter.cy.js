@@ -78,14 +78,14 @@ describe("Save chapter", () => {
       // Interceptamos la peticion
       cy.intercept("POST", CommonPageData.endPoints.chapters).as("saveChapter");
 
-      //Verficamos el mensaje que se publico el capitulo
-      Logger.verification("El capitulo ha sido guardado");
-      ChaptersMethods.verifyChapterSaved();
-
       // Publicamos el capitulo
       Logger.stepNumber(7);
       Logger.step("Damos click en Publicar");
       ChaptersMethods.saveButtonClick();
+
+      //Verficamos el mensaje que se publico el capitulo
+      Logger.verification("El capitulo ha sido publicado");
+      ChaptersMethods.verifySavedChapter();
 
       cy.wait("@saveChapter").then((interception) => {
         expect(interception.response.statusCode).to.equal(201);

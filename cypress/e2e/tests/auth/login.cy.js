@@ -49,7 +49,6 @@ describe("Login Test", () => {
     LoginMethods.clickLoginButton();
 
     Logger.verification("El usuario esta ingresando campos vacios");
-    LoginMethods.verifyUsernameEmptyField();
-    LoginMethods.verifyPasswordEmptyField();
+    LoginMethods.verifyUserOrPasswordNotValid();
   });
 });

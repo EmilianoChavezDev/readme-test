@@ -111,7 +111,7 @@ describe("Continue chapter", () => {
 
       // Verficamos que se guardo el capitulo
       Logger.verification("El capitulo ha sido guardado");
-      ChaptersMethods.verifyChapterSaved();
+      ChaptersMethods.verifySavedChapter();
 
       cy.wait("@publishChapter").then((interception) => {
         expect(interception.response.statusCode).to.equal(201);
