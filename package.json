@@ -21,6 +21,6 @@
   "devDependencies": {
     "allure-commandline": "^2.27.0",
     "allure-cypress": "^2.15.0",
-    "cypress": "^13.7.2"
+    "cypress": "^13.7.3"
   }
 }

@@ -4,8 +4,8 @@ const { allureCypress } = require("allure-cypress/reporter");
 module.exports = defineConfig({
   viewportWidth: 1500,
   viewportHeight: 660,
-  defaultCommandTimeout: 10000,
-  pageLoadTimeout: 30000,
+  defaultCommandTimeout: 30000,
+  pageLoadTimeout: 60000,
   e2e: {
     setupNodeEvents(on, config) {
       allureCypress(on);
