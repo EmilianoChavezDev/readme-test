@@ -31,7 +31,7 @@ export class ChaptersMethods {
   }
 
   // Verificamos que el capitulo ha sido guardado
-  static verifyChapterSaved() {
+  static verifySavedChapter() {
     ChaptersElements.successMessages.toast.should(
       "contain.text",
       "El capítulo de tu libro ha sido guardado"

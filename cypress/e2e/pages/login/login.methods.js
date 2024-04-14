@@ -34,14 +34,4 @@ export class LoginMethods {
   static verifyUserOrPasswordNotValid() {
     LoginElements.errorMessagess.userOrPasswordNotValid.should("be.visible");
   }
-
-  // Verifica si el campo de usuario esta vacio
-  static verifyUsernameEmptyField() {
-    LoginElements.errorMessagess.usernameEmpty.should("be.visible");
-  }
-
-  // Verifica si el campo de contraseña esta vacio
-  static verifyPasswordEmptyField() {
-    LoginElements.errorMessagess.passwordEmpty.should("be.visible");
-  }
 }

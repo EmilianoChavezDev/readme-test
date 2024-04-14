@@ -27,14 +27,6 @@ export class LoginElements {
       get userOrPasswordNotValid() {
         return cy.contains("p", "Usuario o contraseña no valido");
       },
-
-      get usernameEmpty() {
-        return cy.get("div.Inicio_errors__CGJ_C").eq(0);
-      },
-
-      get passwordEmpty() {
-        return cy.get("div.Inicio_errors__CGJ_C").eq(1);
-      },
     };
   }
 }

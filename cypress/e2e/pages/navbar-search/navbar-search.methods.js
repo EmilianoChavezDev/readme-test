@@ -120,25 +120,25 @@ export class NavBarSearchMethods {
   }
 
   // Verificaciones
+  // Verificmos si se realizo la busqueda
+  static verifySearch(searchText) {
+    cy.contains("h3", `Resultados de la Búsqueda "${searchText}"`).should(
+      "be.visible"
+    );
+  }
+
   // Verificamos si hay resultados en la busqueda
   static verifyResults() {
-    NavBarSearchElements.results.resultsFound.eq(0).should("be.visible");
+    NavBarSearchElements.results.resultsFound.should("be.visible");
+  }
+
+  // Verificamos si esta el libro que buscamos
+  static verifyBooks(name) {
+    cy.contains("h5", `${name}`).should("be.visible");
   }
 
   // Verificamos si no hay resultados en la busqueda
   static verifyResultsNotFound() {
     NavBarSearchElements.results.resultsNotFound.should("be.visible");
-  }
-
-  // Verificmos si se realizo la busqueda
-  static verifySearchResults(searchText) {
-    cy.contains("h3", `Resultados de la Busqueda "${searchText}"`).should(
-      "be.visible"
-    );
-  }
-
-  // Verificamos si esta el libro que buscamos
-  static verifyBooks(name) {
-    cy.contains("h4", `${name}`, { timeout: 10000 }).should("be.visible");
   }
 }

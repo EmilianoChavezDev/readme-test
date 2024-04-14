@@ -61,11 +61,11 @@ export class NavBarElements {
   static get accountMenuButtons() {
     return {
       get myAccountButton() {
-        return cy.get("li.border-b");
+        return cy.get("li.border-b").eq(1);
       },
 
       get logoutButton() {
-        return cy.get("li.transition-all").eq(1);
+        return cy.get("li.transition-all").eq(2);
       },
     };
   }

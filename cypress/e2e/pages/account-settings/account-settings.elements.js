@@ -65,7 +65,7 @@ export class AccountSettingsElements {
           .get(
             'button[class="absolute top-0 right-0 mt-2 mr-2 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all transform opacity-100 duration-700"][style="z-index: 50;"]'
           )
-          .contains("Borrar perfil");
+          .contains("Borrar foto de perfil");
       },
     };
   }

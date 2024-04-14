@@ -37,7 +37,7 @@ export class NavBarSearchElements {
       },
       // Contenedor de resultados si hay resultados
       get resultsFound() {
-        return cy.get(".flex.justify-center.flex-col.gap-10.px-10");
+        return cy.contains("span", "resultados");
       },
     };
   }
