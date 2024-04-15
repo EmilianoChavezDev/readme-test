@@ -1,11 +1,9 @@
 import { Logger } from "../../../../support/logger";
-import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
 import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarSearchMethods } from "../../../pages/navbar-search/navbar-search.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
-import { ReadChapterMethods } from "../../../pages/read-chapter/read-chapter.methods";
 
 describe("Search navbar test", () => {
   beforeEach(() => {

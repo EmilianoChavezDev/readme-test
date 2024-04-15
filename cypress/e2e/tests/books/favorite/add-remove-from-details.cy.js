@@ -29,45 +29,45 @@ describe("Add Book to favorite", () => {
   it("Add and remove book from the books details", () => {
     // Seleccionamos el primer libro
     Logger.stepNumber(3);
-    Logger.step("Select the first book of new releases");
+    Logger.step("Seleccionamos el primer libro de novedades");
     cy.get("div.bg-gradient-to-t").eq(0).click();
 
     // Añadimos el libro a favoritos desde los detalles del libro
     Logger.stepNumber(4);
-    Logger.step("Add the book to favorites from the book details");
+    Logger.step("Agregar el libro a favoritos desde los detalles del libro");
     BookDetailsMethods.addFavoriteClick();
 
     // Navegamos a la pagina de Mis Favoritos
     Logger.stepNumber(5);
-    Logger.step("Go to My Favorites page");
+    Logger.step("Vamos a la pagina de Mis Favoritos");
     NavBarMethods.goToFavoritesClick();
 
     //Verificamos que el libro se haya añadido a favoritos
-    Logger.verification("The book should be visible in favorites");
+    Logger.verification("El libro deberia ser visible en favoritos");
     FavoritesMethods.verifyBookInFavorites();
 
     // Volvemos la inicio
     Logger.stepNumber(6);
-    Logger.step("Go to Home page");
+    Logger.step("Vamos a la pagina de inicio");
     NavBarMethods.goToHomeClick();
 
     // Volvemos a seleccionar el primer libro
     Logger.stepNumber(7);
-    Logger.step("Select the first book of new releases");
+    Logger.step("Seleccionamos el primer libro de novedades");
     cy.get("div.bg-gradient-to-t").eq(0).click();
 
     // Sacamos de favoritos en la pagina de detalles del libro
     Logger.stepNumber(8);
-    Logger.step("Remove the book from favorites from the book details");
+    Logger.step("Removemos el libro de favoritos desde los detalles del libro");
     BookDetailsMethods.removeFavoriteClick();
 
     // Ingresamos a favoritos para verificar que se haya sacado
     Logger.stepNumber(9);
-    Logger.step("Go to My Favorites page");
+    Logger.step("Vamos a la pagina de Mis Favoritos");
     NavBarMethods.goToFavoritesClick();
 
     // Verificamos que el libro no este en favoritos
-    Logger.verification("The favorites page should be empty");
+    Logger.verification("El libro no deberia ser visible en favoritos");
     FavoritesMethods.verifyEmptyFavoritesMessage();
   });
 });

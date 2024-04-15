@@ -1,4 +1,4 @@
-export class NavBarSearchElements {
+export class BookDetailsElementsNavBarSearchElements {
   // Botones de filtros
   static get buttons() {
     return {
