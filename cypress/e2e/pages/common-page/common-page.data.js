@@ -25,6 +25,14 @@ export class CommonPageData {
       get chapters() {
         return "https://readme-backend.fly.dev/capitulos";
       },
+
+      get reviews() {
+        return "https://readme-backend.fly.dev/resenhas";
+      },
+
+      get comments() {
+        return "https://readme-backend.fly.dev/comentarios";
+      },
     };
   }
 
