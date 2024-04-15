@@ -12,6 +12,7 @@
     "cy:parallel": "npm run clear-reports && cypress-parallel -s run-tests -t 2 -d ./cypress/e2e"
   },
   "dependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.5",
     "cypress-file-upload": "^5.0.8",
     "cypress-parallel": "^0.14.0",
     "eslint-plugin-cypress": "^2.15.1",

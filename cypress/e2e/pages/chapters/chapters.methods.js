@@ -21,6 +21,11 @@ export class ChaptersMethods {
     ChaptersElements.buttons.save.click();
   }
 
+  // Click en el dropdown de capitulos
+  static dropDownClick() {
+    ChaptersElements.buttons.dropDown.click();
+  }
+
   // Verificaciones
   // Verificamos que el capitulo ha sido publicado
   static verifyChapterPublished() {

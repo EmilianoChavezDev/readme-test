@@ -1,6 +1,9 @@
 {
   "writeChapter": {
     "title": "Capitulo 1",
-    "content": "Contenido del capitulo 1"
+    "content": "Contenido del capitulo 1",
+
+    "title2": "Capitulo 2",
+    "content2": "Contenido del capitulo 2"
   }
 }

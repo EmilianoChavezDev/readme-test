@@ -5,6 +5,8 @@ export class ChaptersData {
     return {
       title: writeChapter.title,
       content: writeChapter.content,
+      title2: writeChapter.title2,
+      content2: writeChapter.content2,
     };
   }
 }
