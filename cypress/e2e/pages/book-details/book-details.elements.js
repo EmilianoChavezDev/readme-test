@@ -3,7 +3,7 @@ export class BookDetailsElements {
   static get buttons() {
     return {
       get startReading() {
-        return cy.contains("button", "Comenzar a leer");
+        return cy.contains("button", "Comenzar a Leer");
       },
 
       get addFavoriteButton() {
@@ -15,7 +15,11 @@ export class BookDetailsElements {
       },
 
       get reviews() {
-        return cy.get("div.col-span-12").find("div.flex.gap-1");
+        return cy.get("div.flex.gap-1");
+      },
+
+      get addComment() {
+        return cy.get("button.rounded-lg");
       },
     };
   }

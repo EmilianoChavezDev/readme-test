@@ -11,27 +11,42 @@ export class BookDetailsMethods {
     BookDetailsElements.buttons.removeFavoriteButton.click();
   }
 
+  // Click en el boton de comenzar a leer
+  static startReadingClick() {
+    BookDetailsElements.buttons.startReading.click();
+  }
+
+  // Click en el boton de añadir un comentario
+  static addCommentClick() {
+    BookDetailsElements.buttons.addComment.click();
+  }
+
+  // Agregar un comentario
+  static insertComment(comment) {
+    BookDetailsElements.comentarySection.comentary.type(comment);
+  }
+
   // Dar una reseña de estrellas
   static giveStars() {
     return {
       oneStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(0).click();
+        BookDetailsElements.buttons.reviews.find("svg").eq(0).click();
       },
 
       twoStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(1).click();
+        BookDetailsElements.buttons.reviews.find("svg").eq(1).click();
       },
 
       threeStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(2).click();
+        BookDetailsElements.buttons.reviews.find("svg").eq(2).click();
       },
 
       fourStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(3).click();
+        BookDetailsElements.buttons.reviews.find("svg").eq(3).click();
       },
 
       fiveStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(4).click();
+        BookDetailsElements.buttons.reviews.find("svg").eq(4).click();
       },
     };
   }
