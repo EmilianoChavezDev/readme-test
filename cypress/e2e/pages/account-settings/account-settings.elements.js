@@ -35,10 +35,6 @@ export class AccountSettingsElements {
         return cy.get('input[name="username"]');
       },
 
-      get dateBirth() {
-        return cy.get('input[name="fecha_nacimiento"]');
-      },
-
       get oldPassword() {
         return cy.get('input[name="oldPassword"]');
       },
@@ -49,23 +45,6 @@ export class AccountSettingsElements {
 
       get newPasswordConfirm() {
         return cy.get('input[name="confirmNewPassword"]');
-      },
-    };
-  }
-
-  // Botones de la imagen de perfil de la pagina de mi cuenta
-  static get profileButtons() {
-    return {
-      get changeProfile() {
-        return cy.get("#profile-input").invoke("removeAttr", "style");
-      },
-
-      get removeProfile() {
-        return cy
-          .get(
-            'button[class="absolute top-0 right-0 mt-2 mr-2 p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all transform opacity-100 duration-700"][style="z-index: 50;"]'
-          )
-          .contains("Borrar foto de perfil");
       },
     };
   }

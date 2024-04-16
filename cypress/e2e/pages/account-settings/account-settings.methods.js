@@ -27,53 +27,33 @@ export class AccountSettingsMethods {
     AccountSettingsElements.buttons.cancelChanges.click();
   }
 
-  // Boton de eliminar foto de perfil
-  static removeProfilePictureClick() {
-    AccountSettingsElements.profileButtons.removeProfile.click();
-  }
-
-  static inputBirthDate(birth_date) {
-    AccountSettingsElements.textBoxes.dateBirth.type(birth_date);
+  // Insertar username
+  static insertUsername(username) {
+    AccountSettingsElements.textBoxes.username.type(username);
   }
 
   // Insertar la contraseña actual
-  static inputPassword(password) {
+  static insertPassword(password) {
     AccountSettingsElements.textBoxes.oldPassword.type(password);
   }
 
   // Insertar la contraseña nueva
-  static inputNewPassword(password) {
+  static insertNewPassword(password) {
     AccountSettingsElements.textBoxes.newPassword.type(password);
   }
 
   // Insertar la confirmacion de la contraseña nueva
-  static inputNewPasswordConfirm(password) {
+  static insertNewPasswordConfirm(password) {
     AccountSettingsElements.textBoxes.newPasswordConfirm.type(password);
-  }
-
-  // Abrir el input y cargar una foto de perfil
-  static changeUserProfile(picture) {
-    AccountSettingsElements.profileButtons.changeProfile
-      .click({ force: true })
-      .attachFile(picture);
   }
 
   // Metodo para cambiar la contraseña
   static updateUserPassword(newPassword, confirmNewPassword) {
     Logger.subStep("Insertar nueva contraseña");
-    this.inputNewPassword(newPassword);
+    this.insertNewPassword(newPassword);
 
     Logger.subStep("Confirmar nueva contraseña");
-    this.inputNewPasswordConfirm(confirmNewPassword);
-  }
-
-  // Metodo para cambiar la fecha de nacimiento
-  static changeBirthDate(birth_date, password) {
-    Logger.subStep("Insertamos la nueva fecha de nacimiento");
-    this.inputBirthDate(birth_date);
-
-    Logger.subStep("Insertamos la contraseña");
-    this.inputPassword(password);
+    this.insertNewPasswordConfirm(confirmNewPassword);
   }
 
   // Verificaciones
