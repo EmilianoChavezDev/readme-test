@@ -31,7 +31,7 @@ describe("Delete Book test", () => {
     NavBarMethods.goToMyBooks();
 
     Logger.verification("La url deberia ser la de mis libros");
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/mybooks");
+    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/mybooks`);
 
     Logger.stepNumber(4);
     Logger.step("Desplegamos el menu de opciones");

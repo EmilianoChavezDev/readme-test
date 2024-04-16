@@ -1,6 +1,7 @@
 import { Logger } from "../../../../support/logger";
 import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
+import { HomeMethods } from "../../../pages/home/home.methods";
 import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
@@ -26,23 +27,19 @@ describe("Reviews", () => {
   });
 
   it("Add review", () => {
-    // Damos click en el primer libro
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el primer libro de novedades");
-    cy.get("div.bg-gradient-to-t").eq(12).click();
+    HomeMethods.getBook("Libro de prueba");
 
-    // Verificamos que la seccion de comentarios este presente
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();
 
     cy.intercept(CommonPageData.endPoints.comments, "POST").as("postComment");
 
-    // Agregamos un comentario
     Logger.stepNumber(4);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.insertComment("Excelente libro");
 
-    // Click en añadir comentario
     Logger.stepNumber(5);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.addCommentClick();

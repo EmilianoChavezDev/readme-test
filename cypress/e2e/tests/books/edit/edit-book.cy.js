@@ -1,6 +1,5 @@
 import { Logger } from "../../../../support/logger";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
 import { EditBookData } from "../../../pages/edit-book/edit-book.data";
 import { EditBookMethods } from "../../../pages/edit-book/edit.book.methods";
 import { LoginData } from "../../../pages/login/login.data";
@@ -61,14 +60,12 @@ describe("Edit book test", () => {
         Logger.step("Limpiamos el campo de sinopsis");
         EditBookMethods.clearSynopsis();
 
-        // Verificamos que la url sea la de editar el libro
         Logger.verification("Verificamos que estemos en la pagina de edicion");
         cy.url().should(
           "eq",
           `${CommonPageData.appPages.baseUrl}books/edit/${bookId}`
         );
 
-        // Interceptamos la peticion PUT con el id del libro
         cy.intercept("PUT", `${CommonPageData.endPoints.books}/${bookId}`).as(
           "updateBook"
         );
@@ -85,6 +82,7 @@ describe("Edit book test", () => {
           expect(interception.response.statusCode).to.eq(200);
         });
 
+        // Verificamos que la URL cambie a la pagina del libro actualizado
         Logger.verification("Verificamos que el libro se haya actualizado");
         cy.url().should(
           "eq",

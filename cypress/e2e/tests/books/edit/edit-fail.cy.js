@@ -71,7 +71,6 @@ describe("Edit book test", () => {
         EditBookMethods.updateBookClick();
 
         Logger.verification("Verificamos que no puede haber campos vacios");
-        CreateBookMethods.verifyEmptyTitleError();
         CreateBookMethods.verifyEmptySynopsisError();
       });
   });

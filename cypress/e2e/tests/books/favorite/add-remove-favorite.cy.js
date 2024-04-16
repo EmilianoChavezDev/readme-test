@@ -2,6 +2,7 @@ import { Logger } from "../../../../support/logger";
 import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
 import { FavoritesMethods } from "../../../pages/favorites/favorites.methods";
+import { HomeMethods } from "../../../pages/home/home.methods";
 import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
@@ -27,31 +28,28 @@ describe("Add Book to favorite", () => {
   });
 
   it("Add and remove book from favorites", () => {
-    // Seleccionamos el primer libro de novedades
     Logger.stepNumber(3);
-    Logger.step("Seleccionamos el primer libro de novedades");
-    cy.get(".grid-cols-1 > div").eq(1).click();
+    Logger.step("Seleccionamos el libro de novedades");
+    HomeMethods.getBook("Libro de prueba");
 
-    // Añadimos el libro a favoritos desde los detalles del libro
     Logger.stepNumber(4);
     Logger.step("Agregar el libro a favoritos desde los detalles del libro");
     BookDetailsMethods.addFavoriteClick();
 
-    // Navegamos a la pagina de Mis Favoritos
+    Logger.verification("Verificamos el mensaje de agregado a favoritos");
+    BookDetailsMethods.verifyFavoriteAddedMessage();
+
     Logger.stepNumber(5);
     Logger.step("Vamos a la pagina de Mis Favoritos");
     NavBarMethods.goToFavoritesClick();
 
-    // Verificamos que el libro se haya añadido a favoritos
     Logger.verification("El libro deberia ser visible en favoritos");
     FavoritesMethods.verifyBookInFavorites();
 
-    // Ahora lo quitamos de favoritos
     Logger.stepNumber(6);
     Logger.step("Quitamos el libro de favoritos");
     FavoritesMethods.removeFavoriteFullHeartClick();
 
-    // Verificamos que el boton del corazon vacio este visible (Significa que lo sacamos de favoritos)
     Logger.verification("El boton del corazon vacio deberia ser visible");
     FavoritesMethods.verifyEmptyHeartButton();
   });
