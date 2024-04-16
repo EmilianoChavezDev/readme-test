@@ -10,16 +10,28 @@ export class CommonPageData {
         return "https://readme-backend.fly.dev/users/profile";
       },
 
-      get birthDay() {
-        return "https://readme-backend.fly.dev/users/birthday";
+      get username() {
+        return "https://readme-backend.fly.dev/users/username";
       },
 
       get deleteProfile() {
         return "https://readme-backend.fly.dev/users/delete_profile";
       },
 
+      get deleteCover() {
+        return " https://readme-backend.fly.dev/users/delete_portada";
+      },
+
       get password() {
         return "https://readme-backend.fly.dev/users/password";
+      },
+
+      get information() {
+        return "https://readme-backend.fly.dev/users/information";
+      },
+
+      get cover() {
+        return "https://readme-backend.fly.dev/users/portada";
       },
 
       get chapters() {
@@ -32,6 +44,10 @@ export class CommonPageData {
 
       get comments() {
         return "https://readme-backend.fly.dev/comentarios";
+      },
+
+      get favorites() {
+        return "https://readme-backend.fly.dev/favoritos";
       },
     };
   }

@@ -1,8 +1,16 @@
 export class CommonPageMethods {
+  // Metodo para generar una nacionalidad aleatoria
+  static randomNationality() {
+    let nationalities = ["Paraguay", "Argentina", "Chile", "Peru", "Mexico"];
+    let randomIndex = Math.floor(Math.random() * nationalities.length);
+    return nationalities[randomIndex];
+  }
+
   // Metodo para generar un string aleatorio
   static generateRandomString(length = 10) {
     let result = "";
-    const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    const characters =
+      "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const charactersLength = characters.length;
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
