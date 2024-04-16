@@ -1,5 +1,7 @@
 {
   "newProfilePicture": {
-    "picture": "image/portada.png"
+    "picture": "image/portada.png",
+    "cover": "image/cover.jpg",
+    "newCover": "image/newCover.jpg"
   }
 }
