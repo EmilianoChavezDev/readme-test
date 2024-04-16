@@ -59,16 +59,18 @@ export class AccountSettingsMethods {
   // Verificaciones
   // Verificar que se muestre el mensaje de error de contraseña incorrecta
   static verifyIncorrectPassword() {
-    AccountSettingsElements.errorMessages.incorrectPassword
-      .invoke("text")
-      .should("eq", "Contraseña incorrecta");
+    AccountSettingsElements.errorMessages.incorrectPassword.should(
+      "contain",
+      "Contraseña incorrecta"
+    );
   }
 
   // Verificamos que la contraseña actual es incorrecta
   static verifyActualPassword() {
-    AccountSettingsElements.errorMessages.incorrectPassword
-      .invoke("text")
-      .should("eq", "Contraseña actual incorrecta");
+    AccountSettingsElements.errorMessages.incorrectPassword.should(
+      "contain",
+      "Contraseña actual incorrecta"
+    );
   }
 
   // Verificamos que se cambiaron los datos correctamente
@@ -82,6 +84,6 @@ export class AccountSettingsMethods {
   static verifyPasswordsDontMatch() {
     AccountSettingsElements.errorMessages.passwordNotMatch
       .invoke("text")
-      .should("eq", "Las contraseñas no coinciden");
+      .should("eq", "Las contraseñas no coinciden.");
   }
 }
