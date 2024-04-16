@@ -36,6 +36,15 @@ export class NavBarMethods {
     NavBarElements.accountMenuButtons.myAccountButton.click();
   }
 
+  // Ir a la pagina de mi perfil
+  static goToMyProfile() {
+    Logger.subStep("Click en el menu de cuenta");
+    NavBarElements.buttons.accountMenuBotton.click();
+
+    Logger.subStep("Click en Mi perfil");
+    NavBarElements.accountMenuButtons.myProfileButton.click();
+  }
+
   // Ir a la pagina de crear un nuevo libro
   static goToWriteBook() {
     Logger.subStep("Click en Escribe");

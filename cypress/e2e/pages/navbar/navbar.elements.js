@@ -60,6 +60,10 @@ export class NavBarElements {
   // Botones del despegable menu de cuenta
   static get accountMenuButtons() {
     return {
+      get myProfileButton() {
+        return cy.get("li.border-b").eq(0);
+      },
+
       get myAccountButton() {
         return cy.get("li.border-b").eq(1);
       },
