@@ -56,4 +56,20 @@ export class BookDetailsMethods {
   static verifyComentarySection() {
     BookDetailsElements.comentarySection.comentary.should("be.visible");
   }
+
+  // Verificamos el mensaje que aparece al añadir un libro a favoritos
+  static verifyFavoriteAddedMessage() {
+    BookDetailsElements.messages.addedFavoriteMessage.should(
+      "contain.text",
+      "El libro ha sido añadido a tus favoritos"
+    );
+  }
+
+  // Verificamos el mensaje que aparece al quitar un libro de favoritos
+  static verifyFavoriteRemovedMessage() {
+    BookDetailsElements.messages.removeFavoriteMessage.should(
+      "contain.text",
+      "El libro ha sido quitado de tus favoritos"
+    );
+  }
 }

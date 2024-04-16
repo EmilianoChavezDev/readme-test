@@ -32,4 +32,17 @@ export class BookDetailsElements {
       },
     };
   }
+
+  // Mensajes de favoritos
+  static get messages() {
+    return {
+      get addedFavoriteMessage() {
+        return cy.get(".go3958317564");
+      },
+
+      get removeFavoriteMessage() {
+        return cy.get(".go2072408551 ");
+      },
+    };
+  }
 }
