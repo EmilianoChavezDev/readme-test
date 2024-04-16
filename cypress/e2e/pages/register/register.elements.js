@@ -6,6 +6,10 @@ export class RegisterElements {
         return cy.get('input[name="username"]');
       },
 
+      get email() {
+        return cy.get('input[name="email"]');
+      },
+
       get password() {
         return cy.get('input[name="password"]');
       },

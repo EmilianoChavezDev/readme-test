@@ -11,11 +11,11 @@ export class NavBarElements {
       },
 
       get myFavoritesButton() {
-        return cy.get('a[href="/favorites"]');
+        return cy.contains("span", "Mis Favoritos");
       },
 
       get writeButton() {
-        return cy.contains("p", "Escribe");
+        return cy.contains("span", "Escribe");
       },
 
       get searchButton() {
@@ -27,12 +27,7 @@ export class NavBarElements {
       },
 
       get accountMenuBotton() {
-        return cy
-          .get(
-            "button._lg\\:flex.items-center.justify-center.hidden.transition-all.duration-200.transform.rotate-0",
-            { multiple: true }
-          )
-          .first();
+        return cy.get("span.cursor-pointer").eq(2);
       },
     };
   }
@@ -61,11 +56,11 @@ export class NavBarElements {
   static get accountMenuButtons() {
     return {
       get myProfileButton() {
-        return cy.get("li.border-b").eq(0);
+        return cy.contains("span", "Mi Perfil");
       },
 
       get myAccountButton() {
-        return cy.get("li.border-b").eq(1);
+        return cy.contains("span", "Mi Cuenta");
       },
 
       get logoutButton() {

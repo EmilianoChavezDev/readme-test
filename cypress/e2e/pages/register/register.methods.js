@@ -7,6 +7,11 @@ export class RegisterMethods {
     RegisterElements.textBoxes.username.type(username);
   }
 
+  // Insertamos el email
+  static insertEmail(email) {
+    RegisterElements.textBoxes.email.type(email);
+  }
+
   // Inserta la contraseña
   static insertPassword(password) {
     RegisterElements.textBoxes.password.type(password);
@@ -28,9 +33,12 @@ export class RegisterMethods {
   }
 
   // Metodo para registrar un usuario
-  static signUp(username, password, confirmPassword, birthDate) {
+  static signUp(username, email, password, confirmPassword, birthDate) {
     Logger.subStep("Insertar username");
     this.insertUsername(username);
+
+    Logger.subStep("Insertar email");
+    this.insertEmail(email);
 
     Logger.subStep("Insertar password");
     this.insertPassword(password);

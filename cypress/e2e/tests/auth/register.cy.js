@@ -5,6 +5,7 @@ import { NavBarMethods } from "../../pages/navbar/navbar.methods";
 import { RegisterMethods } from "../../pages/register/register.methods";
 
 const randomUsername = CommonPageMethods.generateRandomString();
+const randomEmail = CommonPageMethods.generateRandomEmail(5);
 const randomPassword = CommonPageMethods.generateRandomString(8);
 
 const randomPasswordDifferent = CommonPageMethods.generateRandomString(8);
@@ -29,6 +30,7 @@ describe("Register Test", () => {
     Logger.step("Registrarse con datos validos");
     RegisterMethods.signUp(
       randomUsername,
+      randomEmail,
       randomPassword,
       randomPassword,
       randomBirthDate
@@ -43,6 +45,7 @@ describe("Register Test", () => {
     Logger.step("Registrarse con el mismo usuario");
     RegisterMethods.signUp(
       randomUsername,
+      randomEmail,
       randomPassword,
       randomPassword,
       randomBirthDate
@@ -57,6 +60,7 @@ describe("Register Test", () => {
     Logger.step("Registrarse con contraseña no coinciden");
     RegisterMethods.signUp(
       randomUsername,
+      randomEmail,
       randomPassword,
       randomPasswordDifferent,
       randomBirthDate
@@ -90,6 +94,7 @@ describe("Register Test", () => {
     Logger.step("Registrarse con una contraseña de longitud invalida");
     RegisterMethods.signUp(
       randomUsername,
+      randomEmail,
       randomPasswordInvalidLength,
       randomPasswordInvalidLength,
       randomBirthDate
@@ -106,6 +111,7 @@ describe("Register Test", () => {
     Logger.step("Registrarse con una fecha de nacimiento invalida");
     RegisterMethods.signUp(
       randomUsername,
+      randomEmail,
       randomPassword,
       randomPassword,
       randomBirthDateInvalid
