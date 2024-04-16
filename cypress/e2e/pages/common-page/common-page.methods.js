@@ -44,4 +44,9 @@ export class CommonPageMethods {
     const formattedDate = date.toISOString().split("T")[0];
     return formattedDate;
   }
+
+  // Metodo para generar un correo electronico aleatorio
+  static generateRandomEmail() {
+    return `${this.generateRandomString()}@email.com`;
+  }
 }

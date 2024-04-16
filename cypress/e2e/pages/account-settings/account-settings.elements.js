@@ -53,7 +53,7 @@ export class AccountSettingsElements {
   static get errorMessages() {
     return {
       get incorrectPassword() {
-        return cy.get(".go3958317564");
+        return cy.get("div.go3958317564");
       },
 
       get passwordNotMatch() {
