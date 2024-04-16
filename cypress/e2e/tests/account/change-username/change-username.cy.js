@@ -7,7 +7,7 @@ import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 
-const newUsername = CommonPageMethods.generateRandomString();
+const newUsername = CommonPageMethods.generateRandomString(5);
 
 describe("Change username", () => {
   beforeEach(() => {
@@ -74,7 +74,7 @@ describe("Change username", () => {
 
     Logger.stepNumber(11);
     Logger.step("Ponemos el nombre de usuario anterior");
-    AccountSettingsMethods.insertUsername("gonzatest");
+    AccountSettingsMethods.insertUsername("gonzatesting");
 
     Logger.stepNumber(12);
     Logger.step("Insertamos la contrasena actual");
