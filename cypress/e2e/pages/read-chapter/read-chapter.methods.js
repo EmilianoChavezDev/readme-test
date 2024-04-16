@@ -19,6 +19,9 @@ export class ReadChapterMethods {
 
   // Verificar que el libro se haya terminado
   static verifyFinishBook() {
-    ReadChapterElements.messagess().finishBookMessage.should("be.visible");
+    ReadChapterElements.messagess().finishBookMessage.should(
+      "contain.text",
+      "¡Felicidades! Has terminado este libro"
+    );
   }
 }

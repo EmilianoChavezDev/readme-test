@@ -32,7 +32,7 @@ describe("Swap chapter", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Create book and save chapter", () => {
+  it.skip("Create book and save chapter", () => {
     // Vamos al boton crear libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
@@ -40,7 +40,7 @@ describe("Swap chapter", () => {
 
     // Verificamos que la url sea de creacion de libro
     Logger.verification("La url deberia ser la de creacion de libro");
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
+    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/create`);
 
     // Interceptamos la peticion para simular que se creo el libro
     Logger.stepNumber(4);

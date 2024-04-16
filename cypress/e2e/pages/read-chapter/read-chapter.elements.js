@@ -6,9 +6,7 @@ export class ReadChapterElements {
       },
 
       get finishBook() {
-        return cy.get(
-          "button.p-2.rounded-full.hover\\:scale-110.transform.transition-all.duration-200 svg"
-        );
+        return cy.get("button.p-2.rounded-full").find("svg");
       },
     };
   }

@@ -33,21 +33,17 @@ describe("Publish chapter", () => {
   });
 
   it("Create book and publish chapter", () => {
-    // Vamos al boton crear libro
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
     NavBarMethods.goToWriteBook();
 
-    // Verificamos que la url sea de creacion de libro
     Logger.verification("La url deberia ser la de creacion de libro");
-    cy.url().should("eq", CommonPageData.appPages.baseUrl + "books/create");
+    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/create`);
 
-    // Interceptamos la peticion para simular que se creo el libro
     Logger.stepNumber(4);
     Logger.step("Llenamos el formulario y damos click en Seguir");
     cy.intercept("POST", CommonPageData.endPoints.books).as("createBook");
 
-    // Metodo para crear un libro y enviar la peticion
     CreateBookMethods.createBook(
       CreateBookData.bookData.title,
       CreateBookData.bookData.synopsis,
@@ -55,39 +51,32 @@ describe("Publish chapter", () => {
       CreateBookData.bookData.cover
     );
 
-    // Esperamos a que la peticion se complete
     cy.wait("@createBook").then((interception) => {
       expect(interception.response.statusCode).to.equal(201);
       bookId = interception.response.body.id;
 
-      // Verificamos que estemos en la pagina de publicar capitulos
       Logger.verification("La url deberia ser la de escribir capitulo");
       cy.url().should(
         "eq",
         `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`
       );
 
-      // Insertamos el titulo
       Logger.stepNumber(5);
       Logger.step("Insertamos el titulo del capitulo");
       ChaptersMethods.insertTitle(ChaptersData.chapterContent.title);
 
-      // Insertamos el contenido del capitulo
       Logger.stepNumber(6);
       Logger.step("Insertamos el contenido del capitulo");
       ChaptersMethods.insertContent(ChaptersData.chapterContent.content);
 
-      // Interceptamos la peticion
       cy.intercept("POST", CommonPageData.endPoints.chapters).as(
         "publishChapter"
       );
 
-      // Publicamos el capitulo
       Logger.stepNumber(7);
       Logger.step("Damos click en Publicar");
       ChaptersMethods.publishButtonClick();
 
-      //Verficamos el mensaje que se publico el capitulo
       Logger.verification("El capitulo ha sido publicado");
       ChaptersMethods.verifyChapterPublished();
 
@@ -95,17 +84,16 @@ describe("Publish chapter", () => {
         expect(interception.response.statusCode).to.equal(201);
       });
 
-      // Leer el libro
       Logger.stepNumber(8);
       Logger.step("Damos click en Leer");
       BookDetailsMethods.startReadingClick();
 
-      // Avanzamos al capitulo
+      cy.wait(1000);
+
       Logger.stepNumber(9);
       Logger.step("Damos click en el boton de terminar libro");
       ReadChapterMethods.finishBookClick();
 
-      // Verificamos que el libro se haya terminado
       Logger.verification("El libro se ha terminado");
       ReadChapterMethods.verifyFinishBook();
     });
