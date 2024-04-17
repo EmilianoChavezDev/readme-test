@@ -1,7 +1,6 @@
 import { Logger } from "../../../../support/logger";
 import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { FavoritesMethods } from "../../../pages/favorites/favorites.methods";
 import { HomeMethods } from "../../../pages/home/home.methods";
 import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
@@ -27,38 +26,36 @@ describe("Add Book to favorite", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Add and remove book from favorites", () => {
+  it("Report book", () => {
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el libro de novedades");
     HomeMethods.getBook("Libro de prueba");
 
-    cy.wait(2000);
-
-    cy.intercept("POST", CommonPageData.endPoints.favorites).as("addFavorite");
-
     Logger.stepNumber(4);
-    Logger.step("Agregar el libro a favoritos desde los detalles del libro");
-    BookDetailsMethods.addFavoriteClick();
-
-    cy.wait("@addFavorite").then((interception) => {
-      expect(interception.response.statusCode).to.eq(201);
-    });
-
-    Logger.verification("Verificamos el mensaje de agregado a favoritos");
-    BookDetailsMethods.verifyFavoriteAddedMessage();
+    Logger.step("Click en denunciar libro");
+    BookDetailsMethods.reportBookClick();
 
     Logger.stepNumber(5);
-    Logger.step("Vamos a la pagina de Mis Favoritos");
-    NavBarMethods.goToFavoritesClick();
-
-    Logger.verification("El libro deberia ser visible en favoritos");
-    FavoritesMethods.verifyBookInFavorites();
+    Logger.step("Insertamos el motivo del reporte");
+    BookDetailsMethods.insertReport("Pruebas automatizadas");
 
     Logger.stepNumber(6);
-    Logger.step("Quitamos el libro de favoritos");
-    FavoritesMethods.removeFavoriteFullHeartClick();
+    Logger.step("Agregamos el motivo");
+    BookDetailsMethods.getCategory().other();
 
-    Logger.verification("El boton del corazon vacio deberia ser visible");
-    FavoritesMethods.verifyEmptyHeartButton();
+    cy.intercept("POST", CommonPageData.endPoints.bookReports).as(
+      "createReport"
+    );
+
+    Logger.stepNumber(7);
+    Logger.step("Click en aceptar");
+    BookDetailsMethods.createReportClick();
+
+    Logger.verification("Verificamos que se haya creado el reporte del libro");
+    BookDetailsMethods.verifyReportCreated();
+
+    cy.wait("@createReport").then((interception) => {
+      expect(interception.response.statusCode).to.eq(200);
+    });
   });
 });

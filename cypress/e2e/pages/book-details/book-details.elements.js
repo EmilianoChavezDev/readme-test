@@ -21,6 +21,10 @@ export class BookDetailsElements {
       get addComment() {
         return cy.get("div.flex-wrap button");
       },
+
+      get reportBook() {
+        return cy.contains("span", "Denunciar este libro");
+      },
     };
   }
 
@@ -69,11 +73,32 @@ export class BookDetailsElements {
       },
 
       get removeFavoriteMessage() {
-        return cy.get(".go2072408551 ");
+        return cy.get(".go2072408551");
       },
 
       get removeCommentaryMessage() {
-        return cy.get(".go2072408551 ");
+        return cy.get(".go2072408551");
+      },
+
+      get reportCreated() {
+        return cy.get(".go2072408551");
+      },
+    };
+  }
+
+  // Reportar libro seccion
+  static get reportSection() {
+    return {
+      get reportSelect() {
+        return cy.get("select.text-xs");
+      },
+
+      get reportInput() {
+        return cy.get('div[role="dialog"] textarea');
+      },
+
+      get createReport() {
+        return cy.contains("span", "Aceptar");
       },
     };
   }

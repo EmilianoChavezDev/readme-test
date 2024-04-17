@@ -49,6 +49,14 @@ export class CommonPageData {
       get favorites() {
         return "https://readme-backend.fly.dev/favoritos";
       },
+
+      get bookReports() {
+        return "https://readme-backend.fly.dev/reportes_libros";
+      },
+
+      get userReports() {
+        return "https://readme-backend.fly.dev/reportes_usuarios";
+      },
     };
   }
 

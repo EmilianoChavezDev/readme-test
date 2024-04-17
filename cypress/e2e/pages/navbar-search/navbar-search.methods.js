@@ -21,29 +21,10 @@ export class NavBarSearchMethods {
     NavBarSearchElements.buttons.readBook.click();
   }
 
-  // Dar una reseña de estrellas
-  static giveStars() {
-    return {
-      oneStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(0).click();
-      },
-
-      twoStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(1).click();
-      },
-
-      threeStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(2).click();
-      },
-
-      fourStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(3).click();
-      },
-
-      fiveStarReview: () => {
-        NavBarSearchElements.buttons.reviews.find("svg").eq(4).click();
-      },
-    };
+  // Metodo para generar una review aleatoria
+  static randomReview() {
+    const randomReview = Math.floor(Math.random() * 5);
+    NavBarSearchElements.buttons.reviews.eq(randomReview).click();
   }
 
   // Insertar una categoria en el select

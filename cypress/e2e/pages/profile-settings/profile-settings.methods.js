@@ -26,6 +26,16 @@ export class ProfileSettingsMethods {
     ProfileSettingsElements.profilePictures.removeCoverPicture.click();
   }
 
+  // Click en reportar usuario
+  static reportUserClick() {
+    ProfileSettingsElements.profileSection.reportButton.click();
+  }
+
+  // Click en aceptar reporte
+  static createReportClick() {
+    ProfileSettingsElements.reportSection.createReportButton.click();
+  }
+
   // Cambiamos la foto de perfil
   static changeProfilePicture(picture) {
     ProfileSettingsElements.profilePictures.profilePicture
@@ -40,32 +50,37 @@ export class ProfileSettingsMethods {
       .attachFile(cover);
   }
 
+  // Insertamos el motivo del reporte
+  static insertReport(reason) {
+    ProfileSettingsElements.reportSection.reportInput.type(reason);
+  }
+
   // Cambiamos el nombre de perfil
-  static inputName(name) {
+  static insertName(name) {
     ProfileSettingsElements.textBoxes.nameInput.clear().type(name);
   }
 
   // Cambiamos la direccion
-  static inputDirection(direction) {
+  static insertDirection(direction) {
     ProfileSettingsElements.textBoxes.directionInput.clear().type(direction);
   }
 
   // Cambiamos la nacionalidad
-  static inputNationality(nationality) {
+  static insertNationality(nationality) {
     ProfileSettingsElements.textBoxes.nationalityInput
       .clear()
       .type(nationality);
   }
 
   // Cambiamos la descripcion
-  static inputDescription(description) {
+  static insertDescription(description) {
     ProfileSettingsElements.textBoxes.descriptionInput
       .clear()
       .type(description);
   }
 
   // Ingresamos la fecha de nacimiento
-  static inputBirthDate(birth_date) {
+  static insertBirthDate(birth_date) {
     ProfileSettingsElements.textBoxes.birthDateInput.type(birth_date);
   }
 
@@ -76,5 +91,48 @@ export class ProfileSettingsMethods {
       "have.text",
       "Estas editando tu perfil ahora"
     );
+  }
+
+  // Verificamos que el reporte se haya enviado correctamente
+  static verifyReportCreated() {
+    ProfileSettingsElements.reportSection.reportMessages.reportSuccess.should(
+      "contain.text",
+      "Usuario Reportado"
+    );
+  }
+
+  // Categoria de reporte de usuario
+  static getCategory() {
+    return {
+      innapropiateBehavior: () => {
+        ProfileSettingsElements.reportSection.reportSelect.select(
+          "Comportamiento inapropiado"
+        );
+      },
+
+      identityFraud: () => {
+        ProfileSettingsElements.reportSection.reportSelect.select(
+          "Suplantación de identidad"
+        );
+      },
+
+      inapropiateContent() {
+        ProfileSettingsElements.reportSection.reportSelect.select(
+          "Publicación de contenido inapropiado"
+        );
+      },
+
+      harassment() {
+        ProfileSettingsElements.reportSection.reportSelect.select("Acoso");
+      },
+
+      spam() {
+        ProfileSettingsElements.reportSection.reportSelect.select("Spam");
+      },
+
+      other() {
+        ProfileSettingsElements.reportSection.reportSelect.select("Otro");
+      },
+    };
   }
 }

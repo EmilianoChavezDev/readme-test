@@ -43,7 +43,7 @@ describe("Change name", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos el nuevo nombre");
-    ProfileSettingsMethods.inputName(newName);
+    ProfileSettingsMethods.insertName(newName);
 
     cy.intercept("PUT", CommonPageData.endPoints.information).as("updateName");
 

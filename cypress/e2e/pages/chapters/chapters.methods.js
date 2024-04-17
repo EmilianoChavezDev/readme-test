@@ -21,6 +21,11 @@ export class ChaptersMethods {
     ChaptersElements.buttons.save.click();
   }
 
+  // Click en el boton subir pdf
+  static uploadPdfButtonClick(pdf) {
+    ChaptersElements.buttons.uploadPdf.click().selectFile(pdf);
+  }
+
   // Click en el dropdown de capitulos
   static dropDownClick() {
     ChaptersElements.buttons.dropDown.click();
@@ -41,5 +46,10 @@ export class ChaptersMethods {
       "contain.text",
       "El capítulo de tu libro ha sido guardado"
     );
+  }
+
+  // Verificamos que ha sido subido el pdf
+  static verifyPdfUploaded(text) {
+    ChaptersElements.textBoxes.content.should("include.text", text);
   }
 }

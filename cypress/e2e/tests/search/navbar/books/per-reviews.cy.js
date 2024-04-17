@@ -35,7 +35,7 @@ describe("Search navbar", () => {
 
     Logger.stepNumber(4);
     Logger.step("Le damos una calificacion de 5 estrellas al libro");
-    NavBarSearchMethods.giveStars().fiveStarReview();
+    NavBarSearchMethods.randomReview();
 
     Logger.stepNumber(5);
     Logger.step("Damos click en aplicar filtros");

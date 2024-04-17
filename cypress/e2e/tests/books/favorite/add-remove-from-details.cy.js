@@ -6,6 +6,8 @@ import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 
+let favoriteId;
+
 describe("Add Book to favorite", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
@@ -31,6 +33,8 @@ describe("Add Book to favorite", () => {
     Logger.step("Seleccionamos el primer libro de novedades");
     HomeMethods.getBook("Libro de prueba");
 
+    cy.wait(2000);
+
     cy.intercept("POST", CommonPageData.endPoints.favorites).as("addFavorite");
 
     Logger.stepNumber(4);
@@ -39,16 +43,30 @@ describe("Add Book to favorite", () => {
 
     cy.wait("@addFavorite").then((interception) => {
       expect(interception.response.statusCode).to.eq(201);
+      favoriteId = interception.response.body.favorito.id;
+
+      Logger.verification("Verificamos el mensaje de agregado a favoritos");
+      BookDetailsMethods.verifyFavoriteAddedMessage();
+
+      console.log(favoriteId);
+
+      cy.intercept(
+        "PUT",
+        `${CommonPageData.endPoints.favorites}/${favoriteId}`
+      ).as("removeFavorite");
+
+      Logger.stepNumber(8);
+      Logger.step(
+        "Removemos el libro de favoritos desde los detalles del libro"
+      );
+      BookDetailsMethods.removeFavoriteClick();
+
+      Logger.verification("El libro no deberia ser visible en favoritos");
+      BookDetailsMethods.verifyFavoriteRemovedMessage();
+
+      cy.wait("@removeFavorite").then((interception) => {
+        expect(interception.response.statusCode).to.eq(200);
+      });
     });
-
-    Logger.verification("Verificamos el mensaje de agregado a favoritos");
-    BookDetailsMethods.verifyFavoriteAddedMessage();
-
-    Logger.stepNumber(8);
-    Logger.step("Removemos el libro de favoritos desde los detalles del libro");
-    BookDetailsMethods.removeFavoriteClick();
-
-    Logger.verification("El libro no deberia ser visible en favoritos");
-    BookDetailsMethods.verifyFavoriteRemovedMessage();
   });
 });

@@ -26,6 +26,10 @@ export class ChaptersElements {
       get dropDown() {
         return cy.get('svg[class="text-2xl hover:cursor-pointer"]');
       },
+
+      get uploadPdf() {
+        return cy.get('label[for="fileInput"]', { force: true });
+      },
     };
   }
 

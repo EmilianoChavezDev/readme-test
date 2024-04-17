@@ -34,14 +34,16 @@ describe("Reviews", () => {
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();
 
-    cy.intercept(CommonPageData.endPoints.reviews, "POST").as("postReview");
+    cy.wait(2000);
+
+    cy.intercept("POST", CommonPageData.endPoints.reviews).as("postReview");
 
     Logger.stepNumber(4);
     Logger.step("Agregamos una reseña de 5 estrellas");
-    BookDetailsMethods.giveStars().fiveStarReview();
+    BookDetailsMethods.randomReview();
 
     cy.wait("@postReview").then((interception) => {
-      expect(interception.response.statusCode).to.equal(200);
+      expect(interception.response.statusCode).to.equal(201);
     });
   });
 });

@@ -12,7 +12,7 @@ export class NavBarSearchUsersElements {
   static get userProfile() {
     return {
       get firstUserProfile() {
-        return cy.get("div.bg-clip-border div").eq(0);
+        return cy.get("div.bg-clip-border span").eq(0);
       },
     };
   }

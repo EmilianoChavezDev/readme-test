@@ -15,7 +15,7 @@ export class NavBarSearchUsersMethods {
   // Verificamos que estemos en el perfil del usuario
   static verifyProfile(username) {
     ProfileSettingsElements.profileSection.profileUsername.should(
-      "contain.text",
+      "include.text",
       username
     );
   }

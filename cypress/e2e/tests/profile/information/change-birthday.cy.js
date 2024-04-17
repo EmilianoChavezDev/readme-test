@@ -43,7 +43,7 @@ describe("Change birthday", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos la nueva fecha");
-    ProfileSettingsMethods.inputBirthDate(newBirthDate);
+    ProfileSettingsMethods.insertBirthDate(newBirthDate);
 
     cy.intercept("PUT", CommonPageData.endPoints.information).as(
       "updateBrithDate"

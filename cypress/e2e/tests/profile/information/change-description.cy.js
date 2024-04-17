@@ -43,7 +43,7 @@ describe("Change description", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos el nuevo nombre");
-    ProfileSettingsMethods.inputDescription(
+    ProfileSettingsMethods.insertDescription(
       `Esta es una nueva descripcion${newDescription}`
     );
 

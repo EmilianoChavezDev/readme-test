@@ -43,7 +43,7 @@ describe("Change nationality", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos el nuevo nombre");
-    ProfileSettingsMethods.inputNationality(newNationality);
+    ProfileSettingsMethods.insertNationality(newNationality);
 
     cy.intercept("PUT", CommonPageData.endPoints.information).as(
       "updateNationality"

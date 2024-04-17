@@ -9,8 +9,9 @@ import { CommonPageData } from "../../../pages/common-page/common-page.data";
 import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
 
 let bookId;
+const pdfPath = "cypress/e2e/tests/books/chapters/contenido.pdf";
 
-describe("Publish chapter", () => {
+describe("Upload Pdf", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
@@ -30,7 +31,7 @@ describe("Publish chapter", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Create book and publish chapter", () => {
+  it("Create a book and upload Pdf for content", () => {
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
     NavBarMethods.goToWriteBook();
@@ -65,7 +66,12 @@ describe("Publish chapter", () => {
 
       Logger.stepNumber(6);
       Logger.step("Insertamos el contenido del capitulo subiendo un pdf");
-      ChaptersMethods.insertContent(ChaptersData.chapterContent.content);
+      ChaptersMethods.uploadPdfButtonClick(pdfPath);
+
+      Logger.verification("El contenido del capitulo deberia ser visible");
+      ChaptersMethods.verifyPdfUploaded(
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      );
 
       cy.intercept("POST", CommonPageData.endPoints.chapters).as(
         "publishChapter"

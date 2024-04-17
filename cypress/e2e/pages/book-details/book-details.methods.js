@@ -17,6 +17,11 @@ export class BookDetailsMethods {
     BookDetailsElements.buttons.startReading.click();
   }
 
+  // Click en reportar un libro
+  static reportBookClick() {
+    BookDetailsElements.buttons.reportBook.click();
+  }
+
   // Click en el boton de añadir un comentario
   static addCommentClick() {
     BookDetailsElements.buttons.addComment.click();
@@ -42,6 +47,16 @@ export class BookDetailsMethods {
     BookDetailsElements.comentarySection.comentary.type(comment);
   }
 
+  // Click en aceptar reporte
+  static createReportClick() {
+    BookDetailsElements.reportSection.createReport.click();
+  }
+
+  // Agregar un reporte
+  static insertReport(reason) {
+    BookDetailsElements.reportSection.reportInput.type(reason);
+  }
+
   static editCommentClick() {
     BookDetailsElements.comentarySection.acceptButton.click();
   }
@@ -57,29 +72,10 @@ export class BookDetailsMethods {
       .type(comment);
   }
 
-  // Dar una reseña de estrellas
-  static giveStars() {
-    return {
-      oneStarReview: () => {
-        BookDetailsElements.buttons.reviews.eq(0).click();
-      },
-
-      twoStarReview: () => {
-        BookDetailsElements.buttons.reviews.eq(1).click();
-      },
-
-      threeStarReview: () => {
-        BookDetailsElements.buttons.reviews.eq(2).click();
-      },
-
-      fourStarReview: () => {
-        BookDetailsElements.buttons.reviews.eq(3).click();
-      },
-
-      fiveStarReview: () => {
-        BookDetailsElements.buttons.reviews.eq(4).click();
-      },
-    };
+  // Metodo para generar una review aleatoria
+  static randomReview() {
+    const randomReview = Math.floor(Math.random() * 5);
+    BookDetailsElements.buttons.reviews.eq(randomReview).click();
   }
 
   // Verificaciones
@@ -110,5 +106,56 @@ export class BookDetailsMethods {
       "contain.text",
       "Comentario eliminado correctamente"
     );
+  }
+
+  // Verificamos que el reporte se creo correctamente
+  static verifyReportCreated() {
+    BookDetailsElements.messages.reportCreated.should(
+      "contain.text",
+      "Libro Reportado"
+    );
+  }
+
+  // Categoria de reporte de libro
+  static getCategory() {
+    return {
+      innapropiateContent: () => {
+        BookDetailsElements.reportSection.reportSelect.select(
+          "Contenido inapropiado"
+        );
+      },
+
+      authorRights: () => {
+        BookDetailsElements.reportSection.reportSelect.select(
+          "Derechos de autor"
+        );
+      },
+
+      constentQuality() {
+        BookDetailsElements.reportSection.reportSelect.select(
+          "Calidad del contenido"
+        );
+      },
+
+      misleadingContent() {
+        BookDetailsElements.reportSection.reportSelect.select(
+          "Contenido engañoso"
+        );
+      },
+
+      spam() {
+        BookDetailsElements.reportSection.reportSelect.select("Spam");
+      },
+
+      politicsViolation() {
+        BookDetailsElements.reportSection.reportSelect.select(
+          "Violación de políticas de la comunidad"
+        );
+      },
+
+      other() {
+        BookDetailsElements.reportSection.reportSelect.select("Otro");
+      },
+    };
   }
 }

@@ -76,6 +76,35 @@ export class ProfileSettingsElements {
       get profileUsername() {
         return cy.get("span.text-md");
       },
+
+      get reportButton() {
+        return cy.get('button[class*="text-red-"]');
+      },
+    };
+  }
+
+  // Motivo de reporte
+  static get reportSection() {
+    return {
+      get reportSelect() {
+        return cy.get("select.text-xs");
+      },
+
+      get reportInput() {
+        return cy.get("textarea.text-xs");
+      },
+
+      get createReportButton() {
+        return cy.contains("span", "Aceptar");
+      },
+
+      get reportMessages() {
+        return {
+          get reportSuccess() {
+            return cy.get(".go2072408551");
+          },
+        };
+      },
     };
   }
 }

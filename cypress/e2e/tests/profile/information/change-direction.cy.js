@@ -43,7 +43,7 @@ describe("Change direction", () => {
 
     Logger.stepNumber(5);
     Logger.step("Ingresamos el nuevo nombre");
-    ProfileSettingsMethods.inputDirection(
+    ProfileSettingsMethods.insertDirection(
       `Esta es una nueva direccion${newDescription}`
     );
 
