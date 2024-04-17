@@ -69,4 +69,13 @@ export class ProfileSettingsElements {
       },
     };
   }
+
+  // Elementos de la seccion de mi perfil
+  static get profileSection() {
+    return {
+      get profileUsername() {
+        return cy.get("span.text-md");
+      },
+    };
+  }
 }

@@ -1,3 +1,4 @@
+import g from "file-saver";
 import { Logger } from "../../../../support/logger";
 import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
@@ -5,6 +6,8 @@ import { HomeMethods } from "../../../pages/home/home.methods";
 import { LoginData } from "../../../pages/login/login.data";
 import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
+
+let comentaryId;
 
 describe("Reviews", () => {
   beforeEach(() => {
@@ -26,7 +29,7 @@ describe("Reviews", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Add review", () => {
+  it("Edit review", () => {
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el primer libro de novedades");
     HomeMethods.getBook("Libro de prueba");
@@ -45,8 +48,28 @@ describe("Reviews", () => {
     BookDetailsMethods.addCommentClick();
 
     cy.wait("@postComment").then((interception) => {
-      console.log(interception);
+      comentaryId = interception.response.body.comentario.id;
       expect(interception.response.statusCode).to.equal(201);
+
+      Logger.stepNumber(7);
+      Logger.step("Desplegamos el menu");
+      BookDetailsMethods.threeDotsClick();
+
+      Logger.stepNumber(8);
+      Logger.step("Editamos el comentario");
+      BookDetailsMethods.editComment("Excelente libro editado");
+
+      cy.intercept(
+        "PUT",
+        `${CommonPageData.endPoints.comments}/${comentaryId}`
+      ).as("editComment");
+      Logger.stepNumber(9);
+      Logger.step("Aceptamos el comentario editado");
+      BookDetailsMethods.editCommentClick();
+
+      cy.wait("@editComment").then((interception) => {
+        expect(interception.response.statusCode).to.equal(200);
+      });
     });
   });
 });

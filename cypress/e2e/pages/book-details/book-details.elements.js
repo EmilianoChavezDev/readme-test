@@ -15,11 +15,11 @@ export class BookDetailsElements {
       },
 
       get reviews() {
-        return cy.get("div.flex.gap-1");
+        return cy.get("div.flex.gap-1").eq(4).find("svg");
       },
 
       get addComment() {
-        return cy.get("button.rounded-lg");
+        return cy.get("div.flex-wrap button");
       },
     };
   }
@@ -29,6 +29,34 @@ export class BookDetailsElements {
     return {
       get comentary() {
         return cy.get('textarea[placeholder="Añadir un comment"]');
+      },
+
+      get editComentaryInput() {
+        return cy.get('div[role="dialog"] textarea');
+      },
+
+      get threeDots() {
+        return cy.get("button.h-9").eq(4);
+      },
+
+      get deleteButton() {
+        return cy.contains("span", "Eliminar");
+      },
+
+      get confirmDeleteButton() {
+        return cy.contains("span", "Aceptar");
+      },
+
+      get editButton() {
+        return cy.contains("span", "Editar");
+      },
+
+      get acceptButton() {
+        return cy.contains("span", "Aceptar");
+      },
+
+      get cancelButton() {
+        return cy.get("button.bg-white");
       },
     };
   }
@@ -41,6 +69,10 @@ export class BookDetailsElements {
       },
 
       get removeFavoriteMessage() {
+        return cy.get(".go2072408551 ");
+      },
+
+      get removeCommentaryMessage() {
         return cy.get(".go2072408551 ");
       },
     };

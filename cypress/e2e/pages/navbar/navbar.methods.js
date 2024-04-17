@@ -74,8 +74,25 @@ export class NavBarMethods {
 
   // Buscar un libro
   static searchBook(Book) {
+    Logger.subStep("Click en el input de busqueda");
     NavBarMethods.searchInputClick();
+
+    Logger.subStep(`Escribir el libro ${Book}`);
     NavBarElements.searchInput.type(Book);
+
+    Logger.subStep("Click en el boton de busqueda");
+    NavBarElements.buttons.searchButton.click();
+  }
+
+  // Buscar un usuario
+  static searchUser(User) {
+    Logger.subStep("Click en el input de busqueda");
+    NavBarMethods.searchInputClick();
+
+    Logger.subStep(`Escribir el usuario ${User}`);
+    NavBarElements.searchInput.type(User);
+
+    Logger.subStep("Click en el boton de busqueda");
     NavBarElements.buttons.searchButton.click();
   }
 

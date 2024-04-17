@@ -1,11 +1,11 @@
-import { Logger } from "../../../../support/logger";
-import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { LoginData } from "../../../pages/login/login.data";
-import { LoginMethods } from "../../../pages/login/login.methods";
-import { NavBarSearchMethods } from "../../../pages/navbar-search/navbar-search.methods";
-import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../../support/logger";
+import { CommonPageData } from "../../../../pages/common-page/common-page.data";
+import { LoginData } from "../../../../pages/login/login.data";
+import { LoginMethods } from "../../../../pages/login/login.methods";
+import { NavBarSearchMethods } from "../../../../pages/navbar-search/navbar-search.methods";
+import { NavBarMethods } from "../../../../pages/navbar/navbar.methods";
 
-describe("Search navbar test", () => {
+describe("Search navbar", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegar a la pagina de login");

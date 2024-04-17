@@ -12,7 +12,7 @@ import { ReadChapterMethods } from "../../../pages/read-chapter/read-chapter.met
 
 let bookId;
 
-describe("Publish chapter", () => {
+describe("Read chapter", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
@@ -82,20 +82,26 @@ describe("Publish chapter", () => {
 
       cy.wait("@publishChapter").then((interception) => {
         expect(interception.response.statusCode).to.equal(201);
+
+        cy.url().should(
+          "eq",
+          `${CommonPageData.appPages.baseUrl}books/${bookId}`
+        );
+
+        Logger.stepNumber(8);
+        Logger.step("Damos click en Leer");
+        BookDetailsMethods.startReadingClick();
+
+        Logger.verification("Verificamos que el capitulo se ha publicado");
+        ReadChapterMethods.verifyToastDisapear();
+
+        Logger.stepNumber(9);
+        Logger.step("Damos click en el boton de terminar libro");
+        ReadChapterMethods.finishBookClick();
+
+        Logger.verification("El libro se ha terminado");
+        ReadChapterMethods.verifyFinishBook();
       });
-
-      Logger.stepNumber(8);
-      Logger.step("Damos click en Leer");
-      BookDetailsMethods.startReadingClick();
-
-      cy.wait(1000);
-
-      Logger.stepNumber(9);
-      Logger.step("Damos click en el boton de terminar libro");
-      ReadChapterMethods.finishBookClick();
-
-      Logger.verification("El libro se ha terminado");
-      ReadChapterMethods.verifyFinishBook();
     });
   });
 });

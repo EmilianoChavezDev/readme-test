@@ -1,3 +1,4 @@
+import { Logger } from "../../../support/logger";
 import { BookDetailsElements } from "./book-details.elements";
 
 export class BookDetailsMethods {
@@ -21,32 +22,62 @@ export class BookDetailsMethods {
     BookDetailsElements.buttons.addComment.click();
   }
 
+  // Click en los tres puntos
+  static threeDotsClick() {
+    BookDetailsElements.comentarySection.threeDots.click();
+  }
+
+  // Click en eliminar comentario
+  static deleteCommentClick() {
+    BookDetailsElements.comentarySection.deleteButton.click();
+  }
+
+  // Click en aceptar eliminar
+  static deleteCommentAcceptClick() {
+    BookDetailsElements.comentarySection.confirmDeleteButton.click();
+  }
+
   // Agregar un comentario
   static insertComment(comment) {
     BookDetailsElements.comentarySection.comentary.type(comment);
+  }
+
+  static editCommentClick() {
+    BookDetailsElements.comentarySection.acceptButton.click();
+  }
+
+  // Editar un comentario
+  static editComment(comment) {
+    Logger.subStep("Click en el boton de editar");
+    BookDetailsElements.comentarySection.editButton.click();
+
+    Logger.subStep("Limpiar el comentario anterior");
+    BookDetailsElements.comentarySection.editComentaryInput
+      .clear()
+      .type(comment);
   }
 
   // Dar una reseña de estrellas
   static giveStars() {
     return {
       oneStarReview: () => {
-        BookDetailsElements.buttons.reviews.find("svg").eq(0).click();
+        BookDetailsElements.buttons.reviews.eq(0).click();
       },
 
       twoStarReview: () => {
-        BookDetailsElements.buttons.reviews.find("svg").eq(1).click();
+        BookDetailsElements.buttons.reviews.eq(1).click();
       },
 
       threeStarReview: () => {
-        BookDetailsElements.buttons.reviews.find("svg").eq(2).click();
+        BookDetailsElements.buttons.reviews.eq(2).click();
       },
 
       fourStarReview: () => {
-        BookDetailsElements.buttons.reviews.find("svg").eq(3).click();
+        BookDetailsElements.buttons.reviews.eq(3).click();
       },
 
       fiveStarReview: () => {
-        BookDetailsElements.buttons.reviews.find("svg").eq(4).click();
+        BookDetailsElements.buttons.reviews.eq(4).click();
       },
     };
   }
@@ -70,6 +101,14 @@ export class BookDetailsMethods {
     BookDetailsElements.messages.removeFavoriteMessage.should(
       "contain.text",
       "El libro ha sido quitado de tus favoritos"
+    );
+  }
+
+  // Verificamos si el comentario se elimino
+  static verifyComentaryRemoveMessage() {
+    BookDetailsElements.messages.removeCommentaryMessage.should(
+      "contain.text",
+      "Comentario eliminado correctamente"
     );
   }
 }

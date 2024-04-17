@@ -1,11 +1,11 @@
-import { Logger } from "../../../../support/logger";
-import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { LoginData } from "../../../pages/login/login.data";
-import { LoginMethods } from "../../../pages/login/login.methods";
-import { NavBarSearchMethods } from "../../../pages/navbar-search/navbar-search.methods";
-import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
+import { Logger } from "../../../../../support/logger";
+import { CommonPageData } from "../../../../pages/common-page/common-page.data";
+import { LoginData } from "../../../../pages/login/login.data";
+import { LoginMethods } from "../../../../pages/login/login.methods";
+import { NavBarSearchMethods } from "../../../../pages/navbar-search/navbar-search.methods";
+import { NavBarMethods } from "../../../../pages/navbar/navbar.methods";
 
-describe("Search navbar test", () => {
+describe("Search navbar", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegar a la pagina de login");
@@ -25,7 +25,7 @@ describe("Search navbar test", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Search book per category", () => {
+  it("Search book per reviews", () => {
     Logger.stepNumber(3);
     Logger.step("Buscar un libro cualquiera");
     NavBarMethods.searchBook("a");
@@ -34,14 +34,10 @@ describe("Search navbar test", () => {
     NavBarSearchMethods.verifySearch("a");
 
     Logger.stepNumber(4);
-    Logger.step("Le damos click al input");
-    NavBarSearchMethods.selectInputClick();
+    Logger.step("Le damos una calificacion de 5 estrellas al libro");
+    NavBarSearchMethods.giveStars().fiveStarReview();
 
     Logger.stepNumber(5);
-    Logger.step("Damos click en la categoria de ficcion");
-    NavBarSearchMethods.addCategory().fiction();
-
-    Logger.stepNumber(6);
     Logger.step("Damos click en aplicar filtros");
     NavBarSearchMethods.applyReviewsClick();
 

@@ -43,11 +43,11 @@ export class NavBarElements {
   static get escribeButtons() {
     return {
       get createBookButton() {
-        return cy.get("li.border-b").eq(0);
+        return cy.get("li.border-b");
       },
 
       get myBooksButton() {
-        return cy.get("li.transition-all").eq(1);
+        return cy.get("li.items-center").eq(1);
       },
     };
   }

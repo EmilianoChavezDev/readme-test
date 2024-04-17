@@ -25,6 +25,22 @@ export class ReadChapterElements {
       get finishBookMessage() {
         return cy.contains("¡Felicidades! Has terminado este libro");
       },
+
+      get toast() {
+        return cy.get(".go2072408551");
+      },
+    };
+  }
+
+  static chapterContent() {
+    return {
+      get title() {
+        return cy.get('input[placeholder="Título"]');
+      },
+
+      get content() {
+        return cy.get('textarea[placeholder="Escribe aquí tu capítulo"]');
+      },
     };
   }
 }

@@ -24,4 +24,9 @@ export class ReadChapterMethods {
       "¡Felicidades! Has terminado este libro"
     );
   }
+
+  // Verificamos que haya desaparecido el toast de capitulo publicado
+  static verifyToastDisapear() {
+    ReadChapterElements.messagess().toast.should("not.exist");
+  }
 }

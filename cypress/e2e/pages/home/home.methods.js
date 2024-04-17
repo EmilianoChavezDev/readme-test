@@ -10,8 +10,6 @@ export class HomeMethods {
         // Obtener el nombre del libro dentro del elemento
         const title = $el.find("h5").text();
 
-        console.log(title);
-
         if (title.includes(book)) {
           cy.wrap($el).contains("h5", book).click();
         }
