@@ -41,9 +41,13 @@ describe("Change password", () => {
     Logger.step("Insertamos la contrasena actual");
     AccountSettingsMethods.insertPassword(LoginData.validCredentials.password);
 
+    cy.wait(2000);
+
     Logger.stepNumber(6);
     Logger.step("Abrir dropdown de cambio de contraseña");
     AccountSettingsMethods.openDropDownClick();
+
+    cy.wait(4000);
 
     Logger.stepNumber(7);
     Logger.step("Ingresamos la nueva contraseña");
@@ -54,8 +58,6 @@ describe("Change password", () => {
     Logger.stepNumber(8);
     Logger.step("Guardamos cambios");
     AccountSettingsMethods.saveChangesClick();
-
-    cy.wait(2000);
 
     Logger.verification("La contraseña ha sido actualizada");
     AccountSettingsMethods.verifyDataUpdated();

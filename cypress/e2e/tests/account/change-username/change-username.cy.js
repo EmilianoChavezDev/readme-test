@@ -75,7 +75,7 @@ describe("Change username", () => {
 
       Logger.stepNumber(11);
       Logger.step("Ponemos el nombre de usuario anterior");
-      AccountSettingsMethods.insertUsername("gonzatesting");
+      AccountSettingsMethods.insertUsername("gonzams");
 
       Logger.stepNumber(12);
       Logger.step("Insertamos la contrasena actual");
