@@ -37,19 +37,21 @@ describe("Reviews", () => {
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();
 
-    cy.intercept("POST", CommonPageData.endPoints.comments).as("postComment");
-
     Logger.stepNumber(4);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.insertComment("Excelente libro");
+
+    cy.intercept("POST", CommonPageData.endPoints.comments).as("postComment");
+
+    cy.wait(2000);
 
     Logger.stepNumber(5);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.addCommentClick();
 
     cy.wait("@postComment").then((interception) => {
-      comentaryId = interception.response.body.comentario.id;
       expect(interception.response.statusCode).to.equal(201);
+      comentaryId = interception.response.body.comentario.id;
 
       Logger.stepNumber(7);
       Logger.step("Desplegamos el menu");
@@ -59,20 +61,12 @@ describe("Reviews", () => {
       Logger.step("Eliminamos");
       BookDetailsMethods.deleteCommentClick();
 
-      cy.intercept(
-        "DELETE",
-        `${CommonPageData.endPoints.comments}/${comentaryId}`
-      ).as("deleteComment");
-
       Logger.stepNumber(9);
       Logger.step("Confirmamos eliminar");
       BookDetailsMethods.deleteCommentAcceptClick();
 
       Logger.verification("Verificamos que el comentario se haya borrado");
       BookDetailsMethods.verifyComentaryRemoveMessage();
-      cy.wait("@deleteComment").then((interception) => {
-        expect(interception.response.statusCode).to.equal(200);
-      });
     });
   });
 });

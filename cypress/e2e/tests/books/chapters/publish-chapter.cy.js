@@ -59,6 +59,8 @@ describe("Publish chapter", () => {
         `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`
       );
 
+      cy.wait(2000);
+
       Logger.stepNumber(5);
       Logger.step("Insertamos el titulo del capitulo");
       ChaptersMethods.insertTitle(ChaptersData.chapterContent.title);

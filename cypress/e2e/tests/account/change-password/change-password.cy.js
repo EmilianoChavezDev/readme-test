@@ -55,35 +55,36 @@ describe("Change password", () => {
     Logger.step("Guardamos cambios");
     AccountSettingsMethods.saveChangesClick();
 
-    Logger.verification("La contraseña ha sido actualizada");
+    cy.wait(2000);
 
+    Logger.verification("La contraseña ha sido actualizada");
     AccountSettingsMethods.verifyDataUpdated();
 
     cy.wait("@updatePassword").then((interception) => {
       expect(interception.response.statusCode).to.eq(200);
+
+      // Vovlemos a cambiar la contraseña a la original
+      Logger.stepNumber(9);
+      Logger.step("Insertamos la contrasena actual");
+      AccountSettingsMethods.insertPassword(newPassword);
+
+      Logger.stepNumber(10);
+      Logger.step("Volvemos a cambiar la contraseña a la original");
+      AccountSettingsMethods.openDropDownClick();
+
+      Logger.stepNumber(11);
+      Logger.step("Ingresamos la nueva contraseña");
+      AccountSettingsMethods.updateUserPassword(
+        LoginData.validCredentials.password,
+        LoginData.validCredentials.password
+      );
+
+      Logger.stepNumber(12);
+      Logger.step("Guardamos cambios");
+      AccountSettingsMethods.saveChangesClick();
+
+      Logger.verification("La contraseña ha sido actualizada");
+      AccountSettingsMethods.verifyDataUpdated();
     });
-
-    // Vovlemos a cambiar la contraseña a la original
-    Logger.stepNumber(9);
-    Logger.step("Insertamos la contrasena actual");
-    AccountSettingsMethods.insertPassword(newPassword);
-
-    Logger.stepNumber(10);
-    Logger.step("Volvemos a cambiar la contraseña a la original");
-    AccountSettingsMethods.openDropDownClick();
-
-    Logger.stepNumber(11);
-    Logger.step("Ingresamos la nueva contraseña");
-    AccountSettingsMethods.updateUserPassword(
-      LoginData.validCredentials.password,
-      LoginData.validCredentials.password
-    );
-
-    Logger.stepNumber(12);
-    Logger.step("Guardamos cambios");
-    AccountSettingsMethods.saveChangesClick();
-
-    Logger.verification("La contraseña ha sido actualizada");
-    AccountSettingsMethods.verifyDataUpdated();
   });
 });

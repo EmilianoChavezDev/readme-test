@@ -32,7 +32,7 @@ describe("Add Book to favorite", () => {
     Logger.step("Seleccionamos el libro de novedades");
     HomeMethods.getBook("Libro de prueba");
 
-    cy.wait(2000);
+    cy.wait(4000);
 
     cy.intercept("POST", CommonPageData.endPoints.favorites).as("addFavorite");
 

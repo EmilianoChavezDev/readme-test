@@ -95,6 +95,8 @@ describe("Read chapter", () => {
         Logger.verification("Verificamos que el capitulo se ha publicado");
         ReadChapterMethods.verifyToastDisapear();
 
+        cy.wait(4000);
+
         Logger.stepNumber(9);
         Logger.step("Damos click en el boton de terminar libro");
         ReadChapterMethods.finishBookClick();

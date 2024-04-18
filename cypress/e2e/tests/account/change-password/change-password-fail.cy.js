@@ -37,6 +37,8 @@ describe("Change password fail", () => {
     Logger.step("Vamos a Informacion Personal");
     AccountSettingsMethods.myAccountClick();
 
+    cy.wait(4000);
+
     Logger.stepNumber(5);
     Logger.step("Insertamos la contrasena actual");
     AccountSettingsMethods.insertPassword("incorrectPassword");
@@ -44,6 +46,8 @@ describe("Change password fail", () => {
     Logger.stepNumber(6);
     Logger.step("Abrir dropdown de cambio de contraseña");
     AccountSettingsMethods.openDropDownClick();
+
+    cy.wait(4000);
 
     Logger.stepNumber(7);
     Logger.step("Ingresamos la nueva contraseña");
@@ -57,6 +61,8 @@ describe("Change password fail", () => {
     Logger.stepNumber(8);
     Logger.step("Guardamos cambios");
     AccountSettingsMethods.saveChangesClick();
+
+    cy.wait(4000);
 
     Logger.verification("La contraseña no ha sido actualizada");
     AccountSettingsMethods.verifyActualPassword();
@@ -75,6 +81,8 @@ describe("Change password fail", () => {
     Logger.step("Vamos a Informacion Personal");
     AccountSettingsMethods.myAccountClick();
 
+    cy.wait(4000);
+
     Logger.stepNumber(5);
     Logger.step("Insertamos la contraseña actual");
     AccountSettingsMethods.insertPassword(LoginData.validCredentials.password);
@@ -83,6 +91,8 @@ describe("Change password fail", () => {
     Logger.step("Abrir dropdown de cambio de contraseña");
     AccountSettingsMethods.openDropDownClick();
 
+    cy.wait(4000);
+
     Logger.stepNumber(7);
     Logger.step("Ingresamos la nueva contraseña");
     AccountSettingsMethods.updateUserPassword("incorrectPassword", "asdasdad");
@@ -90,6 +100,8 @@ describe("Change password fail", () => {
     Logger.stepNumber(8);
     Logger.step("Guardamos cambios");
     AccountSettingsMethods.saveChangesClick();
+
+    cy.wait(4000);
 
     Logger.verification("La contraseña no ha sido actualizada");
     AccountSettingsMethods.verifyPasswordsDontMatch();

@@ -31,6 +31,8 @@ describe("Search navbar", () => {
     Logger.step("Buscar un usuario que no exista");
     NavBarMethods.searchUser("usuarioquenoexiste");
 
+    cy.wait(4000);
+
     Logger.stepNumber(4);
     Logger.step("Vamos al apartado de usuarios");
     NavBarSearchUsersMethods.changeToUsersClick();

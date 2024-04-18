@@ -6,6 +6,7 @@ module.exports = defineConfig({
   viewportHeight: 660,
   defaultCommandTimeout: 30000,
   pageLoadTimeout: 60000,
+  requestTimeout: 20000,
   e2e: {
     setupNodeEvents(on, config) {
       allureCypress(on);

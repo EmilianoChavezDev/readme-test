@@ -33,7 +33,7 @@ describe("Add Book to favorite", () => {
     Logger.step("Seleccionamos el primer libro de novedades");
     HomeMethods.getBook("Libro de prueba");
 
-    cy.wait(2000);
+    cy.wait(4000);
 
     cy.intercept("POST", CommonPageData.endPoints.favorites).as("addFavorite");
 
@@ -41,14 +41,12 @@ describe("Add Book to favorite", () => {
     Logger.step("Agregar el libro a favoritos desde los detalles del libro");
     BookDetailsMethods.addFavoriteClick();
 
+    Logger.verification("Verificamos el mensaje de agregado a favoritos");
+    BookDetailsMethods.verifyFavoriteAddedMessage();
+
     cy.wait("@addFavorite").then((interception) => {
       expect(interception.response.statusCode).to.eq(201);
       favoriteId = interception.response.body.favorito.id;
-
-      Logger.verification("Verificamos el mensaje de agregado a favoritos");
-      BookDetailsMethods.verifyFavoriteAddedMessage();
-
-      console.log(favoriteId);
 
       cy.intercept(
         "PUT",

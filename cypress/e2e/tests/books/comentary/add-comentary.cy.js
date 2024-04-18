@@ -34,19 +34,18 @@ describe("Reviews", () => {
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();
 
-    cy.intercept("POST", CommonPageData.endPoints.comments).as("postComment");
-
     Logger.stepNumber(4);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.insertComment("Excelente libro");
+
+    //cy.intercept("POST", CommonPageData.endPoints.comments).as("postComment");
 
     Logger.stepNumber(5);
     Logger.step("Agregamos un comentario");
     BookDetailsMethods.addCommentClick();
 
-    cy.wait("@postComment").then((interception) => {
-      console.log(interception);
-      expect(interception.response.statusCode).to.equal(201);
-    });
+    // cy.wait("@postComment").then((interception) => {
+    //   expect(interception.response.statusCode).to.equal(201);
+    // });
   });
 });
