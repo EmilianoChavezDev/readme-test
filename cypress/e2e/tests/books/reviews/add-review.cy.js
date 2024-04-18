@@ -31,10 +31,12 @@ describe("Reviews", () => {
     Logger.step("Seleccionamos el libro");
     HomeMethods.getBook("Libro de prueba");
 
+    cy.wait(4000);
+
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();
 
-    cy.wait(2000);
+    cy.wait(4000);
 
     cy.intercept("POST", CommonPageData.endPoints.reviews).as("postReview");
 
