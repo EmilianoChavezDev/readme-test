@@ -57,6 +57,10 @@ export class CommonPageData {
       get userReports() {
         return "https://readme-backend.fly.dev/reportes_usuarios";
       },
+
+      get restore() {
+        return "https://readme-backend.fly.dev/restore";
+      },
     };
   }
 

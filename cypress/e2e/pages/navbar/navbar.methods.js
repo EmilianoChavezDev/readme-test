@@ -27,6 +27,7 @@ export class NavBarMethods {
     NavBarElements.buttons.myFavoritesButton.click();
   }
 
+
   // Ir a la pagina de mi cuenta
   static goToMyAccount() {
     Logger.subStep("Click en el menu de cuenta");

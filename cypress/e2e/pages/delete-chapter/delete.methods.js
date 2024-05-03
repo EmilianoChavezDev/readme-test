@@ -1,6 +1,6 @@
 import { MyDeleteChaptersElements } from "./delete.elements";
 
-export class MyDeleteChaptersElements {
+export class MyDeleteChaptersMethods {
   static continueWriting() {
     MyDeleteChaptersElements.buttons.continueWriting.click().eq(0);
   }

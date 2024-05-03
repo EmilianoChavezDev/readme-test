@@ -3,9 +3,9 @@ import { LoginMethods } from "../../../pages/login/login.methods";
 import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
 import { Logger } from "../../../../support/logger";
 import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { MyDeleteChaptersMethods } from "../../../pages/delete-chapter/delete.methods";
+import { MyRestoreMethods } from "../../../pages/restore-chapter/restore.methods";
 
-describe("Delete chapter", () => {
+describe("Restore chapter", () => {
   beforeEach(() => {
     Logger.stepNumber(1);
     Logger.step("Navegamos a la pagina de login");
@@ -25,33 +25,27 @@ describe("Delete chapter", () => {
     NavBarMethods.verifyWriteButton();
   });
 
-  it("Continue writing chapter", () => {
+  it("go to navbar", () => {
     Logger.stepNumber(3);
     Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToMyBooks();
-
-    Logger.verification("La url deberia ser la de mis libros");
-    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/mybooks`);
+    NavBarMethods.goToMyAccount();
 
     Logger.stepNumber(4);
-    Logger.step("Seleccionamos el libro y damos click en seguir escribiendo");
-    MyDeleteChaptersMethods.continueWriting();
+    Logger.step("Entramos a la pagina de Papelera");
+    MyRestoreMethods.openTrushPage();
 
-    cy.wait(3000);
+    Logger.verification("La url deberia ser la pagina de mi cuenta");
+    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/recycle`);
+
     Logger.stepNumber(5);
-    Logger.step("Abrimos el menu de capitulos del libro");
-    MyDeleteChaptersMethods.openMenu();
+    Logger.step("Seleccionamos la opcion de restauracion de capitulos");
+    MyRestoreMethods.selectChapeterRestored();
 
     Logger.stepNumber(6);
-    Logger.step("Abrimos el menu de capitulos del libro");
-    MyDeleteChaptersMethods.deleteChapterClick();
+    Logger.step("Restauramos el capitulo");
+    MyRestoreMethods.restore();
 
-    Logger.stepNumber(7);
-    Logger.step("Cerramos el menu");
-    MyDeleteChaptersMethods.openMenu();
-
-    Logger.stepNumber(8);
-    Logger.step("Y lo vuelvo a abrir para comprobar el cambio");
-    MyDeleteChaptersMethods.openMenu();
+    Logger.verification("Capitulo restaurado con éxito");
+    MyRestoreMethods.verifyRestoreChapter();
   });
 });
