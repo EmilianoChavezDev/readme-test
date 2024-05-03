@@ -3,7 +3,7 @@ export class LoginElements {
   static get textBoxes() {
     return {
       get username() {
-        return cy.get('input[name="username"]');
+        return cy.get('input[name="email"]');
       },
 
       get password() {
