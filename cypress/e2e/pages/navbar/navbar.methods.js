@@ -27,7 +27,6 @@ export class NavBarMethods {
     NavBarElements.buttons.myFavoritesButton.click();
   }
 
-
   // Ir a la pagina de mi cuenta
   static goToMyAccount() {
     Logger.subStep("Click en el menu de cuenta");
@@ -35,6 +34,14 @@ export class NavBarMethods {
 
     Logger.subStep("Click en Mi informacion personal");
     NavBarElements.accountMenuButtons.myAccountButton.click();
+  }
+
+  // Ir a la pagina de mi cuenta
+  static goToModeradorPanel() {
+    Logger.subStep("Click en el menu de cuenta");
+    NavBarElements.buttons.accountMenuBotton.click();
+    Logger.subStep("Click en el menu de cuenta");
+    NavBarElements.buttons.moderadorButton.click();
   }
 
   // Ir a la pagina de mi perfil

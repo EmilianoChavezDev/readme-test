@@ -25,6 +25,9 @@ export class NavBarElements {
           )
           .first();
       },
+      get moderadorButton() {
+        return cy.contains("span", "Panel del Moderador").first();
+      },
 
       get accountMenuBotton() {
         return cy.get("span.cursor-pointer").eq(2);

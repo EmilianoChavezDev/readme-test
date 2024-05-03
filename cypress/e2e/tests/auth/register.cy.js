@@ -37,7 +37,7 @@ describe("Register Test", () => {
     );
 
     Logger.verification("El boton de Escribe del NavBar deberia ser visible");
-    NavBarMethods.verifyWriteButton();
+    RegisterMethods.verifyMessageOk();
   });
 
   it("User Already Exist", () => {

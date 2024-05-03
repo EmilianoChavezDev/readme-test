@@ -21,6 +21,12 @@ export class RegisterElements {
       get birthDate() {
         return cy.get('input[name="fecha_nacimiento"]');
       },
+      get registerValid() {
+        return cy.contains(
+          "p",
+          "Enviamos un código de confirmación al correo electrónico que proporcionaste. ¡Revisa tu correo!"
+        );
+      },
     };
   }
 

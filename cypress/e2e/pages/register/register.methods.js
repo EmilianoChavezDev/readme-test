@@ -104,4 +104,7 @@ export class RegisterMethods {
   static verifyBirthDateInvalid() {
     RegisterElements.errorMessages.birthDateInvalid.should("be.visible");
   }
+  static verifyMessageOk() {
+    RegisterElements.textBoxes.registerValid.should("be.visible");
+  }
 }
