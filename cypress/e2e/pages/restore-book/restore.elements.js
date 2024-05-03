@@ -1,10 +1,10 @@
-export class MyRestoreElements {
+export class MyBookRestoreElements {
   // Botones de mis libros
   static get buttons() {
     return {
       // selecciono la pagina
       get trush() {
-        return cy.get("button.flex.items-center").contains("Papelera");
+        return cy.get("li.rounded-lg button").eq(2);
       },
     };
   }
@@ -13,9 +13,6 @@ export class MyRestoreElements {
   static get actionButtons() {
     return {
       get selectChapterOption() {
-        return cy.get('ul[role="tablist"] li').contains("Capitulos");
-      },
-      get selectBookOption() {
         return cy.get('ul[role="tablist"] li').contains("Libros");
       },
       get restore() {
@@ -31,11 +28,6 @@ export class MyRestoreElements {
   // Mensajes de exito
   static get successMessages() {
     return {
-      get restoreChapter() {
-        return cy
-          .get(".go3958317564")
-          .should("contain", "Capitulo restaurado con éxito");
-      },
       get restoreBook() {
         return cy
           .get(".go3958317564")

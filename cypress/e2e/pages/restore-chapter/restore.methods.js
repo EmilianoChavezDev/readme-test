@@ -14,11 +14,17 @@ export class MyRestoreMethods {
   static selectChapeterRestored() {
     MyRestoreElements.actionButtons.selectChapterOption.click();
   }
+  static selectBookRestored() {
+    MyRestoreElements.actionButtons.selectBookOption.click();
+  }
 
   static restore() {
     MyRestoreElements.actionButtons.restore.click().eq(0);
   }
   static verifyRestoreChapter() {
     MyRestoreElements.successMessages.restoreChapter.should("be.visible");
+  }
+  static verifyRestoreBook() {
+    MyRestoreElements.successMessages.restoreBook.should("be.visible");
   }
 }
