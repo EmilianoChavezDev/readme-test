@@ -3,9 +3,10 @@ import { NavBarMethods } from "../../pages/navbar/navbar.methods";
 import { LoginData } from "../../pages/login/login.data";
 import { LoginMethods } from "../../pages/login/login.methods";
 import { CommonPageData } from "../../pages/common-page/common-page.data";
+import { DesbanearLibroMethods } from "../../pages/admin-view/Desbanear Libro/desbanear-libro.methods";
 import { AdminViewMethods } from "../../pages/admin-view/Add Moderador/admin-view.methods";
 
-describe("Add new moderador", () => {
+describe("desbanear libro", () => {
     beforeEach(() => {
         Logger.stepNumber(1);
         Logger.step("Navegamos a la pagina de login");
@@ -35,15 +36,23 @@ describe("Add new moderador", () => {
         AdminViewMethods.AdministradorViewClick();
 
         Logger.stepNumber(5);
-        Logger.step("Click en la opcion de moderador")
-        AdminViewMethods.ModeradorOptionClick();
+        Logger.step("Click en la opcion de libros")
+        DesbanearLibroMethods.clickLibrosOption();
 
         Logger.stepNumber(6);
         Logger.step("Clickeamos el boton de agregar nuevo moderador")
-        AdminViewMethods.AddNewModerador();
+        DesbanearLibroMethods.clickSelectOption();
 
         Logger.stepNumber(7);
         Logger.step("Buscamos al moderador a agregar")
-        AdminViewMethods.ClickAddModeradorInput("toto");
+        DesbanearLibroMethods.selectSolicitadoOption();
+
+        Logger.stepNumber(8);
+        Logger.step("Clickeamos en deshacer desbaneo")
+        DesbanearLibroMethods.clickDeshacerDesbaneo();
+
+        Logger.stepNumber(7);
+        Logger.step("Aceptamos el desbaneo")
+        DesbanearLibroMethods.clickAceptarDesbaneo();
     });
 })
