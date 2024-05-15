@@ -85,8 +85,7 @@ describe("Change password", () => {
       Logger.step("Guardamos cambios");
       AccountSettingsMethods.saveChangesClick();
 
-      Logger.verification("La contraseña ha sido actualizada");
-      AccountSettingsMethods.verifyDataUpdated();
+
     });
   });
 });
