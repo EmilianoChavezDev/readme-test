@@ -14,4 +14,12 @@ export class AdminViewMethods {
     static ClickAddModeradorInput(text) {
         AdminViewElements.inputsActions.inputAddModerador.type(text);
     }
+    static PressEnterSearchInput() {
+        AdminViewElements.inputsActions.inputAddModerador.type('{enter}');
+
+    }
+    static aceptarModeradorNuevo() {
+        AdminViewElements.buttonsActions.aceptarModerador.click();
+    }
+
 }

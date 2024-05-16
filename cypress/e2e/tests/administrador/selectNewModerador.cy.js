@@ -45,5 +45,14 @@ describe("Add new moderador", () => {
         Logger.stepNumber(7);
         Logger.step("Buscamos al moderador a agregar")
         AdminViewMethods.ClickAddModeradorInput("toto");
+
+        cy.wait(800);
+        Logger.stepNumber(8);
+        Logger.step("Seleccionamos al primer usuario de la busqueda")
+        AdminViewMethods.PressEnterSearchInput();
+
+        Logger.stepNumber(9);
+        Logger.step("Aceptamos el nuevo moderador")
+        AdminViewMethods.aceptarModeradorNuevo();
     });
 })

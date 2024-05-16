@@ -11,6 +11,9 @@ export class AdminViewElements {
             ,
             get selectAdministradorView() {
                 return cy.contains('h2', 'Administración')
+            },
+            get aceptarModerador() {
+                return cy.get('div.justify-end button');
             }
         };
     }
@@ -19,9 +22,9 @@ export class AdminViewElements {
     static get inputsActions() {
         return {
             get inputAddModerador() {
-                return cy.get('label:contains("Buscar por username")').siblings('input')
+                return cy.get('label').contains('Buscar por username').siblings('input');
+            },
 
-            }
 
         };
     }

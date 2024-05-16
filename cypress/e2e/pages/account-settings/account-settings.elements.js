@@ -3,7 +3,7 @@ export class AccountSettingsElements {
   static get buttons() {
     return {
       get myInformation() {
-        return cy.get("li.rounded-lg button").eq(0);
+        return cy.get('div.flex-row div').eq(0)
       },
 
       get myStatistics() {
