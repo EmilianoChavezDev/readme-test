@@ -25,7 +25,7 @@ export class LoginElements {
   static get errorMessagess() {
     return {
       get userOrPasswordNotValid() {
-        return cy.contains("p", "Usuario o contraseña no valido");
+        return cy.contains("p", "Invalid email or password");
       },
     };
   }

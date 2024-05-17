@@ -77,7 +77,7 @@ export class CreateBookMethods {
   static verifyEmptySynopsisError() {
     CreateBookElements.emptyFieldsErrors.synopsis.should(
       "contain.text",
-      "La descripción no puede estar vacio"
+      "La descripción no puede estar vacio."
     );
   }
 

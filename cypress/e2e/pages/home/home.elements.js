@@ -3,7 +3,7 @@ export class HomeElements {
   static get container() {
     return {
       get bookContainer() {
-        return cy.get("#scroll-container-1");
+        return cy.get('div.text-xs').eq(0)
       },
     };
   }

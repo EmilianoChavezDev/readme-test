@@ -29,7 +29,7 @@ describe("Reviews", () => {
   it("Add review", () => {
     Logger.stepNumber(3);
     Logger.step("Seleccionamos el primer libro de novedades");
-    HomeMethods.getBook("Libro de prueba");
+    HomeMethods.getBook();
 
     Logger.verification("La seccion de comentarios deberia estar presente");
     BookDetailsMethods.verifyComentarySection();

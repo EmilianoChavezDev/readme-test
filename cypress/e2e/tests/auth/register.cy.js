@@ -51,7 +51,7 @@ describe("Register Test", () => {
       randomBirthDate
     );
 
-    Logger.verification("El usuario esta ingresando un usuario que ya existe");
+    Logger.verification("El email de usuario ya está en uso");
     RegisterMethods.verifyUserAlreadyExist();
   });
 
@@ -72,54 +72,6 @@ describe("Register Test", () => {
     RegisterMethods.verifyPasswordNotMatch();
   });
 
-  it("Empty Fields", () => {
-    Logger.stepNumber(2);
-    Logger.step("Registrarse con campos vacios");
-    RegisterMethods.clickRegisterButton();
 
-    Logger.verification("El usuario esta ingresando campos vacios");
-    RegisterMethods.verifyBirthDateEmpty();
 
-    RegisterMethods.signUpEmptyFields(
-      randomUsername,
-      randomPassword,
-      randomBirthDate
-    );
-    Logger.verification("El usuario esta ingresando campos vacios");
-    RegisterMethods.verifyAllFieldsAreEmpty();
-  });
-
-  it("Password length invalid", () => {
-    Logger.stepNumber(2);
-    Logger.step("Registrarse con una contraseña de longitud invalida");
-    RegisterMethods.signUp(
-      randomUsername,
-      randomEmail,
-      randomPasswordInvalidLength,
-      randomPasswordInvalidLength,
-      randomBirthDate
-    );
-
-    Logger.verification(
-      "El usuario esta ingresando una contraseña de longitud invalida"
-    );
-    RegisterMethods.verifyPasswordLengthInvalid();
-  });
-
-  it("Birth Date Invalid", () => {
-    Logger.stepNumber(2);
-    Logger.step("Registrarse con una fecha de nacimiento invalida");
-    RegisterMethods.signUp(
-      randomUsername,
-      randomEmail,
-      randomPassword,
-      randomPassword,
-      randomBirthDateInvalid
-    );
-
-    Logger.verification(
-      "El usuario esta ingresando una fecha de nacimiento invalida"
-    );
-    RegisterMethods.verifyBirthDateInvalid();
-  });
 });

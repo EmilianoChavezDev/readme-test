@@ -36,7 +36,7 @@ export class CreateBookElements {
       },
 
       get synopsis() {
-        return cy.get("#sinopsis + p");
+        return cy.contains('p', 'La descripción no puede estar vacio. ')
       },
 
       get category() {
@@ -58,7 +58,7 @@ export class CreateBookElements {
   static get bookButtons() {
     return {
       get seguirButton() {
-        return cy.get(".bg-BooksCreateSeguirButton");
+        return cy.contains('button', 'Seguir')
       },
 
       get cancelButton() {

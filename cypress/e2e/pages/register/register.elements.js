@@ -34,7 +34,8 @@ export class RegisterElements {
   static get errorMessages() {
     return {
       get userAlreadyExist() {
-        return cy.get("p").contains("Nombre de usuario en uso");
+        return cy.get('div[class*="bg-red-"]').contains("El email de usuario ya está en uso");
+        
       },
 
       get fillAllFields() {

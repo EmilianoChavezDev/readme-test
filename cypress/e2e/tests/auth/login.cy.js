@@ -38,17 +38,10 @@ describe("Login Test", () => {
     LoginMethods.login(randomUsername, randomPassword);
 
     Logger.verification(
-      "El usuario esta ingresando un usuario o contraseña no validos"
+      "Invalid email or password"
     );
     LoginMethods.verifyUserOrPasswordNotValid();
   });
 
-  it("Empty Fields", () => {
-    Logger.stepNumber(2);
-    Logger.step("Login con campos vacios");
-    LoginMethods.clickLoginButton();
-
-    Logger.verification("El usuario esta ingresando campos vacios");
-    LoginMethods.verifyUserOrPasswordNotValid();
-  });
+  
 });

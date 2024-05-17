@@ -4,7 +4,7 @@ export class MyRestoreElements {
     return {
       // selecciono la pagina
       get trush() {
-        return cy.get("button.flex.items-center").contains("Papelera");
+        return cy.get('a[href="/books/recycle"] div').eq(0)
       },
     };
   }
@@ -19,7 +19,7 @@ export class MyRestoreElements {
         return cy.get('ul[role="tablist"] li').contains("Libros");
       },
       get restore() {
-        return cy.contains("button", "Restaurar");
+        return cy.get('div[data-value="capitulos"] button')
       },
 
       get openMenu() {

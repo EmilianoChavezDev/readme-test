@@ -32,7 +32,7 @@ export class BookDetailsElements {
   static get comentarySection() {
     return {
       get comentary() {
-        return cy.get('textarea[placeholder="Añadir un comment"]');
+        return cy.get('textarea[placeholder="Añadir un comentario"]')
       },
 
       get editComentaryInput() {
