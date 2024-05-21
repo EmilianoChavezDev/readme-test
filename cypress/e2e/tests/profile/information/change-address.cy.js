@@ -9,7 +9,7 @@ import { ProfileSettingsMethods } from '../../../pages/profile-settings/profile-
 
 const newDescription = CommonPageMethods.generateRandomString(5)
 
-describe('Change description', () => {
+describe('Change direction', () => {
 
     beforeEach(() => {
         Logger.stepNumber(1)
@@ -27,7 +27,7 @@ describe('Change description', () => {
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Change user description', () => {
+    it('Change user direction', () => {
         Logger.stepNumber(3)
         Logger.step('Vamos a los ajustes de la cuenta')
         NavBarMethods.goToMyProfile()
@@ -41,9 +41,9 @@ describe('Change description', () => {
 
         Logger.stepNumber(5)
         Logger.step('Ingresamos el nuevo nombre')
-        ProfileSettingsMethods.insertDescription(`Esta es una nueva descripcion${newDescription}`)
+        ProfileSettingsMethods.insertDirection(`Esta es una nueva direccion: ${newDescription}`)
 
-        cy.intercept('PUT', CommonPageData.endPoints.information).as('updateDescription')
+        cy.intercept('PUT', CommonPageData.endPoints.information).as('updateDirection')
 
         Logger.stepNumber(6)
         Logger.step('Guardamos cambios')
@@ -52,7 +52,7 @@ describe('Change description', () => {
         Logger.verification('La fecha de nacimiento ha sido actualizada')
         AccountSettingsMethods.verifyDataUpdated()
 
-        cy.wait('@updateDescription').then((interception) => {
+        cy.wait('@updateDirection').then((interception) => {
             expect(interception.response.statusCode).to.eq(200)
         })
     })

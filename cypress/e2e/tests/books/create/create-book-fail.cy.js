@@ -3,9 +3,9 @@ import { LoginData } from '../../../pages/login/login.data'
 import { LoginMethods } from '../../../pages/login/login.methods'
 import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
 import { CommonPageData } from '../../../pages/common-page/common-page.data'
-import { MyDeleteChaptersMethods } from '../../../pages/delete-chapter/delete.methods'
+import { CreateBookMethods } from '../../../pages/create-book/create-book.methods'
 
-describe('Delete chapter', () => {
+describe('Create book fail', () => {
 
     beforeEach(() => {
         Logger.stepNumber(1)
@@ -23,34 +23,23 @@ describe('Delete chapter', () => {
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Continue writing chapter', () => {
+    it('Show validation errors for empty fields', () => {
         Logger.stepNumber(3)
         Logger.step('Click en Escribe y en Crear libro nuevo del navbar')
-        NavBarMethods.goToMyBooks()
+        NavBarMethods.goToWriteBook()
 
-        Logger.verification('La url deberia ser la de mis libros')
-        cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/mybooks`)
+        Logger.verification('La url deberia ser la de creacion de libro')
+        cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/create`)
 
         Logger.stepNumber(4)
-        Logger.step('Seleccionamos el libro y damos click en seguir escribiendo')
-        MyDeleteChaptersMethods.continueWriting()
+        Logger.step('Damos click en Seguir sin llenar los campos')
+        CreateBookMethods.seguirButtonClick()
 
-        cy.wait(3000)
-        Logger.stepNumber(5)
-        Logger.step('Abrimos el menu de capitulos del libro')
-        MyDeleteChaptersMethods.openMenu()
-
-        Logger.stepNumber(6)
-        Logger.step('Abrimos el menu de capitulos del libro')
-        MyDeleteChaptersMethods.deleteChapterClick()
-
-        Logger.stepNumber(7)
-        Logger.step('Cerramos el menu')
-        MyDeleteChaptersMethods.openMenu()
-
-        Logger.stepNumber(8)
-        Logger.step('Y lo vuelvo a abrir para comprobar el cambio')
-        MyDeleteChaptersMethods.openMenu()
+        // Verificamos que se muestren los mensajes de error
+        Logger.verification('Deberia mostrar los mensajes de error')
+        CreateBookMethods.verifyEmptyTitleError()
+        CreateBookMethods.verifyEmptySynopsisError()
+        CreateBookMethods.verifyEmptyCategoryError()
     })
 
 })

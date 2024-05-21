@@ -1,109 +1,100 @@
-import { CreateBookData } from "../../../pages/create-book/create-book.data";
-import { LoginData } from "../../../pages/login/login.data";
-import { LoginMethods } from "../../../pages/login/login.methods";
-import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
-import { Logger } from "../../../../support/logger";
-import { ChaptersData } from "../../../pages/chapters/chapters.data";
-import { ChaptersMethods } from "../../../pages/chapters/chapters.methods";
-import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { CreateBookMethods } from "../../../pages/create-book/create-book.methods";
-import { BookDetailsMethods } from "../../../pages/book-details/book-details.methods";
-import { ReadChapterMethods } from "../../../pages/read-chapter/read-chapter.methods";
+import { Logger } from '../../../../support/logger'
+import { LoginData } from '../../../pages/login/login.data'
+import { LoginMethods } from '../../../pages/login/login.methods'
+import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
+import { ChaptersData } from '../../../pages/chapters/chapters.data'
+import { ChaptersMethods } from '../../../pages/chapters/chapters.methods'
+import { CreateBookData } from '../../../pages/create-book/create-book.data'
+import { CommonPageData } from '../../../pages/common-page/common-page.data'
+import { CreateBookMethods } from '../../../pages/create-book/create-book.methods'
+import { BookDetailsMethods } from '../../../pages/book-details/book-details.methods'
+import { ReadChapterMethods } from '../../../pages/read-chapter/read-chapter.methods'
 
-let bookId;
+let bookId
 
-describe("Read chapter", () => {
-  beforeEach(() => {
-    Logger.stepNumber(1);
-    Logger.step("Navegamos a la pagina de login");
-    cy.visit(CommonPageData.appPages.loginUrl);
+describe('Read chapter', () => {
 
-    Logger.verification("Estamos en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.loginUrl);
+    beforeEach(() => {
+        Logger.stepNumber(1)
+        Logger.step('Navegamos a la pagina de login')
+        cy.visit(CommonPageData.appPages.loginUrl)
 
-    Logger.stepNumber(2);
-    Logger.step("Login con datos validos");
-    LoginMethods.login(
-      LoginData.validCredentials.username,
-      LoginData.validCredentials.password
-    );
+        Logger.verification('Estamos en la pagina de login')
+        cy.url().should('eq', CommonPageData.appPages.loginUrl)
 
-    Logger.verification("El boton de Escribe del NavBar deberia ser visible");
-    NavBarMethods.verifyWriteButton();
-  });
+        Logger.stepNumber(2)
+        Logger.step('Login con datos validos')
+        LoginMethods.login(LoginData.validCredentials.username, LoginData.validCredentials.password)
 
-  it("Create book and publish chapter", () => {
-    Logger.stepNumber(3);
-    Logger.step("Click en Escribe y en Crear libro nuevo del navbar");
-    NavBarMethods.goToWriteBook();
+        Logger.verification('El boton de Escribe del NavBar deberia ser visible')
+        NavBarMethods.verifyWriteButton()
+    })
 
-    Logger.verification("La url deberia ser la de creacion de libro");
-    cy.url().should("eq", `${CommonPageData.appPages.baseUrl}books/create`);
+    it('Create book and publish chapter', () => {
+        Logger.stepNumber(3)
+        Logger.step('Click en Escribe y en Crear libro nuevo del navbar')
+        NavBarMethods.goToWriteBook()
 
-    Logger.stepNumber(4);
-    Logger.step("Llenamos el formulario y damos click en Seguir");
-    cy.intercept("POST", CommonPageData.endPoints.books).as("createBook");
+        Logger.verification('La url deberia ser la de creacion de libro')
+        cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/create`)
 
-    CreateBookMethods.createBook(
-      CreateBookData.bookData.title,
-      CreateBookData.bookData.synopsis,
-      CreateBookData.bookData.category,
-      CreateBookData.bookData.cover
-    );
+        Logger.stepNumber(4)
+        Logger.step('Llenamos el formulario y damos click en Seguir')
+        cy.intercept('POST', CommonPageData.endPoints.books).as('createBook')
 
-    cy.wait("@createBook").then((interception) => {
-      expect(interception.response.statusCode).to.equal(201);
-      bookId = interception.response.body.id;
+        CreateBookMethods.createBook(
+            CreateBookData.bookData.title,
+            CreateBookData.bookData.synopsis,
+            CreateBookData.bookData.category,
+            CreateBookData.bookData.cover
+        )
 
-      Logger.verification("La url deberia ser la de escribir capitulo");
-      cy.url().should(
-        "eq",
-        `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`
-      );
+        cy.wait('@createBook').then((interception) => {
+            expect(interception.response.statusCode).to.equal(201)
+            bookId = interception.response.body.id
 
-      Logger.stepNumber(5);
-      Logger.step("Insertamos el titulo del capitulo");
-      ChaptersMethods.insertTitle(ChaptersData.chapterContent.title);
+            Logger.verification('La url deberia ser la de escribir capitulo')
+            cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/${bookId}/chapters/write`)
 
-      Logger.stepNumber(6);
-      Logger.step("Insertamos el contenido del capitulo");
-      ChaptersMethods.insertContent(ChaptersData.chapterContent.content);
+            Logger.stepNumber(5)
+            Logger.step('Insertamos el titulo del capitulo')
+            ChaptersMethods.insertTitle(ChaptersData.chapterContent.title)
 
-      cy.intercept("POST", CommonPageData.endPoints.chapters).as(
-        "publishChapter"
-      );
+            Logger.stepNumber(6)
+            Logger.step('Insertamos el contenido del capitulo')
+            ChaptersMethods.insertContent(ChaptersData.chapterContent.content)
 
-      Logger.stepNumber(7);
-      Logger.step("Damos click en Publicar");
-      ChaptersMethods.publishButtonClick();
+            cy.intercept('POST', CommonPageData.endPoints.chapters).as('publishChapter')
 
-      Logger.verification("El capitulo ha sido publicado");
-      ChaptersMethods.verifyChapterPublished();
+            Logger.stepNumber(7)
+            Logger.step('Damos click en Publicar')
+            ChaptersMethods.publishButtonClick()
 
-      cy.wait("@publishChapter").then((interception) => {
-        expect(interception.response.statusCode).to.equal(201);
+            Logger.verification('El capitulo ha sido publicado')
+            ChaptersMethods.verifyChapterPublished()
 
-        cy.url().should(
-          "eq",
-          `${CommonPageData.appPages.baseUrl}books/${bookId}`
-        );
+            cy.wait('@publishChapter').then((interception) => {
+                expect(interception.response.statusCode).to.equal(201)
 
-        Logger.stepNumber(8);
-        Logger.step("Damos click en Leer");
-        BookDetailsMethods.startReadingClick();
+                cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/${bookId}`)
 
-        Logger.verification("Verificamos que el capitulo se ha publicado");
-        ReadChapterMethods.verifyToastDisapear();
+                Logger.stepNumber(8)
+                Logger.step('Damos click en Leer')
+                BookDetailsMethods.startReadingClick()
 
-        cy.wait(4000);
+                Logger.verification('Verificamos que el capitulo se ha publicado')
+                ReadChapterMethods.verifyToastDisapear()
 
-        Logger.stepNumber(9);
-        Logger.step("Damos click en el boton de terminar libro");
-        ReadChapterMethods.finishBookClick();
+                cy.wait(4000)
 
-        Logger.verification("El libro se ha terminado");
-        ReadChapterMethods.verifyFinishBook();
-      });
-    });
-  });
-});
+                Logger.stepNumber(9)
+                Logger.step('Damos click en el boton de terminar libro')
+                ReadChapterMethods.finishBookClick()
+
+                Logger.verification('El libro se ha terminado')
+                ReadChapterMethods.verifyFinishBook()
+            })
+        })
+    })
+
+})

@@ -1,11 +1,12 @@
 import { Logger } from '../../../../support/logger'
 import { LoginData } from '../../../pages/login/login.data'
+import { HomeMethods } from '../../../pages/home/home.methods'
 import { LoginMethods } from '../../../pages/login/login.methods'
 import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
-import { MyBooksMethods } from '../../../pages/mybooks/mybooks.methods'
 import { CommonPageData } from '../../../pages/common-page/common-page.data'
+import { BookDetailsMethods } from '../../../pages/book-details/book-details.methods'
 
-describe('Delete book', () => {
+describe('Add comment', () => {
 
     beforeEach(() => {
         Logger.stepNumber(1)
@@ -23,28 +24,27 @@ describe('Delete book', () => {
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Delete book', () => {
+    it('Add comment', () => {
         Logger.stepNumber(3)
-        Logger.step('Click en Escribe y en Mis Libros')
-        NavBarMethods.goToMyBooks()
+        Logger.step('Seleccionamos el primer libro de novedades')
+        HomeMethods.getBook()
 
-        Logger.verification('La url deberia ser la de mis libros')
-        cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/mybooks`)
+        Logger.verification('La seccion de comentarios deberia estar presente')
+        BookDetailsMethods.verifyComentarySection()
 
         Logger.stepNumber(4)
-        Logger.step('Desplegamos el menu de opciones')
-        MyBooksMethods.openMenu()
+        Logger.step('Agregamos un comentario')
+        BookDetailsMethods.insertComment('Excelente libro')
+
+        //cy.intercept('POST', CommonPageData.endPoints.comments).as('postComment')
 
         Logger.stepNumber(5)
-        Logger.step('Click en Eliminar libro')
-        MyBooksMethods.deleteBookClick()
+        Logger.step('Agregamos un comentario')
+        BookDetailsMethods.addCommentClick()
 
-        Logger.stepNumber(6)
-        Logger.step('Click en confirmar eliminar libro')
-        MyBooksMethods.confirmDeleteBook()
-
-        Logger.verification('El mensaje de exito deberia ser visible')
-        MyBooksMethods.verifyBookDeleted()
+        // cy.wait('@postComment').then((interception) => {
+        //   expect(interception.response.statusCode).to.equal(201)
+        // })
     })
-
+    
 })

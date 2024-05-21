@@ -4,6 +4,7 @@ import { LoginMethods } from '../../../../pages/login/login.methods'
 import { NavBarMethods } from '../../../../pages/navbar/navbar.methods'
 import { CommonPageData } from '../../../../pages/common-page/common-page.data'
 import { NavBarSearchMethods } from '../../../../pages/navbar-search/navbar-search.methods'
+import { NavBarSearchUsersMethods } from '../../../../pages/users-serach/narbar-search.users.methods'
 
 describe('Search navbar', () => {
 
@@ -23,16 +24,19 @@ describe('Search navbar', () => {
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Search existing book', () => {
+    it('Search non-existing user', () => {
         Logger.stepNumber(3)
-        Logger.step('Buscar el libro Spiderman')
-        NavBarMethods.searchBook('Libro de prueba')
+        Logger.step('Buscar un usuario que no exista')
+        NavBarMethods.searchUser('usuarioquenoexiste')
 
-        Logger.verification('Verificar que se hizo la busqueda correctamente')
-        NavBarSearchMethods.verifySearch('Libro de prueba')
+        cy.wait(4000)
 
-        Logger.verification('Verificamos que hayan resultados en la busqueda')
-        NavBarSearchMethods.verifyResults()
+        Logger.stepNumber(4)
+        Logger.step('Vamos al apartado de usuarios')
+        NavBarSearchUsersMethods.changeToUsersClick()
+
+        Logger.verification('Verificar que no se encuentre ningun resultado')
+        NavBarSearchMethods.verifyResultsNotFound()
     })
 
 })

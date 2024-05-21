@@ -2,11 +2,10 @@ import { Logger } from '../../../../support/logger'
 import { LoginData } from '../../../pages/login/login.data'
 import { LoginMethods } from '../../../pages/login/login.methods'
 import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
-import { CreateBookData } from '../../../pages/create-book/create-book.data'
 import { CommonPageData } from '../../../pages/common-page/common-page.data'
 import { CreateBookMethods } from '../../../pages/create-book/create-book.methods'
 
-describe('Create book', () => {
+describe('Create book cancel', () => {
 
     beforeEach(() => {
         Logger.stepNumber(1)
@@ -18,13 +17,16 @@ describe('Create book', () => {
 
         Logger.stepNumber(2)
         Logger.step('Login con datos validos')
-        LoginMethods.login(LoginData.validCredentials.username, LoginData.validCredentials.password)
+        LoginMethods.login(
+        LoginData.validCredentials.username,
+        LoginData.validCredentials.password
+        )
 
         Logger.verification('El boton de Escribe del NavBar deberia ser visible')
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Create book', () => {
+    it('Redirect to home page when cancel button is clicked', () => {
         Logger.stepNumber(3)
         Logger.step('Click en Escribe y en Crear libro nuevo del navbar')
         NavBarMethods.goToWriteBook()
@@ -33,18 +35,11 @@ describe('Create book', () => {
         cy.url().should('eq', `${CommonPageData.appPages.baseUrl}books/create`)
 
         Logger.stepNumber(4)
-        Logger.step('Llenamos el formulario y damos click en Seguir')
-        cy.intercept('POST', CommonPageData.endPoints.books).as('createBook')
+        Logger.step('Damos click en Cancelar')
+        CreateBookMethods.cancelButtonClick()
 
-        CreateBookMethods.createBook(
-            CreateBookData.bookData.title,
-            CreateBookData.bookData.synopsis,
-            CreateBookData.bookData.category,
-            CreateBookData.bookData.cover
-        )
-
-        cy.wait('@createBook').then((interception) => {
-        expect(interception.response.statusCode).to.equal(201)
-        })
+        Logger.verification('La url deberia ser la misma que la de home')
+        cy.url().should('eq', CommonPageData.appPages.baseUrl)
     })
+
 })

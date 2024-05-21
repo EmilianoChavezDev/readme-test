@@ -23,13 +23,21 @@ describe('Search navbar', () => {
         NavBarMethods.verifyWriteButton()
     })
 
-    it('Search existing book', () => {
+    it('Search book per reviews', () => {
         Logger.stepNumber(3)
-        Logger.step('Buscar el libro Spiderman')
-        NavBarMethods.searchBook('Libro de prueba')
+        Logger.step('Buscar un libro cualquiera')
+        NavBarMethods.searchBook('a')
 
         Logger.verification('Verificar que se hizo la busqueda correctamente')
-        NavBarSearchMethods.verifySearch('Libro de prueba')
+        NavBarSearchMethods.verifySearch('a')
+
+        Logger.stepNumber(4)
+        Logger.step('Le damos una calificacion de 5 estrellas al libro')
+        NavBarSearchMethods.randomReview()
+
+        Logger.stepNumber(5)
+        Logger.step('Damos click en aplicar filtros')
+        NavBarSearchMethods.applyReviewsClick()
 
         Logger.verification('Verificamos que hayan resultados en la busqueda')
         NavBarSearchMethods.verifyResults()

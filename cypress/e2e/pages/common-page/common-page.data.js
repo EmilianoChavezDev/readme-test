@@ -1,82 +1,87 @@
+const API_BASE_URL = 'http://localhost:4000'
+const WEB_BASE_URL = 'http://localhost:3000'
+
 export class CommonPageData {
+
+
   // Devolvemos los endpoints de la API
   static get endPoints() {
     return {
       get books() {
-        return "https://readme-backend.fly.dev/libros";
+        return `${API_BASE_URL}/libros`
       },
 
       get profile() {
-        return "https://readme-backend.fly.dev/users/profile";
+        return `${API_BASE_URL}/users/profile`
       },
 
       get username() {
-        return "https://readme-backend.fly.dev/users/username";
+        return `${API_BASE_URL}/users/username`
       },
 
       get deleteProfile() {
-        return "https://readme-backend.fly.dev/users/delete_profile";
+        return `${API_BASE_URL}/users/delete_profile`
       },
 
       get deleteCover() {
-        return " https://readme-backend.fly.dev/users/delete_portada";
+        return ` ${API_BASE_URL}/users/delete_portada`
       },
 
       get password() {
-        return "https://readme-backend.fly.dev/users/password";
+        return `${API_BASE_URL}/users/password`
       },
 
       get information() {
-        return "https://readme-backend.fly.dev/users/information";
+        return `${API_BASE_URL}/users/information`
       },
 
       get cover() {
-        return "https://readme-backend.fly.dev/users/portada";
+        return `${API_BASE_URL}/users/portada`
       },
 
       get chapters() {
-        return "https://readme-backend.fly.dev/capitulos";
+        return `${API_BASE_URL}/capitulos`
       },
 
       get reviews() {
-        return "https://readme-backend.fly.dev/resenhas";
+        return `${API_BASE_URL}/resenhas`
       },
 
       get comments() {
-        return "https://readme-backend.fly.dev/comentarios";
+        return `${API_BASE_URL}/comentarios`
       },
 
       get favorites() {
-        return "https://readme-backend.fly.dev/favoritos";
+        return `${API_BASE_URL}/favoritos`
       },
 
       get bookReports() {
-        return "https://readme-backend.fly.dev/reportes_libros";
+        return `${API_BASE_URL}/reportes_libros`
       },
 
       get userReports() {
-        return "https://readme-backend.fly.dev/reportes_usuarios";
+        return `${API_BASE_URL}/reportes_usuarios`
       },
 
       get restore() {
-        return "https://readme-backend.fly.dev/restore";
+        return `${API_BASE_URL}/restore`
       },
-    };
+    }
   }
 
   static get appPages() {
     return {
       get baseUrl() {
-        return "https://test--readme-test.netlify.app/";
+        return WEB_BASE_URL
       },
 
       get loginUrl() {
-        return "https://test--readme-test.netlify.app/auth/login";
+        return `${WEB_BASE_URL}/auth/login`
       },
 
       get registerUrl() {
-        return "https://test--readme-test.netlify.app/auth/registrarse";
+        return `${WEB_BASE_URL}/auth/registrarse`
       },
-    };
+    }
   }
 }

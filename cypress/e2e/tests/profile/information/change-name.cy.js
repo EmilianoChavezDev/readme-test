@@ -1,61 +1,60 @@
-import { Logger } from "../../../../support/logger";
-import { AccountSettingsMethods } from "../../../pages/account-settings/account-settings.methods";
-import { CommonPageData } from "../../../pages/common-page/common-page.data";
-import { CommonPageMethods } from "../../../pages/common-page/common-page.methods";
-import { LoginData } from "../../../pages/login/login.data";
-import { LoginMethods } from "../../../pages/login/login.methods";
-import { NavBarMethods } from "../../../pages/navbar/navbar.methods";
-import { ProfileSettingsMethods } from "../../../pages/profile-settings/profile-settings.methods";
+import { Logger } from '../../../../support/logger'
+import { LoginData } from '../../../pages/login/login.data'
+import { LoginMethods } from '../../../pages/login/login.methods'
+import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
+import { CommonPageData } from '../../../pages/common-page/common-page.data'
+import { CommonPageMethods } from '../../../pages/common-page/common-page.methods'
+import { AccountSettingsMethods } from '../../../pages/account-settings/account-settings.methods'
+import { ProfileSettingsMethods } from '../../../pages/profile-settings/profile-settings.methods'
 
-const newName = CommonPageMethods.generateRandomString(5);
+const newName = CommonPageMethods.generateRandomString(5)
 
-describe("Change name", () => {
-  beforeEach(() => {
-    Logger.stepNumber(1);
-    Logger.step("Navegar a la pagina de login");
-    cy.visit(CommonPageData.appPages.loginUrl);
+describe('Change name', () => {
 
-    Logger.verification("Estamos en la pagina de login");
-    cy.url().should("eq", CommonPageData.appPages.loginUrl);
+    beforeEach(() => {
+        Logger.stepNumber(1)
+        Logger.step('Navegar a la pagina de login')
+        cy.visit(CommonPageData.appPages.loginUrl)
 
-    Logger.stepNumber(2);
-    Logger.step("Login con datos validos");
-    LoginMethods.login(
-      LoginData.validCredentials.username,
-      LoginData.validCredentials.password
-    );
+        Logger.verification('Estamos en la pagina de login')
+        cy.url().should('eq', CommonPageData.appPages.loginUrl)
 
-    Logger.verification("El boton de Escribe del NavBar deberia ser visible");
-    NavBarMethods.verifyWriteButton();
-  });
+        Logger.stepNumber(2)
+        Logger.step('Login con datos validos')
+        LoginMethods.login(LoginData.validCredentials.username, LoginData.validCredentials.password)
 
-  it("Change user profile name", () => {
-    Logger.stepNumber(3);
-    Logger.step("Vamos a los ajustes de la cuenta");
-    NavBarMethods.goToMyProfile();
+        Logger.verification('El boton de Escribe del NavBar deberia ser visible')
+        NavBarMethods.verifyWriteButton()
+    })
 
-    Logger.stepNumber(5);
-    Logger.step("Damos click en editar perfil");
-    ProfileSettingsMethods.editProfileClick();
+    it('Change user profile name', () => {
+        Logger.stepNumber(3)
+        Logger.step('Vamos a los ajustes de la cuenta')
+        NavBarMethods.goToMyProfile()
 
-    Logger.verification("Verificamos que estemos en modo edicion");
-    ProfileSettingsMethods.verifyEditProfilePage();
+        Logger.stepNumber(5)
+        Logger.step('Damos click en editar perfil')
+        ProfileSettingsMethods.editProfileClick()
 
-    Logger.stepNumber(5);
-    Logger.step("Ingresamos el nuevo nombre");
-    ProfileSettingsMethods.insertName(newName);
+        Logger.verification('Verificamos que estemos en modo edicion')
+        ProfileSettingsMethods.verifyEditProfilePage()
 
-    cy.intercept("PUT", CommonPageData.endPoints.information).as("updateName");
+        Logger.stepNumber(5)
+        Logger.step('Ingresamos el nuevo nombre')
+        ProfileSettingsMethods.insertName(newName)
 
-    Logger.stepNumber(6);
-    Logger.step("Guardamos cambios");
-    ProfileSettingsMethods.saveChangesClick();
+        cy.intercept('PUT', CommonPageData.endPoints.information).as('updateName')
 
-    Logger.verification("La fecha de nacimiento ha sido actualizada");
-    AccountSettingsMethods.verifyDataUpdated();
+        Logger.stepNumber(6)
+        Logger.step('Guardamos cambios')
+        ProfileSettingsMethods.saveChangesClick()
 
-    cy.wait("@updateName").then((interception) => {
-      expect(interception.response.statusCode).to.eq(200);
-    });
-  });
-});
+        Logger.verification('La fecha de nacimiento ha sido actualizada')
+        AccountSettingsMethods.verifyDataUpdated()
+
+        cy.wait('@updateName').then((interception) => {
+            expect(interception.response.statusCode).to.eq(200)
+        })
+    })
+
+})
