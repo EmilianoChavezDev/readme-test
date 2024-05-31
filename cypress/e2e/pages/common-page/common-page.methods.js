@@ -1,3 +1,5 @@
+import { CommonPageData } from "./common-page.data";
+
 export class CommonPageMethods {
   // Metodo para generar una nacionalidad aleatoria
   static randomNationality() {
@@ -48,5 +50,9 @@ export class CommonPageMethods {
   // Metodo para generar un correo electronico aleatorio
   static generateRandomEmail() {
     return `${this.generateRandomString()}@email.com`;
+  }
+
+  static goToHomePage() {
+    cy.visit(CommonPageData.appPages.baseUrl)
   }
 }

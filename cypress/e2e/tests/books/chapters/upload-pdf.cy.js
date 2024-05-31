@@ -1,6 +1,5 @@
 import { Logger } from '../../../../support/logger'
-import { LoginData } from '../../../pages/login/login.data'
-import { LoginMethods } from '../../../pages/login/login.methods'
+import { signin } from '../../../../support/commonSetup'
 import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
 import { ChaptersData } from '../../../pages/chapters/chapters.data'
 import { ChaptersMethods } from '../../../pages/chapters/chapters.methods'
@@ -13,24 +12,7 @@ const pdfPath = 'cypress/e2e/tests/books/chapters/contenido.pdf'
 
 describe('Upload Pdf', () => {
 
-    beforeEach(() => {
-        Logger.stepNumber(1)
-        Logger.step('Navegamos a la pagina de login')
-        cy.visit(CommonPageData.appPages.loginUrl)
-
-        Logger.verification('Estamos en la pagina de login')
-        cy.url().should('eq', CommonPageData.appPages.loginUrl)
-
-        Logger.stepNumber(2)
-        Logger.step('Login con datos validos')
-        LoginMethods.login(
-        LoginData.validCredentials.username,
-        LoginData.validCredentials.password
-        )
-
-        Logger.verification('El boton de Escribe del NavBar deberia ser visible')
-        NavBarMethods.verifyWriteButton()
-    })
+    beforeEach(() => signin())
 
     it('Create a book and upload Pdf for content', () => {
         Logger.stepNumber(3)

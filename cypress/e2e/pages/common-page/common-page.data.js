@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://localhost:4000'
-const WEB_BASE_URL = 'http://localhost:3000'
+const WEB_BASE_URL = 'http://localhost:3001/'
 
 export class CommonPageData {
 
@@ -76,11 +76,11 @@ export class CommonPageData {
       },
 
       get loginUrl() {
-        return `${WEB_BASE_URL}/auth/login`
+        return `${WEB_BASE_URL}auth/login`
       },
 
       get registerUrl() {
-        return `${WEB_BASE_URL}/auth/registrarse`
+        return `${WEB_BASE_URL}auth/registrarse`
       },
     }
   }

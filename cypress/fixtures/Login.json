@@ -1,6 +1,17 @@
 {
-  "correctUser": {
-    "correctUsername": "mauricio@readme.com",
-    "correctPassword": "ab123456"
+  "user": {
+    "username": "jorge",
+    "email": "jorge@readme.com",
+    "password": "ab123456"
+  },
+  "admin": {
+    "username": "mauri",
+    "email": "mauricio@readme.com",
+    "password": "ab123456"
+  },
+  "moderator": {
+    "username": "gabi",
+    "email": "gabi@readme.com",
+    "password": "ab123456"
   }
 }

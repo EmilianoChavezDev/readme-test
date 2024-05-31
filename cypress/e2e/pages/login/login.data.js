@@ -1,11 +1,13 @@
-import { correctUser } from "../../../fixtures/Login.json";
+import { user, admin, moderator } from '../../../fixtures/Login.json'
 
 export class LoginData {
-  // Login con credenciales validas
-  static get validCredentials() {
-    return {
-      username: correctUser.correctUsername,
-      password: correctUser.correctPassword,
-    };
-  }
+    static get userCredentials() {
+        return {...user}
+    }
+    static get moderatorCredentials() {
+        return {...moderator}
+    }
+    static get adminCredentials() {
+        return {...admin}
+    }
 }

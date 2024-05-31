@@ -1,28 +1,12 @@
 import { Logger } from '../../../../support/logger'
-import { LoginData } from '../../../pages/login/login.data'
+import { signin } from '../../../../support/commonSetup'
 import { HomeMethods } from '../../../pages/home/home.methods'
-import { LoginMethods } from '../../../pages/login/login.methods'
-import { NavBarMethods } from '../../../pages/navbar/navbar.methods'
 import { CommonPageData } from '../../../pages/common-page/common-page.data'
 import { BookDetailsMethods } from '../../../pages/book-details/book-details.methods'
 
 describe('Report Book', () => {
 
-    beforeEach(() => {
-        Logger.stepNumber(1)
-        Logger.step('Navegamos a la pagina de login')
-        cy.visit(CommonPageData.appPages.loginUrl)
-
-        Logger.verification('Estamos en la pagina de login')
-        cy.url().should('eq', CommonPageData.appPages.loginUrl)
-
-        Logger.stepNumber(2)
-        Logger.step('Login con credenciales validas')
-        LoginMethods.login(LoginData.validCredentials.username, LoginData.validCredentials.password)
-
-        Logger.verification('NavBar button Escribe should be visible')
-        NavBarMethods.verifyWriteButton()
-    })
+    beforeEach(() => signin())
 
     it('Report book', () => {
         Logger.stepNumber(3)
